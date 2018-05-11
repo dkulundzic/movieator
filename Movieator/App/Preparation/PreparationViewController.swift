@@ -12,10 +12,33 @@ class PreparationViewController : UIViewController {
     
     var movieIDs : [String] = []
     
+    let movieFetcher = MovieFetcher()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        getMovies()
+    }
+    
+    func movieReceived(movie: Movie) {
+        //Saving movies
+        print(movie.title)
+        print("Saving movies")
+    }
+    
+    func movieNotReceived(error: Error) {
+        //Movie not recieved
+        
+        print("Movie not recieved")
+    }
+    
+    func getMovies() {
         getIds()
+        for id in movieIDs {
+            if id.count > 0 {
+                movieFetcher.fetchMovie(byId: id, success: movieReceived, failure: movieNotReceived)
+            }
+        }
     }
     
     func getIds() {
@@ -23,7 +46,6 @@ class PreparationViewController : UIViewController {
             do {
                 let contents = try String(contentsOfFile: filePath)
                 movieIDs = contents.components(separatedBy: .newlines)
-                print(movieIDs)
             } catch {
                 print("Contenst could not be loaded, \(error)")
             }
