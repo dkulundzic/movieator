@@ -58,8 +58,10 @@ class MovieFetcher {
     func parseJSON(movieData: Data) -> Movie? {
         do {
             let decoder = JSONDecoder()
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "dd MMM yyyy"
+            decoder.dateDecodingStrategy = .formatted(dateFormatter)
             let movie = try decoder.decode(Movie.self, from: movieData)
-            //print(movie.title)
             return movie
         } catch  {
             print("Error parsing JSON, \(error)")
@@ -70,8 +72,8 @@ class MovieFetcher {
     func parseJSON(errorData: Data) -> ResponseError? {
         do {
             let decoder = JSONDecoder()
-            let movie = try decoder.decode(ResponseError.self, from: errorData)
-            return movie
+            let error = try decoder.decode(ResponseError.self, from: errorData)
+            return error
         } catch  {
             print("Error parsing JSON, \(error)")
             return nil
