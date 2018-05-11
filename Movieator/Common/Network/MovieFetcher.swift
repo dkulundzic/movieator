@@ -8,6 +8,20 @@
 
 import Foundation
 
+enum MovieFetcherError: LocalizedError {
+    case invalidData
+    case generic(Error)
+    
+    var errorDescription: String? {
+        switch self {
+        case .invalidData:
+            return "Invalid data received from the server."
+        case .generic(let error):
+            return error.localizedDescription
+        }
+    }
+}
+
 class MovieFetcher {
     private let apiKey = "dc86f926"
     //let baseURL = URL(string: "")!
@@ -16,24 +30,27 @@ class MovieFetcher {
     /// - parameter id: The IMDB ID of the wanted movie.
     /// - parameter success: A closure to be invoked when a Movie is successfully retrieved and decoded.
     /// - parameter failure: A closure to be invoked when an error occurred during the movie retrieval.
-    func fetchMovie(byId id: String, success: @escaping (Movie) -> Void, failure: @escaping (Error) -> Void) {
+    func fetchMovie(byId id: String, success: @escaping (Movie) -> Void, failure: @escaping (LocalizedError) -> Void) {
         let url = produceURL(forId: id)
         let dataTask = URLSession.shared.dataTask(with: url) { data, response, error in
             if let responseError = error {
                 print("Error getting data, \(responseError)")
-                failure(responseError)
+                return failure(
+                    MovieFetcherError.generic(responseError)
+                )
             }
-//            let json = try? JSONSerialization.jsonObject(with: data!, options: [])
-//            print(json)
             
-            // if "Response" in data == True - response is valid
-            // else if "Response" in data == False - response is not valid i.e. faliure
-            if let movieData = data {
-                //print(NSString(data: data!, encoding: String.Encoding.utf8.rawValue))
-                guard let movie = self.parseJSON(movieData: movieData) else { return }
+            guard let data = data else {
+                return failure(MovieFetcherError.invalidData)
+            }
+            
+            if let movie = self.parseJSON(movieData: data) {
                 success(movie)
+            } else if let error = self.parseJSON(errorData: data) {
+                failure(error)
+            } else {
+                failure(MovieFetcherError.invalidData)
             }
-            
         }
         dataTask.resume()
     }
@@ -43,6 +60,17 @@ class MovieFetcher {
             let decoder = JSONDecoder()
             let movie = try decoder.decode(Movie.self, from: movieData)
             //print(movie.title)
+            return movie
+        } catch  {
+            print("Error parsing JSON, \(error)")
+            return nil
+        }
+    }
+    
+    func parseJSON(errorData: Data) -> ResponseError? {
+        do {
+            let decoder = JSONDecoder()
+            let movie = try decoder.decode(ResponseError.self, from: errorData)
             return movie
         } catch  {
             print("Error parsing JSON, \(error)")

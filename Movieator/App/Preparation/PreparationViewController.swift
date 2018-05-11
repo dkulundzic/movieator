@@ -9,14 +9,10 @@
 import UIKit
 
 class PreparationViewController : UIViewController {
-    
-    var movieIDs : [String] = []
-    
-    let movieFetcher = MovieFetcher()
+    let movieFetcher: MovieFetcher = MovieFetcher()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         getMovies()
     }
     
@@ -33,24 +29,28 @@ class PreparationViewController : UIViewController {
     }
     
     func getMovies() {
-        getIds()
+        let movieIDs = getIds()
         for id in movieIDs {
-            if id.count > 0 {
-                movieFetcher.fetchMovie(byId: id, success: movieReceived, failure: movieNotReceived)
-            }
+            movieFetcher.fetchMovie(byId: id, success: { [weak self] movie in
+                self?.movieReceived(movie: movie)
+                }, failure: { [weak self] error in
+                    print(error.localizedDescription)
+                    self?.movieNotReceived(error: error)
+            })            
         }
     }
-    
-    func getIds() {
+        
+    func getIds() -> [String] {
         if let filePath = Bundle.main.path(forResource: "movie_ids", ofType: "txt") {
             do {
                 let contents = try String(contentsOfFile: filePath)
-                movieIDs = contents.components(separatedBy: .newlines)
+                let movieIDs = contents.components(separatedBy: .newlines)
+                return movieIDs
             } catch {
-                print("Contenst could not be loaded, \(error)")
+                return []
             }
         } else {
-            print("File not found.")
+            return []
         }
     }
 }
