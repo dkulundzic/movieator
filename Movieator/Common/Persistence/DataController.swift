@@ -13,14 +13,10 @@ class DataController {
     let realm = try! Realm()
     
     func saveMovies(movie: Movie) {
-        let backgroundQueue = DispatchQueue(label: "com.app.queue", qos: .background, target: nil)
-
-        backgroundQueue.async {
-            print("Dispatched to background queue")
-            let realm = try! Realm()
+        DispatchQueue.main.async {
             do {
-                try realm.write {
-                    realm.add(movie)
+                try self.realm.write {
+                    self.realm.add(movie)
                 }
             } catch {
                 print("Error saving movie, \(error)")
@@ -31,6 +27,4 @@ class DataController {
     func loadMovies() -> Results<Movie> {
         return realm.objects(Movie.self)
     }
-    
-    
 }

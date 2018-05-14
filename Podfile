@@ -6,12 +6,10 @@ target 'Movieator' do
   use_frameworks!
 
   # Pods for Movieator
+  pod 'RealmSwift'
 
   target 'MovieatorTests' do
     inherit! :search_paths
     # Pods for testing
   end
-
-pod 'RealmSwift'
-
 end

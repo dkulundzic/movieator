@@ -8,15 +8,15 @@
 
 import UIKit
 
-class PreparationViewController : UIViewController {
+class PreparationViewController: UIViewController {
     let movieFetcher: MovieFetcher = MovieFetcher()
     let data = DataController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let movies =  data.loadMovies()
-        if movies.count > 0{
+        let movies = data.loadMovies()        
+        if movies.count > 0 {
             for movie in movies {
                 print("There are some movies")
                 print(movie.title)
