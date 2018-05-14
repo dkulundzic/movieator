@@ -10,25 +10,25 @@ import Foundation
 import RealmSwift
 
 class Movie: Object, Codable {
-    @objc dynamic var  title: String = ""
-    @objc dynamic var  rated: String = ""
-    @objc dynamic var  releaseDate: Date = Date()
-    @objc dynamic var  runtime: String = ""
-    @objc dynamic var  genre: String = ""
-    @objc dynamic var  director: String = ""
-    @objc dynamic var  writer: String = ""
-    @objc dynamic var  actors: String = ""
-    @objc dynamic var  plot: String = ""
-    @objc dynamic var  language: String = ""
-    @objc dynamic var  country: String = ""
-    @objc dynamic var  awards: String = ""
-    @objc dynamic var  poster: String = ""
-    @objc dynamic var  metascore: Int = 0
-    @objc dynamic var  imdbRating: Double = 0
-    @objc dynamic var  imdbVotes: Int = 0
-    @objc dynamic var  imdbID: String = ""
-    @objc dynamic var  type: String = ""
-    @objc dynamic var  production: String = ""
+    @objc dynamic var title: String = ""
+    @objc dynamic var rated: String = ""
+    @objc dynamic var releaseDate: Date = Date()
+    @objc dynamic var runtime: String = ""
+    @objc dynamic var genre: String = ""
+    @objc dynamic var director: String = ""
+    @objc dynamic var writer: String = ""
+    @objc dynamic var actors: String = ""
+    @objc dynamic var plot: String = ""
+    @objc dynamic var language: String = ""
+    @objc dynamic var country: String = ""
+    @objc dynamic var awards: String = ""
+    @objc dynamic var poster: String = ""
+    @objc dynamic var metascore: Int = 0
+    @objc dynamic var imdbRating: Double = 0
+    @objc dynamic var imdbVotes: Int = 0
+    @objc dynamic var imdbID: String = ""
+    @objc dynamic var type: String = ""
+    @objc dynamic var production: String = ""
     
     private enum CodingKeys: String, CodingKey {
         case title = "Title"

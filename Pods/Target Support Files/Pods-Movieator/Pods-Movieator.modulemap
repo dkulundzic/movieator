@@ -1,0 +1,6 @@
+framework module Pods_Movieator {
+  umbrella header "Pods-Movieator-umbrella.h"
+
+  export *
+  module * { export * }
+}
