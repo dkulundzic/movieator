@@ -35,21 +35,21 @@ class MovieFetcher {
         let dataTask = URLSession.shared.dataTask(with: url) { data, response, error in
             if let responseError = error {
                 print("Error getting data, \(responseError)")
-                return failure(
-                    MovieFetcherError.generic(responseError)
-                )
+                DispatchQueue.main.async { failure(MovieFetcherError.generic(responseError)) }
+                return
             }
             
             guard let data = data else {
-                return failure(MovieFetcherError.invalidData)
+                DispatchQueue.main.async { failure(MovieFetcherError.invalidData) }
+                return
             }
             
             if let movie = self.parseJSON(movieData: data) {
-                success(movie)
+                DispatchQueue.main.async { success(movie) }
             } else if let error = self.parseJSON(errorData: data) {
-                failure(error)
+                DispatchQueue.main.async { failure(error) }
             } else {
-                failure(MovieFetcherError.invalidData)
+                DispatchQueue.main.async { failure(MovieFetcherError.invalidData) }
             }
         }
         dataTask.resume()

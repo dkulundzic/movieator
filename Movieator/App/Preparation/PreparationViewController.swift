@@ -27,8 +27,12 @@ class PreparationViewController: UIViewController {
         }
     }
     
+    func didCompleteFetchingAndStoringMovies() {
+        
+    }
+    
     func movieReceived(movie: Movie) {
-        //Saving movies
+        // Saving movies
         print(movie.title)
         print("Saving movies")
         data.saveMovies(movie: movie)
@@ -41,17 +45,26 @@ class PreparationViewController: UIViewController {
     }
     
     func getMovies() {
+        let group = DispatchGroup()
         let movieIDs = getIds()
+        
         for id in movieIDs {
+            group.enter()
             movieFetcher.fetchMovie(byId: id, success: { [weak self] movie in
                 self?.movieReceived(movie: movie)
-                }, failure: { [weak self] error in
-                    print(error.localizedDescription)
-                    self?.movieNotReceived(error: error)
+                group.leave()
+            }, failure: { [weak self] error in
+                print(error.localizedDescription)
+                self?.movieNotReceived(error: error)
+                group.leave()
             })            
         }
-    }
         
+        group.notify(queue: DispatchQueue.main) { [weak self] in
+            self?.didCompleteFetchingAndStoringMovies()
+        }
+    }
+    
     func getIds() -> [String] {
         if let filePath = Bundle.main.path(forResource: "movie_ids", ofType: "txt") {
             do {
