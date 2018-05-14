@@ -11,15 +11,21 @@ import UIKit
 class PreparationViewController: UIViewController {
     let movieFetcher: MovieFetcher = MovieFetcher()
     let data = DataController()
+    let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+
+    @IBOutlet weak var loadingView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        loadingView.addSubview(activityIndicator)
+        activityIndicator.frame = loadingView.bounds
+        activityIndicator.startAnimating()
         
         let movies = data.loadMovies()        
         if movies.count > 0 {
             for movie in movies {
                 print("There are some movies")
-                print(movie.title)
             }
         } else {
             print("There is nothing in database")
@@ -28,27 +34,34 @@ class PreparationViewController: UIViewController {
     }
     
     func movieReceived(movie: Movie) {
-        //Saving movies
-        print(movie.title)
-        print("Saving movies")
         data.saveMovies(movie: movie)
     }
     
     func movieNotReceived(error: Error) {
-        //Movie not recieved
-        
-        print("Movie not recieved")
+        print(error)
+    }
+    
+    func didCompleteFetchingAndStoringMovies() {
+        activityIndicator.removeFromSuperview()
+        //Go to Main View
     }
     
     func getMovies() {
+        let group = DispatchGroup()
         let movieIDs = getIds()
+        
         for id in movieIDs {
-            movieFetcher.fetchMovie(byId: id, success: { [weak self] movie in
-                self?.movieReceived(movie: movie)
-                }, failure: { [weak self] error in
-                    print(error.localizedDescription)
+            group.enter()
+            movieFetcher.fetchMovie(byId: id,
+                success: { [weak self] movie in
+                    self?.movieReceived(movie: movie)
+                    group.leave() },
+                failure: { [weak self] error in
                     self?.movieNotReceived(error: error)
-            })            
+                    group.leave() })
+        }
+        group.notify(queue: DispatchQueue.main) { [weak self] in
+            self?.didCompleteFetchingAndStoringMovies()
         }
     }
         

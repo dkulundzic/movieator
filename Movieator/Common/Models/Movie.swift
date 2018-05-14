@@ -23,9 +23,9 @@ class Movie: Object, Codable {
     @objc dynamic var country: String = ""
     @objc dynamic var awards: String = ""
     @objc dynamic var poster: String = ""
-    @objc dynamic var metascore: Int = 0
-    @objc dynamic var imdbRating: Double = 0
-    @objc dynamic var imdbVotes: Int = 0
+    @objc dynamic var metascore: Int = -1
+    @objc dynamic var imdbRating: Double = -1
+    @objc dynamic var imdbVotes: Int = -1
     @objc dynamic var imdbID: String = ""
     @objc dynamic var type: String = ""
     @objc dynamic var production: String = ""
@@ -71,21 +71,15 @@ class Movie: Object, Codable {
         
         if let metascore = try Int(container.decode(String.self, forKey: .metascore)) {
             self.metascore = metascore
-        } else {
-            self.metascore = 0
-        }
+        } else { self.metascore = -1 }
         
         if let imdbRating = try Double(container.decode(String.self, forKey: .imdbRating)) {
             self.imdbRating = imdbRating
-        } else {
-            self.imdbRating = 0
-        }
+        } else { self.imdbRating = -1 }
         
         if let imdbVotes = try Int(container.decode(String.self, forKey: .imdbVotes)) {
             self.imdbVotes = imdbVotes
-        } else {
-            self.imdbVotes = 0
-        }
+        } else { self.imdbVotes = -1 }
         
         self.imdbID = try container.decode(String.self, forKey: .imdbID)
         self.type = try container.decode(String.self, forKey: .type)

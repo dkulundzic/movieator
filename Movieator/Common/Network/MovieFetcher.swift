@@ -24,32 +24,26 @@ enum MovieFetcherError: LocalizedError {
 
 class MovieFetcher {
     private let apiKey = "dc86f926"
-    //let baseURL = URL(string: "")!
     
-    /// Attempts to fetch movie data from the OMDB API by using the provided imdb ID.
-    /// - parameter id: The IMDB ID of the wanted movie.
-    /// - parameter success: A closure to be invoked when a Movie is successfully retrieved and decoded.
-    /// - parameter failure: A closure to be invoked when an error occurred during the movie retrieval.
     func fetchMovie(byId id: String, success: @escaping (Movie) -> Void, failure: @escaping (LocalizedError) -> Void) {
         let url = produceURL(forId: id)
         let dataTask = URLSession.shared.dataTask(with: url) { data, response, error in
             if let responseError = error {
-                print("Error getting data, \(responseError)")
-                return failure(
-                    MovieFetcherError.generic(responseError)
-                )
+                DispatchQueue.main.async { failure(MovieFetcherError.generic(responseError)) }
+                return
             }
             
             guard let data = data else {
-                return failure(MovieFetcherError.invalidData)
+                DispatchQueue.main.async { failure(MovieFetcherError.invalidData) }
+                return
             }
             
             if let movie = self.parseJSON(movieData: data) {
-                success(movie)
+                DispatchQueue.main.async { success(movie) }
             } else if let error = self.parseJSON(errorData: data) {
-                failure(error)
+                DispatchQueue.main.async { failure(error) }
             } else {
-                failure(MovieFetcherError.invalidData)
+                DispatchQueue.main.async { failure(MovieFetcherError.invalidData) }
             }
         }
         dataTask.resume()

@@ -9,7 +9,7 @@
 import Foundation
 
 struct ResponseError: Codable, LocalizedError {
-    let response: Bool
+    let response: String
     let errorMessage: String
     
     var errorDescription: String? {

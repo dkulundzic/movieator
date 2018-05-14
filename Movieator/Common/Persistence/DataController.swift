@@ -13,14 +13,12 @@ class DataController {
     let realm = try! Realm()
     
     func saveMovies(movie: Movie) {
-        DispatchQueue.main.async {
-            do {
-                try self.realm.write {
-                    self.realm.add(movie)
-                }
-            } catch {
-                print("Error saving movie, \(error)")
+        do {
+            try self.realm.write {
+                self.realm.add(movie)
             }
+        } catch {
+            print("Error saving movie, \(error)")
         }
     }
     
