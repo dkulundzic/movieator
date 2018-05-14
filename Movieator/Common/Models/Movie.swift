@@ -7,27 +7,28 @@
 //
 
 import Foundation
+import RealmSwift
 
-class Movie : Codable{
-    let title : String
-    let rated : String
-    let releaseDate : Date
-    let runtime : String
-    let genre : String
-    let director : String
-    let writer : String
-    let actors : String
-    let plot : String
-    let language : String
-    let country : String
-    let awards : String
-    let poster : String
-    let metascore : Int
-    let imdbRating : Double
-    let imdbVotes : Int
-    let imdbID : String
-    let type : String
-    let production : String
+class Movie: Object, Codable {
+    @objc dynamic var  title: String = ""
+    @objc dynamic var  rated: String = ""
+    @objc dynamic var  releaseDate: Date = Date()
+    @objc dynamic var  runtime: String = ""
+    @objc dynamic var  genre: String = ""
+    @objc dynamic var  director: String = ""
+    @objc dynamic var  writer: String = ""
+    @objc dynamic var  actors: String = ""
+    @objc dynamic var  plot: String = ""
+    @objc dynamic var  language: String = ""
+    @objc dynamic var  country: String = ""
+    @objc dynamic var  awards: String = ""
+    @objc dynamic var  poster: String = ""
+    @objc dynamic var  metascore: Int = 0
+    @objc dynamic var  imdbRating: Double = 0
+    @objc dynamic var  imdbVotes: Int = 0
+    @objc dynamic var  imdbID: String = ""
+    @objc dynamic var  type: String = ""
+    @objc dynamic var  production: String = ""
     
     private enum CodingKeys: String, CodingKey {
         case title = "Title"
@@ -51,8 +52,9 @@ class Movie : Codable{
         case production = "Production"
     }
     
-    required init(from decoder: Decoder) throws {
+    required convenience init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.init()
         self.title = try container.decode(String.self, forKey: .title)
         self.rated = try container.decode(String.self, forKey: .rated)
         self.releaseDate = try container.decode(Date.self, forKey: .releaseDate)
@@ -67,20 +69,20 @@ class Movie : Codable{
         self.awards = try container.decode(String.self, forKey: .awards)
         self.poster = try container.decode(String.self, forKey: .poster)
         
-        if let temp = try Int(container.decode(String.self, forKey: .metascore)) {
-            self.metascore = temp
+        if let metascore = try Int(container.decode(String.self, forKey: .metascore)) {
+            self.metascore = metascore
         } else {
             self.metascore = 0
         }
         
-        if let temp = try Double(container.decode(String.self, forKey: .imdbRating)) {
-            self.imdbRating = temp
+        if let imdbRating = try Double(container.decode(String.self, forKey: .imdbRating)) {
+            self.imdbRating = imdbRating
         } else {
             self.imdbRating = 0
         }
         
-        if let temp = try Int(container.decode(String.self, forKey: .imdbVotes)) {
-            self.imdbVotes = temp
+        if let imdbVotes = try Int(container.decode(String.self, forKey: .imdbVotes)) {
+            self.imdbVotes = imdbVotes
         } else {
             self.imdbVotes = 0
         }

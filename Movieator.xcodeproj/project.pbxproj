@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		03036F8A9FDC7EE1150BF130 /* Pods_MovieatorTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B2DDD56E21CD4F6316ACC14 /* Pods_MovieatorTests.framework */; };
 		4895F2D820A59BF0003A83AA /* ResponseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4895F2D720A59BF0003A83AA /* ResponseError.swift */; };
 		48DBE50720A42B0F00572B73 /* MovieatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48DBE50620A42B0F00572B73 /* MovieatorTests.swift */; };
 		48DBE52320A42CBD00572B73 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48DBE51420A42CBD00572B73 /* AppDelegate.swift */; };
@@ -15,8 +16,10 @@
 		48DBE52720A4349E00572B73 /* movie_ids.txt in Resources */ = {isa = PBXBuildFile; fileRef = 48DBE52620A4349E00572B73 /* movie_ids.txt */; };
 		48DBE53120A450FF00572B73 /* MovieFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48DBE53020A450FF00572B73 /* MovieFetcher.swift */; };
 		48DBE53320A4516700572B73 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48DBE53220A4516700572B73 /* Movie.swift */; };
+		5E5EDBD4C88821AC9A311787 /* Pods_Movieator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92B7BD7731B349FFE410AA21 /* Pods_Movieator.framework */; };
 		F585701120A47CA600A6E98F /* PreparationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F585701020A47CA600A6E98F /* PreparationViewController.swift */; };
 		F585701320A47CCB00A6E98F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F585701220A47CCB00A6E98F /* Main.storyboard */; };
+		F585701920A5E67C00A6E98F /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F585701820A5E67C00A6E98F /* DataController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,6 +33,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		27376F7B448E291718A6AECC /* Pods-Movieator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Movieator.release.xcconfig"; path = "Pods/Target Support Files/Pods-Movieator/Pods-Movieator.release.xcconfig"; sourceTree = "<group>"; };
 		4895F2D720A59BF0003A83AA /* ResponseError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseError.swift; sourceTree = "<group>"; };
 		48DBE4EE20A42B0E00572B73 /* Movieator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Movieator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		48DBE50220A42B0F00572B73 /* MovieatorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MovieatorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -41,8 +45,14 @@
 		48DBE52620A4349E00572B73 /* movie_ids.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = movie_ids.txt; sourceTree = "<group>"; };
 		48DBE53020A450FF00572B73 /* MovieFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieFetcher.swift; sourceTree = "<group>"; };
 		48DBE53220A4516700572B73 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
+		7B2DDD56E21CD4F6316ACC14 /* Pods_MovieatorTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MovieatorTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		92B7BD7731B349FFE410AA21 /* Pods_Movieator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Movieator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		985F4ED202B1C0C630D83045 /* Pods-MovieatorTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieatorTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MovieatorTests/Pods-MovieatorTests.release.xcconfig"; sourceTree = "<group>"; };
+		C1EC2AED1CFB4F13C4D2D22E /* Pods-Movieator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Movieator.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Movieator/Pods-Movieator.debug.xcconfig"; sourceTree = "<group>"; };
 		F585701020A47CA600A6E98F /* PreparationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreparationViewController.swift; sourceTree = "<group>"; };
 		F585701220A47CCB00A6E98F /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		F585701820A5E67C00A6E98F /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
+		F5F9105AF06E74B8539CA626 /* Pods-MovieatorTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieatorTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MovieatorTests/Pods-MovieatorTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,6 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E5EDBD4C88821AC9A311787 /* Pods_Movieator.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -57,18 +68,32 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				03036F8A9FDC7EE1150BF130 /* Pods_MovieatorTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3C2ABD453F352C47AA4D86EB /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C1EC2AED1CFB4F13C4D2D22E /* Pods-Movieator.debug.xcconfig */,
+				27376F7B448E291718A6AECC /* Pods-Movieator.release.xcconfig */,
+				F5F9105AF06E74B8539CA626 /* Pods-MovieatorTests.debug.xcconfig */,
+				985F4ED202B1C0C630D83045 /* Pods-MovieatorTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		48DBE4E520A42B0E00572B73 = {
 			isa = PBXGroup;
 			children = (
 				48DBE4F020A42B0E00572B73 /* Movieator */,
 				48DBE50520A42B0F00572B73 /* MovieatorTests */,
 				48DBE4EF20A42B0E00572B73 /* Products */,
+				3C2ABD453F352C47AA4D86EB /* Pods */,
+				566B6634227B91881F87DA72 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -222,8 +247,18 @@
 		48DBE52220A42CBD00572B73 /* Persistence */ = {
 			isa = PBXGroup;
 			children = (
+				F585701820A5E67C00A6E98F /* DataController.swift */,
 			);
 			path = Persistence;
+			sourceTree = "<group>";
+		};
+		566B6634227B91881F87DA72 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				92B7BD7731B349FFE410AA21 /* Pods_Movieator.framework */,
+				7B2DDD56E21CD4F6316ACC14 /* Pods_MovieatorTests.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -233,9 +268,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 48DBE50B20A42B0F00572B73 /* Build configuration list for PBXNativeTarget "Movieator" */;
 			buildPhases = (
+				F86B7872459CD0AC33EA2388 /* [CP] Check Pods Manifest.lock */,
 				48DBE4EA20A42B0E00572B73 /* Sources */,
 				48DBE4EB20A42B0E00572B73 /* Frameworks */,
 				48DBE4EC20A42B0E00572B73 /* Resources */,
+				4E78553C0E1C5E1C68213A25 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -250,6 +287,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 48DBE50E20A42B0F00572B73 /* Build configuration list for PBXNativeTarget "MovieatorTests" */;
 			buildPhases = (
+				3AFAE531D911C53BE8890D6E /* [CP] Check Pods Manifest.lock */,
 				48DBE4FE20A42B0F00572B73 /* Sources */,
 				48DBE4FF20A42B0F00572B73 /* Frameworks */,
 				48DBE50020A42B0F00572B73 /* Resources */,
@@ -322,12 +360,72 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		3AFAE531D911C53BE8890D6E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MovieatorTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4E78553C0E1C5E1C68213A25 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Movieator/Pods-Movieator-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
+				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Movieator/Pods-Movieator-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F86B7872459CD0AC33EA2388 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Movieator-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		48DBE4EA20A42B0E00572B73 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				48DBE52320A42CBD00572B73 /* AppDelegate.swift in Sources */,
+				F585701920A5E67C00A6E98F /* DataController.swift in Sources */,
 				48DBE53120A450FF00572B73 /* MovieFetcher.swift in Sources */,
 				4895F2D820A59BF0003A83AA /* ResponseError.swift in Sources */,
 				F585701120A47CA600A6E98F /* PreparationViewController.swift in Sources */,
@@ -470,14 +568,12 @@
 		};
 		48DBE50C20A42B0F00572B73 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C1EC2AED1CFB4F13C4D2D22E /* Pods-Movieator.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = "$(SRCROOT)/Movieator/Resources/Other/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.codeopolis.Movieator;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -487,14 +583,12 @@
 		};
 		48DBE50D20A42B0F00572B73 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 27376F7B448E291718A6AECC /* Pods-Movieator.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = "$(SRCROOT)/Movieator/Resources/Other/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.codeopolis.Movieator;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -504,16 +598,13 @@
 		};
 		48DBE50F20A42B0F00572B73 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F5F9105AF06E74B8539CA626 /* Pods-MovieatorTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = MovieatorTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.codeopolis.MovieatorTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -524,16 +615,13 @@
 		};
 		48DBE51020A42B0F00572B73 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 985F4ED202B1C0C630D83045 /* Pods-MovieatorTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = MovieatorTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.codeopolis.MovieatorTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;

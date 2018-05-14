@@ -10,16 +10,28 @@ import UIKit
 
 class PreparationViewController : UIViewController {
     let movieFetcher: MovieFetcher = MovieFetcher()
+    let data = DataController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getMovies()
+        
+        let movies =  data.loadMovies()
+        if movies.count > 0{
+            for movie in movies {
+                print("There are some movies")
+                print(movie.title)
+            }
+        } else {
+            print("There is nothing in database")
+            getMovies()
+        }
     }
     
     func movieReceived(movie: Movie) {
         //Saving movies
         print(movie.title)
         print("Saving movies")
+        data.saveMovies(movie: movie)
     }
     
     func movieNotReceived(error: Error) {

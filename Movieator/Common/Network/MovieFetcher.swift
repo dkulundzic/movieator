@@ -71,9 +71,7 @@ class MovieFetcher {
     
     func parseJSON(errorData: Data) -> ResponseError? {
         do {
-            let decoder = JSONDecoder()
-            let error = try decoder.decode(ResponseError.self, from: errorData)
-            return error
+            return try JSONDecoder().decode(ResponseError.self, from: errorData)
         } catch  {
             print("Error parsing JSON, \(error)")
             return nil
