@@ -10,7 +10,8 @@ import Foundation
 import RealmSwift
 
 class DataController {
-    let realm = try! Realm()
+    let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent("/Movies.realm")
+    lazy var realm = try! Realm(fileURL: documentsURL)
     
     func saveMovies(movie: Movie) {
         do {

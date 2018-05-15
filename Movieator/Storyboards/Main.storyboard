@@ -13,7 +13,7 @@
         <!--Preparation View Controller-->
         <scene sceneID="j5K-oz-Vad">
             <objects>
-                <viewController id="L0L-EY-rsP" customClass="PreparationViewController" customModule="Movieator" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PreparationViewController" id="L0L-EY-rsP" customClass="PreparationViewController" customModule="Movieator" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="UA9-Ft-23h">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -58,7 +58,7 @@
         <!--Main List-->
         <scene sceneID="bFq-Gs-Yaf">
             <objects>
-                <viewController title="Main List" id="kUe-rS-sag" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MovieListViewController" title="Main List" id="kUe-rS-sag" customClass="MovieListViewController" customModule="Movieator" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="SUF-bf-asv">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -80,9 +80,6 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="L0L-EY-rsP" kind="relationship" relationship="rootViewController" id="1fp-Tk-13n"/>
-                    </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZWk-W2-RdQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

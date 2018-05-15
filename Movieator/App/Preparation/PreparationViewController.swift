@@ -22,15 +22,7 @@ class PreparationViewController: UIViewController {
         activityIndicator.frame = loadingView.bounds
         activityIndicator.startAnimating()
         
-        let movies = data.loadMovies()        
-        if movies.count > 0 {
-            for movie in movies {
-                print("There are some movies")
-            }
-        } else {
-            print("There is nothing in database")
-            getMovies()
-        }
+        getMovies()
     }
     
     func movieReceived(movie: Movie) {
@@ -43,7 +35,8 @@ class PreparationViewController: UIViewController {
     
     func didCompleteFetchingAndStoringMovies() {
         activityIndicator.removeFromSuperview()
-        //Go to Main View
+        let preparationViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MovieListViewController")
+        navigationController?.pushViewController(preparationViewController, animated: true)
     }
     
     func getMovies() {
