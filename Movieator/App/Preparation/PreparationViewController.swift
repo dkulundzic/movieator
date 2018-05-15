@@ -12,16 +12,13 @@ class PreparationViewController: UIViewController {
     let movieFetcher: MovieFetcher = MovieFetcher()
     let data = DataController()
     let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
-
     @IBOutlet weak var loadingView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         loadingView.addSubview(activityIndicator)
         activityIndicator.frame = loadingView.bounds
         activityIndicator.startAnimating()
-        
         getMovies()
     }
     

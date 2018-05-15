@@ -9,4 +9,7 @@
 import UIKit
 
 class MovieListViewController : UIViewController {
+    override func viewDidLoad() {
+        navigationItem.backBarButtonItem = nil
+    }
 }

@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent("Movies.realm").path
-        let isDatabaseInitialised = FileManager.default.fileExists(atPath: (documentsURL)) ? true : false
+        let isDatabaseInitialised = FileManager.default.fileExists(atPath: (documentsURL))
         let rootViewController = isDatabaseInitialised ?
             UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MovieListViewController") :
             UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PreparationViewController")
