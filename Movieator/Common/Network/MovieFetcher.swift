@@ -8,23 +8,72 @@
 
 import Foundation
 
-class MovieFetcher {
-    private let apiKey = "dc86f926"
-    let baseURL = URL(string: "")!
+enum MovieFetcherError: LocalizedError {
+    case invalidData
+    case generic(Error)
     
-    /// Attempts to fetch movie data from the OMDB API by using the provided imdb ID.
-    /// - parameter id: The IMDB ID of the wanted movie.
-    /// - parameter success: A closure to be invoked when a Movie is successfully retrieved and decoded.
-    /// - parameter failure: A closure to be invoked when an error occurred during the movie retrieval.
-    func fetchMovie(byId id: String, success: (Movie) -> Void, failure: (Error) -> Void) {
-        let url = produceURL(forId: id)
-        let dataTask = URLSession.shared.dataTask(with: url) { data, response, error in
-            
+    var errorDescription: String? {
+        switch self {
+        case .invalidData:
+            return "Invalid data received from the server."
+        case .generic(let error):
+            return error.localizedDescription
         }
     }
+}
 
+class MovieFetcher {
+    private let apiKey = "dc86f926"
+    
+    func fetchMovie(byId id: String, success: @escaping (Movie) -> Void, failure: @escaping (LocalizedError) -> Void) {
+        let url = produceURL(forId: id)
+        let dataTask = URLSession.shared.dataTask(with: url) { data, response, error in
+            if let responseError = error {
+                DispatchQueue.main.async { failure(MovieFetcherError.generic(responseError)) }
+                return
+            }
+            
+            guard let data = data else {
+                DispatchQueue.main.async { failure(MovieFetcherError.invalidData) }
+                return
+            }
+            
+            if let movie = self.parseJSON(movieData: data) {
+                DispatchQueue.main.async { success(movie) }
+            } else if let error = self.parseJSON(errorData: data) {
+                DispatchQueue.main.async { failure(error) }
+            } else {
+                DispatchQueue.main.async { failure(MovieFetcherError.invalidData) }
+            }
+        }
+        dataTask.resume()
+    }
+    
+    func parseJSON(movieData: Data) -> Movie? {
+        do {
+            let decoder = JSONDecoder()
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "dd MMM yyyy"
+            decoder.dateDecodingStrategy = .formatted(dateFormatter)
+            let movie = try decoder.decode(Movie.self, from: movieData)
+            return movie
+        } catch  {
+            print("Error parsing JSON, \(error)")
+            return nil
+        }
+    }
+    
+    func parseJSON(errorData: Data) -> ResponseError? {
+        do {
+            return try JSONDecoder().decode(ResponseError.self, from: errorData)
+        } catch  {
+            print("Error parsing JSON, \(error)")
+            return nil
+        }
+    }
+    
     private func produceURL(forId id: String) -> URL {
-        guard let url = URL(string: "http://www.omdbapi.com/?apikey=\(apiKey)i=\(id)") else {
+        guard let url = URL(string: "http://www.omdbapi.com/?apikey=\(apiKey)&i=\(id)") else {
             fatalError("Error creating OMDB API url with the id \(id).")
         }
         return url
