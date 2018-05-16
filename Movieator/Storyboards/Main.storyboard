@@ -84,6 +84,10 @@
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="roE-df-lfv">
                                                     <rect key="frame" x="8" y="8" width="154" height="168"/>
                                                 </imageView>
+                                                <view alpha="0.45000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="whA-t7-yVU">
+                                                    <rect key="frame" x="8" y="8" width="154" height="168"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsLetterSpacingToFitWidth="YES" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="v5U-g9-WLP" userLabel="Title Label">
                                                     <rect key="frame" x="8" y="80.5" width="154" height="24"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
@@ -100,7 +104,11 @@
                                         </view>
                                         <constraints>
                                             <constraint firstAttribute="trailingMargin" secondItem="Uh6-Ci-Cwu" secondAttribute="trailing" id="1SG-yN-CFk"/>
+                                            <constraint firstAttribute="trailingMargin" secondItem="whA-t7-yVU" secondAttribute="trailing" id="2Ov-7B-anC"/>
+                                            <constraint firstItem="whA-t7-yVU" firstAttribute="top" secondItem="K4e-rY-yEW" secondAttribute="topMargin" id="2Qq-iK-C9h"/>
                                             <constraint firstItem="v5U-g9-WLP" firstAttribute="centerY" secondItem="K4e-rY-yEW" secondAttribute="centerY" id="4DR-EW-AVb"/>
+                                            <constraint firstItem="whA-t7-yVU" firstAttribute="leading" secondItem="K4e-rY-yEW" secondAttribute="leadingMargin" id="7Pl-MR-jwj"/>
+                                            <constraint firstAttribute="bottomMargin" secondItem="whA-t7-yVU" secondAttribute="bottom" id="Am2-IE-xq0"/>
                                             <constraint firstAttribute="trailingMargin" secondItem="roE-df-lfv" secondAttribute="trailing" id="ESw-g1-Nhl"/>
                                             <constraint firstAttribute="trailingMargin" secondItem="v5U-g9-WLP" secondAttribute="trailing" id="JPQ-C3-3PI"/>
                                             <constraint firstItem="v5U-g9-WLP" firstAttribute="centerX" secondItem="K4e-rY-yEW" secondAttribute="centerX" id="Wm4-j4-QXW"/>
@@ -114,6 +122,7 @@
                                             <constraint firstItem="Uh6-Ci-Cwu" firstAttribute="leading" secondItem="K4e-rY-yEW" secondAttribute="leadingMargin" id="vcW-iw-nqR"/>
                                         </constraints>
                                         <connections>
+                                            <outlet property="imageView" destination="roE-df-lfv" id="xvG-k7-fOC"/>
                                             <outlet property="titleLabel" destination="v5U-g9-WLP" id="6P0-OB-BYh"/>
                                             <outlet property="yearLabel" destination="Uh6-Ci-Cwu" id="nIE-XD-rCG"/>
                                         </connections>
