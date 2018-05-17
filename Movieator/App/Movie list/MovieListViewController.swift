@@ -16,8 +16,15 @@ class MovieListViewController: UIViewController {
     override func viewDidLoad() {
         navigationItem.backBarButtonItem = nil
         
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "User", style: .plain, target: self, action: #selector(userButtonTapped))
+        
         let data = DataController()
         movies = data.loadMovies()
+    }
+    
+    @objc func userButtonTapped() {
+        let userProfileViewController = UserProfileViewController()
+        navigationController?.pushViewController(userProfileViewController, animated: true)
     }
 }
 
@@ -52,7 +59,13 @@ extension MovieListViewController: UICollectionViewDataSource {
 
 // MARK: - Collection View Delegate Extension
 extension MovieListViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let movieDetailsViewController = MovieDetailsViewController()
+        movieDetailsViewController.movie = movies![indexPath.item]
+        navigationController?.pushViewController(movieDetailsViewController, animated: true)
+    }
     
+    //Add User Profile button pressed
 }
 
 // MARK: - Delegate Flow Layout Extension

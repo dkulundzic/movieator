@@ -146,7 +146,37 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="erW-zj-bxw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1469.5999999999999" y="517.6911544227886"/>
+            <point key="canvasLocation" x="1470" y="558"/>
+        </scene>
+        <!--User Profile View Controller-->
+        <scene sceneID="OUM-Ca-f9E">
+            <objects>
+                <viewController id="Aoc-Cd-KLu" customClass="UserProfileViewController" customModule="Movieator" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="g4r-eY-d02">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="NDV-6d-W7V"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SqA-0z-s84" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2321" y="559"/>
+        </scene>
+        <!--Movie Details-->
+        <scene sceneID="nHX-aJ-LWv">
+            <objects>
+                <viewController storyboardIdentifier="MovieDetailsViewController" id="kDW-KP-zRn" userLabel="Movie Details" customClass="MovieDetailsViewController" customModule="Movieator" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="1L5-52-IcL">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="qAB-V0-GQ7"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hxi-50-0Vm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1470" y="1275"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="oV3-e2-snP">
