@@ -14,11 +14,20 @@ class MovieListViewController: UIViewController {
     var movies : Results<Movie>?
 
     override func viewDidLoad() {
-        navigationItem.backBarButtonItem = nil
-        
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "User", style: .plain, target: self, action: #selector(userButtonTapped))
-        
+        super.viewDidLoad()
+
         let data = DataController()
+        let movieSearchViewController = MovieSearchViewController()
+        let searchController = UISearchController(searchResultsController: movieSearchViewController) // Search Controller
+        
+        searchController.obscuresBackgroundDuringPresentation = true
+        searchController.searchBar.placeholder = "Search Movies"
+        
+        navigationItem.largeTitleDisplayMode = .always
+        navigationItem.searchController = searchController
+        navigationItem.backBarButtonItem = nil
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "User", style: .plain, target: self, action: #selector(userButtonTapped))
+
         movies = data.loadMovies()
     }
     
@@ -52,7 +61,6 @@ extension MovieListViewController: UICollectionViewDataSource {
                     print("Error getting poster, \(error)")
                 })
         }
-        
         return cell
     }
 }

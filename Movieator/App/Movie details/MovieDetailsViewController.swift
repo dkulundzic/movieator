@@ -10,7 +10,4 @@ import UIKit
 
 class MovieDetailsViewController: UIViewController {
     var movie = Movie()
-    override func viewDidLoad() {
-        navigationItem.title = movie.title
-    }
 }

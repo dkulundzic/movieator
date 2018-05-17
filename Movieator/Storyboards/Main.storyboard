@@ -54,7 +54,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gZs-cM-tB9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1469.5999999999999" y="-168.6656671664168"/>
+            <point key="canvasLocation" x="682" y="135"/>
         </scene>
         <!--Main List-->
         <scene sceneID="bFq-Gs-Yaf">
@@ -81,11 +81,11 @@
                                             <rect key="frame" x="0.0" y="0.0" width="170" height="184"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="roE-df-lfv">
-                                                    <rect key="frame" x="8" y="8" width="154" height="168"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="roE-df-lfv">
+                                                    <rect key="frame" x="0.0" y="0.0" width="170" height="184"/>
                                                 </imageView>
                                                 <view alpha="0.45000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="whA-t7-yVU">
-                                                    <rect key="frame" x="8" y="8" width="154" height="168"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="170" height="184"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsLetterSpacingToFitWidth="YES" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="v5U-g9-WLP" userLabel="Title Label">
@@ -104,21 +104,21 @@
                                         </view>
                                         <constraints>
                                             <constraint firstAttribute="trailingMargin" secondItem="Uh6-Ci-Cwu" secondAttribute="trailing" id="1SG-yN-CFk"/>
-                                            <constraint firstAttribute="trailingMargin" secondItem="whA-t7-yVU" secondAttribute="trailing" id="2Ov-7B-anC"/>
-                                            <constraint firstItem="whA-t7-yVU" firstAttribute="top" secondItem="K4e-rY-yEW" secondAttribute="topMargin" id="2Qq-iK-C9h"/>
                                             <constraint firstItem="v5U-g9-WLP" firstAttribute="centerY" secondItem="K4e-rY-yEW" secondAttribute="centerY" id="4DR-EW-AVb"/>
-                                            <constraint firstItem="whA-t7-yVU" firstAttribute="leading" secondItem="K4e-rY-yEW" secondAttribute="leadingMargin" id="7Pl-MR-jwj"/>
-                                            <constraint firstAttribute="bottomMargin" secondItem="whA-t7-yVU" secondAttribute="bottom" id="Am2-IE-xq0"/>
-                                            <constraint firstAttribute="trailingMargin" secondItem="roE-df-lfv" secondAttribute="trailing" id="ESw-g1-Nhl"/>
+                                            <constraint firstAttribute="bottom" secondItem="whA-t7-yVU" secondAttribute="bottom" id="4fv-2G-gLT"/>
                                             <constraint firstAttribute="trailingMargin" secondItem="v5U-g9-WLP" secondAttribute="trailing" id="JPQ-C3-3PI"/>
+                                            <constraint firstAttribute="trailing" secondItem="roE-df-lfv" secondAttribute="trailing" id="Mha-d4-dHZ"/>
+                                            <constraint firstItem="roE-df-lfv" firstAttribute="top" secondItem="K4e-rY-yEW" secondAttribute="top" id="SNO-m8-xeR"/>
                                             <constraint firstItem="v5U-g9-WLP" firstAttribute="centerX" secondItem="K4e-rY-yEW" secondAttribute="centerX" id="Wm4-j4-QXW"/>
-                                            <constraint firstItem="roE-df-lfv" firstAttribute="top" secondItem="K4e-rY-yEW" secondAttribute="topMargin" id="ac9-8e-Okr"/>
+                                            <constraint firstItem="whA-t7-yVU" firstAttribute="top" secondItem="K4e-rY-yEW" secondAttribute="top" id="XXk-7F-I2d"/>
+                                            <constraint firstAttribute="trailing" secondItem="whA-t7-yVU" secondAttribute="trailing" id="aZH-hv-fPw"/>
                                             <constraint firstItem="Uh6-Ci-Cwu" firstAttribute="top" secondItem="v5U-g9-WLP" secondAttribute="bottom" constant="5" id="cTS-ii-B9t"/>
+                                            <constraint firstItem="whA-t7-yVU" firstAttribute="leading" secondItem="K4e-rY-yEW" secondAttribute="leading" id="evo-wC-hp0"/>
+                                            <constraint firstAttribute="bottom" secondItem="roE-df-lfv" secondAttribute="bottom" id="gDK-lt-ihe"/>
                                             <constraint firstItem="Uh6-Ci-Cwu" firstAttribute="centerX" secondItem="K4e-rY-yEW" secondAttribute="centerX" id="jnv-eg-mfh"/>
+                                            <constraint firstItem="roE-df-lfv" firstAttribute="leading" secondItem="K4e-rY-yEW" secondAttribute="leading" id="pH4-cd-iWb"/>
                                             <constraint firstAttribute="bottomMargin" secondItem="Uh6-Ci-Cwu" secondAttribute="bottom" id="qDq-LB-nK2"/>
                                             <constraint firstItem="v5U-g9-WLP" firstAttribute="leading" secondItem="K4e-rY-yEW" secondAttribute="leadingMargin" id="sr4-d4-JUT"/>
-                                            <constraint firstItem="roE-df-lfv" firstAttribute="bottom" secondItem="K4e-rY-yEW" secondAttribute="bottomMargin" id="sre-a6-ZdJ"/>
-                                            <constraint firstItem="roE-df-lfv" firstAttribute="leading" secondItem="K4e-rY-yEW" secondAttribute="leadingMargin" id="vMe-nh-UCJ"/>
                                             <constraint firstItem="Uh6-Ci-Cwu" firstAttribute="leading" secondItem="K4e-rY-yEW" secondAttribute="leadingMargin" id="vcW-iw-nqR"/>
                                         </constraints>
                                         <connections>
@@ -146,7 +146,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="erW-zj-bxw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1470" y="558"/>
+            <point key="canvasLocation" x="1469.5999999999999" y="557.27136431784118"/>
         </scene>
         <!--User Profile View Controller-->
         <scene sceneID="OUM-Ca-f9E">
@@ -191,7 +191,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZWk-W2-RdQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="465" y="177"/>
+            <point key="canvasLocation" x="681" y="859"/>
         </scene>
     </scenes>
 </document>
