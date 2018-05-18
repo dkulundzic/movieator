@@ -10,18 +10,16 @@ import UIKit
 import RealmSwift
 
 class MovieListViewController: UIViewController {
-    let data = DataController()
-    let reuseIdentifier = "cell"
-    lazy var movies : Results<Movie> = data.loadMovies()
+    private let data = DataController()
+    private let reuseIdentifier = "cell"
+    private lazy var movies : Results<Movie> = data.loadMovies()
     private let movieSearchResultsViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MovieSearchViewController") as! MovieSearchViewController
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
         definesPresentationContext = true
         
         let searchController = UISearchController(searchResultsController: movieSearchResultsViewController)
-        
         searchController.obscuresBackgroundDuringPresentation = true
         searchController.searchBar.placeholder = "Search Movies"
         searchController.searchResultsUpdater = self
@@ -41,7 +39,7 @@ class MovieListViewController: UIViewController {
 // MARK: - Data Source Extension
 extension MovieListViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.movies.count
+        return movies.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

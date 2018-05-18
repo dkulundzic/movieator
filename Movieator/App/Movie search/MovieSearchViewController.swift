@@ -12,7 +12,7 @@ class MovieSearchViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     
     private var filteredMovies = [Movie]()
-    let reuseIdentifier = "cell"
+    private let reuseIdentifier = "cell"
 
     func filterMovies(movies: [Movie], with query: String) {
         filteredMovies = movies.filter { movies in movies.title.lowercased().contains(query.lowercased()) }
@@ -23,7 +23,7 @@ class MovieSearchViewController: UIViewController {
 // MARK: - Data Source Extension
 extension MovieSearchViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.filteredMovies.count
+        return filteredMovies.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
