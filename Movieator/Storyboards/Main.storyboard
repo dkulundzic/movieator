@@ -56,6 +56,21 @@
             </objects>
             <point key="canvasLocation" x="682" y="135"/>
         </scene>
+        <!--Movie Search View Controller-->
+        <scene sceneID="Zwu-He-sG7">
+            <objects>
+                <viewController storyboardIdentifier="MovieSearchViewController" id="ySA-WU-UtU" customClass="MovieSearchViewController" customModule="Movieator" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="1zE-8U-gFe">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="3rS-GP-UXq"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zin-CL-gvc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1470" y="-156"/>
+        </scene>
         <!--Main List-->
         <scene sceneID="bFq-Gs-Yaf">
             <objects>
