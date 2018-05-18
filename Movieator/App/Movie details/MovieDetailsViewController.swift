@@ -9,5 +9,16 @@
 import UIKit
 
 class MovieDetailsViewController: UIViewController {
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var imdbRatingLabel: UILabel!
+    @IBOutlet weak var metascoreRatingLabel: UILabel!
+    @IBOutlet weak var plotLabel: UILabel!
+    @IBOutlet weak var contrubutorsLabel: UILabel!
+    @IBOutlet weak var posterImageView: UIImageView!
+
     var movie = Movie()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
 }
