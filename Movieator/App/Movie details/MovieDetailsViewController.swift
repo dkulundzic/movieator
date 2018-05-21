@@ -13,12 +13,50 @@ class MovieDetailsViewController: UIViewController {
     @IBOutlet weak var imdbRatingLabel: UILabel!
     @IBOutlet weak var metascoreRatingLabel: UILabel!
     @IBOutlet weak var plotLabel: UILabel!
-    @IBOutlet weak var contrubutorsLabel: UILabel!
+    @IBOutlet weak var actorsLabel: UILabel!
+    @IBOutlet weak var genreLabel: UILabel!
+    @IBOutlet weak var releasedLabel: UILabel!
     @IBOutlet weak var posterImageView: UIImageView!
+    @IBOutlet weak var writerLabel: UILabel!
+    @IBOutlet weak var directorLabel: UILabel!
 
-    var movie = Movie()
+    var movie: Movie!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigationItem.title = "MOVIE DETAILS"
+        navigationItem.largeTitleDisplayMode = .automatic
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(saveButtonTapped))
+
+        setOutlets()
+    }
+    
+    @objc func saveButtonTapped() {
+        //save Movie
+    }
+    
+    func setOutlets() {
+        titleLabel.text = movie.title
+        imdbRatingLabel.text = "Imdb: \(movie.imdbRating)"
+        metascoreRatingLabel.text = "Metascore: \(movie.metascore)"
+        plotLabel.text = movie.plot
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
+        releasedLabel.text = dateFormatter.string(from: movie.releaseDate)
+        genreLabel.text = movie.genre
+        actorsLabel.text = movie.actors
+        directorLabel.text = movie.director
+        writerLabel.text = movie.writer
+        
+        let posterFetcher = MoviePosterFetcher()
+        posterFetcher.fetchMoviePoster(with: movie.poster,
+           success: { (data) in
+                let image = UIImage(data: data)
+                self.posterImageView.image = image
+            },
+           failure: { (error) in
+                print("Error getting poster, \(error)")
+        })
     }
 }
