@@ -14,14 +14,15 @@ class MovieListViewController: UIViewController {
     private let reuseIdentifier = "cell"
     private lazy var movies : Results<Movie> = data.loadMovies()
     private let movieSearchResultsViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MovieSearchViewController") as! MovieSearchViewController
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         definesPresentationContext = true
-
+        
         let searchController = UISearchController(searchResultsController: movieSearchResultsViewController)
         searchController.obscuresBackgroundDuringPresentation = true
         searchController.searchBar.placeholder = "Search Movies"
+        searchController.searchResultsUpdater = self
         
         navigationItem.largeTitleDisplayMode = .always
         navigationItem.searchController = searchController
@@ -78,3 +79,12 @@ extension MovieListViewController: UICollectionViewDelegateFlowLayout {
         return CGSize(width: size, height: size)
     }
 }
+
+// MARK: - Search Results Delegate
+extension MovieListViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        movieSearchResultsViewController.filterMovies(movies: Array(movies), with: searchController.searchBar.text ?? "")
+    }
+}
+
+
