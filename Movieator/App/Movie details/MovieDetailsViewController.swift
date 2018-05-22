@@ -29,14 +29,14 @@ class MovieDetailsViewController: UIViewController {
         navigationItem.largeTitleDisplayMode = .automatic
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(saveButtonTapped))
 
-        setOutlets()
+        setupViews()
     }
     
     @objc func saveButtonTapped() {
         //save Movie
     }
     
-    func setOutlets() {
+    func setupViews() {
         titleLabel.text = movie.title
         imdbRatingLabel.text = "Imdb: \(movie.imdbRating)"
         metascoreRatingLabel.text = "Metascore: \(movie.metascore)"
@@ -51,11 +51,11 @@ class MovieDetailsViewController: UIViewController {
         
         let posterFetcher = MoviePosterFetcher()
         posterFetcher.fetchMoviePoster(with: movie.poster,
-           success: { (data) in
+           success: { data in
                 let image = UIImage(data: data)
                 self.posterImageView.image = image
             },
-           failure: { (error) in
+           failure: { error in
                 print("Error getting poster, \(error)")
         })
     }
