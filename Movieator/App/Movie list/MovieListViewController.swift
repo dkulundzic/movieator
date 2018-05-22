@@ -31,7 +31,7 @@ class MovieListViewController: UIViewController {
     }
     
     @objc func userButtonTapped() {
-        let userProfileViewController = UserProfileViewController()
+        let userProfileViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "UserProfileViewController")
         navigationController?.pushViewController(userProfileViewController, animated: true)
     }
 }
