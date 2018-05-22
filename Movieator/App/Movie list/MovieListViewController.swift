@@ -44,21 +44,7 @@ extension MovieListViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath as IndexPath) as! MovieCollectionViewCell
-        
-        let movie = movies[indexPath.item]
-        cell.titleLabel.text = movie.title
-        let year = String(Calendar.current.component(.year, from: movie.releaseDate))
-        cell.yearLabel.text = year
-        
-        let posterFetcher = MoviePosterFetcher()
-        posterFetcher.fetchMoviePoster(with: movie.poster,
-            success: { (data) in
-                let image = UIImage(data: data)
-                cell.imageView.image = image
-            },
-            failure: { (error) in
-                print("Error getting poster, \(error)")
-            })
+        cell.setupCell(with: movies[indexPath.item])
         return cell
     }
 }
