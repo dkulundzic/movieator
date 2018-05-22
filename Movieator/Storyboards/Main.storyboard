@@ -97,7 +97,7 @@
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Uh6-Ci-Cwu" userLabel="Year Label">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Uh6-Ci-Cwu" userLabel="Year Label">
                                                             <rect key="frame" x="0.0" y="24" width="154" height="20.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
@@ -110,6 +110,7 @@
                                         <constraints>
                                             <constraint firstItem="91s-sa-nZr" firstAttribute="centerX" secondItem="K4e-rY-yEW" secondAttribute="centerX" id="2Nk-u4-yQy"/>
                                             <constraint firstAttribute="bottom" secondItem="whA-t7-yVU" secondAttribute="bottom" id="4fv-2G-gLT"/>
+                                            <constraint firstItem="91s-sa-nZr" firstAttribute="top" relation="greaterThanOrEqual" secondItem="K4e-rY-yEW" secondAttribute="topMargin" id="9oR-DA-LSb"/>
                                             <constraint firstAttribute="trailing" secondItem="roE-df-lfv" secondAttribute="trailing" id="Mha-d4-dHZ"/>
                                             <constraint firstItem="roE-df-lfv" firstAttribute="top" secondItem="K4e-rY-yEW" secondAttribute="top" id="SNO-m8-xeR"/>
                                             <constraint firstItem="whA-t7-yVU" firstAttribute="top" secondItem="K4e-rY-yEW" secondAttribute="top" id="XXk-7F-I2d"/>
@@ -120,6 +121,7 @@
                                             <constraint firstAttribute="trailingMargin" secondItem="91s-sa-nZr" secondAttribute="trailing" id="hIx-Tf-R52"/>
                                             <constraint firstItem="roE-df-lfv" firstAttribute="leading" secondItem="K4e-rY-yEW" secondAttribute="leading" id="pH4-cd-iWb"/>
                                             <constraint firstItem="91s-sa-nZr" firstAttribute="leading" secondItem="K4e-rY-yEW" secondAttribute="leadingMargin" id="txE-j8-PGj"/>
+                                            <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="91s-sa-nZr" secondAttribute="bottom" id="xOr-tP-gKo"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="imageView" destination="roE-df-lfv" id="xvG-k7-fOC"/>
@@ -228,13 +230,13 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="v4e-QT-SyZ">
                                                     <rect key="frame" x="8" y="70" width="154" height="44.5"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsLetterSpacingToFitWidth="YES" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="a5Z-YP-gIN" userLabel="Title Label">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsLetterSpacingToFitWidth="YES" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="a5Z-YP-gIN" userLabel="Title Label">
                                                             <rect key="frame" x="0.0" y="0.0" width="154" height="24"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sbT-LN-Sjh" userLabel="Year Label">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sbT-LN-Sjh" userLabel="Year Label">
                                                             <rect key="frame" x="0.0" y="24" width="154" height="20.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
@@ -247,8 +249,10 @@
                                         <constraints>
                                             <constraint firstAttribute="bottom" secondItem="nPv-17-Efi" secondAttribute="bottom" id="5xf-81-JjZ"/>
                                             <constraint firstItem="v4e-QT-SyZ" firstAttribute="centerY" secondItem="2Lc-Az-fsR" secondAttribute="centerY" id="9zs-5c-g6y"/>
+                                            <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="v4e-QT-SyZ" secondAttribute="bottom" id="HiI-f7-eAh"/>
                                             <constraint firstItem="v4e-QT-SyZ" firstAttribute="leading" secondItem="2Lc-Az-fsR" secondAttribute="leadingMargin" id="LeS-Ff-RAJ"/>
                                             <constraint firstAttribute="trailingMargin" secondItem="v4e-QT-SyZ" secondAttribute="trailing" id="S84-qS-zDN"/>
+                                            <constraint firstItem="v4e-QT-SyZ" firstAttribute="top" relation="greaterThanOrEqual" secondItem="2Lc-Az-fsR" secondAttribute="topMargin" id="TZU-3G-uds"/>
                                             <constraint firstItem="v4e-QT-SyZ" firstAttribute="centerX" secondItem="2Lc-Az-fsR" secondAttribute="centerX" id="UGw-5k-X3X"/>
                                             <constraint firstAttribute="bottom" secondItem="q0V-3M-HqC" secondAttribute="bottom" id="g6g-jM-slD"/>
                                             <constraint firstItem="q0V-3M-HqC" firstAttribute="leading" secondItem="2Lc-Az-fsR" secondAttribute="leading" id="hrB-V4-YAq"/>
