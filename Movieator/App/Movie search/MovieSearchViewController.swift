@@ -33,6 +33,8 @@ extension MovieSearchViewController: UICollectionViewDataSource {
         cell.titleLabel.text = movie.title
         let year = String(Calendar.current.component(.year, from: movie.releaseDate))
         cell.yearLabel.text = year
+        cell.imageView.layer.cornerRadius = 30.0
+        cell.imageView.clipsToBounds = true
         
         let posterFetcher = MoviePosterFetcher()
         posterFetcher.fetchMoviePoster(with: movie.poster,
