@@ -23,6 +23,7 @@ class MovieListViewController: UIViewController {
         searchController.obscuresBackgroundDuringPresentation = true
         searchController.searchBar.placeholder = "Search Movies"
         searchController.searchResultsUpdater = self
+        movieSearchResultsViewController.delegate = self
         
         navigationItem.largeTitleDisplayMode = .always
         navigationItem.searchController = searchController
@@ -89,4 +90,10 @@ extension MovieListViewController: UISearchResultsUpdating {
     }
 }
 
-
+extension MovieListViewController: MovieSearchViewControllerDelegate {
+    func goToMovieDetails(forMovie movie: Movie) {
+        let movieDetailsViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MovieDetailsViewController") as! MovieDetailsViewController
+        movieDetailsViewController.movie = movie
+        navigationController?.pushViewController(movieDetailsViewController, animated: true)
+    }
+}
