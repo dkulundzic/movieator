@@ -26,4 +26,11 @@ class DataController {
     func loadMovies() -> Results<Movie> {
         return realm.objects(Movie.self)
     }
+    
+    func loadMovies(with movieIDs: [String]) -> [Movie] {
+        let movies = realm.objects(Movie.self).filter { movie -> Bool in
+            return movieIDs.contains(movie.imdbID)
+        }
+        return Array(movies)
+    }
 }

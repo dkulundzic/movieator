@@ -31,7 +31,7 @@ class MovieListViewController: UIViewController {
     }
     
     @objc func userButtonTapped() {
-        let userProfileViewController = UserProfileViewController()
+        let userProfileViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "UserProfileViewController")
         navigationController?.pushViewController(userProfileViewController, animated: true)
     }
 }
@@ -52,7 +52,7 @@ extension MovieListViewController: UICollectionViewDataSource {
 // MARK: - Collection View Delegate Extension
 extension MovieListViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let movieDetailsViewController = MovieDetailsViewController()
+        let movieDetailsViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MovieDetailsViewController") as! MovieDetailsViewController
         movieDetailsViewController.movie = movies[indexPath.item]
         navigationController?.pushViewController(movieDetailsViewController, animated: true)
     }
