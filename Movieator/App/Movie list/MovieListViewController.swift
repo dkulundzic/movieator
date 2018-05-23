@@ -49,6 +49,8 @@ extension MovieListViewController: UICollectionViewDataSource {
         cell.titleLabel.text = movie.title
         let year = String(Calendar.current.component(.year, from: movie.releaseDate))
         cell.yearLabel.text = year
+        cell.imageView.layer.cornerRadius = 30.0
+        cell.imageView.clipsToBounds = true
         
         let posterFetcher = MoviePosterFetcher()
         posterFetcher.fetchMoviePoster(with: movie.poster,
@@ -66,7 +68,7 @@ extension MovieListViewController: UICollectionViewDataSource {
 // MARK: - Collection View Delegate Extension
 extension MovieListViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let movieDetailsViewController = MovieDetailsViewController()
+        let movieDetailsViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MovieDetailsViewController") as! MovieDetailsViewController
         movieDetailsViewController.movie = movies[indexPath.item]
         navigationController?.pushViewController(movieDetailsViewController, animated: true)
     }
