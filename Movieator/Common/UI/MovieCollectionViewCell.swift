@@ -19,20 +19,20 @@ class MovieCollectionViewCell: UICollectionViewCell {
     }
     
     func setupCell(with movie: Movie) {
-        self.titleLabel.text = movie.title
+        titleLabel.text = movie.title
         let year = String(Calendar.current.component(.year, from: movie.releaseDate))
-        self.yearLabel.text = year
-        self.imageView.layer.cornerRadius = 30.0
-        self.imageView.clipsToBounds = true
+        yearLabel.text = year
+        imageView.layer.cornerRadius = 30.0
+        imageView.clipsToBounds = true
         
         let posterFetcher = MoviePosterFetcher()
         posterFetcher.fetchMoviePoster(with: movie.poster,
-                                       success: { (data) in
-                                        let image = UIImage(data: data)
-                                        self.imageView.image = image
+            success: { [weak self] data in
+                let image = UIImage(data: data)
+                self?.imageView.image = image
         },
-                                       failure: { (error) in
-                                        print("Error getting poster, \(error)")
+            failure: { error in
+                print("Error getting poster, \(error)")
         })
     }
 }
