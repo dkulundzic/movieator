@@ -13,6 +13,7 @@ class MovieSearchViewController: UIViewController {
     
     private var filteredMovies = [Movie]()
     private let reuseIdentifier = "cell"
+    weak var delegate: MovieSearchViewControllerDelegate?
 
     func filterMovies(movies: [Movie], with query: String) {
         filteredMovies = movies.filter { movies in movies.title.lowercased().contains(query.lowercased()) }
@@ -28,23 +29,7 @@ extension MovieSearchViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath as IndexPath) as! MovieCollectionViewCell
-        
-        let movie = filteredMovies[indexPath.item]
-        cell.titleLabel.text = movie.title
-        let year = String(Calendar.current.component(.year, from: movie.releaseDate))
-        cell.yearLabel.text = year
-        cell.imageView.layer.cornerRadius = 30.0
-        cell.imageView.clipsToBounds = true
-        
-        let posterFetcher = MoviePosterFetcher()
-        posterFetcher.fetchMoviePoster(with: movie.poster,
-                                       success: { (data) in
-                                        let image = UIImage(data: data)
-                                        cell.imageView.image = image
-        },
-                                       failure: { (error) in
-                                        print("Error getting poster, \(error)")
-        })
+        cell.setupCell(with: filteredMovies[indexPath.item])
         return cell
     }
 }
@@ -54,5 +39,12 @@ extension MovieSearchViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let size = (self.view.frame.size.width - 30) / 2
         return CGSize(width: size, height: size)
+    }
+}
+
+// MARK: - Collection View Delegate Extension
+extension MovieSearchViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        delegate?.movieSearch(self, didSelectMovie: filteredMovies[indexPath.item])
     }
 }
