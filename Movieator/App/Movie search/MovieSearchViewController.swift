@@ -13,7 +13,7 @@ class MovieSearchViewController: UIViewController {
     
     private var filteredMovies = [Movie]()
     private let reuseIdentifier = "cell"
-    var delegate: MovieSearchViewControllerDelegate?
+    weak var delegate: MovieSearchViewControllerDelegate?
 
     func filterMovies(movies: [Movie], with query: String) {
         filteredMovies = movies.filter { movies in movies.title.lowercased().contains(query.lowercased()) }
@@ -61,6 +61,6 @@ extension MovieSearchViewController: UICollectionViewDelegateFlowLayout {
 // MARK: - Collection View Delegate Extension
 extension MovieSearchViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        delegate?.goToMovieDetails(forMovie: filteredMovies[indexPath.item])
+        delegate?.movieSearch(self, didSelectMovie: filteredMovies[indexPath.item])
     }
 }

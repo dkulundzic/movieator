@@ -91,7 +91,7 @@ extension MovieListViewController: UISearchResultsUpdating {
 }
 
 extension MovieListViewController: MovieSearchViewControllerDelegate {
-    func goToMovieDetails(forMovie movie: Movie) {
+    func movieSearch(_ movieSearch: MovieSearchViewController, didSelectMovie movie: Movie) {
         let movieDetailsViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MovieDetailsViewController") as! MovieDetailsViewController
         movieDetailsViewController.movie = movie
         navigationController?.pushViewController(movieDetailsViewController, animated: true)

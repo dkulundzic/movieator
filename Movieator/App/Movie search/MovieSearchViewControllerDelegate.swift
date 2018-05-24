@@ -8,6 +8,6 @@
 
 import Foundation
 
-protocol MovieSearchViewControllerDelegate {
-    func goToMovieDetails(forMovie movie: Movie)
+protocol MovieSearchViewControllerDelegate: class {
+    func movieSearch(_ movieSearch: MovieSearchViewController, didSelectMovie movie: Movie)
 }
