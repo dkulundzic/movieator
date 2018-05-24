@@ -13,6 +13,7 @@ class MovieSearchViewController: UIViewController {
     
     private var filteredMovies = [Movie]()
     private let reuseIdentifier = "cell"
+    weak var delegate: MovieSearchViewControllerDelegate?
 
     func filterMovies(movies: [Movie], with query: String) {
         filteredMovies = movies.filter { movies in movies.title.lowercased().contains(query.lowercased()) }
@@ -54,5 +55,12 @@ extension MovieSearchViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let size = (self.view.frame.size.width - 30) / 2
         return CGSize(width: size, height: size)
+    }
+}
+
+// MARK: - Collection View Delegate Extension
+extension MovieSearchViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        delegate?.movieSearch(self, didSelectMovie: filteredMovies[indexPath.item])
     }
 }
