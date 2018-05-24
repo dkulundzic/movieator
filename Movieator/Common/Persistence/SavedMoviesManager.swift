@@ -10,15 +10,15 @@ import Foundation
 import RealmSwift
 
 class SavedMoviesManager {    
-    let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent("/UserMovies.realm")
-    lazy var idRealm = try! Realm(fileURL: documentsURL)
+    private let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent("/UserMovies.realm")
+    private lazy var realm = try! Realm(fileURL: documentsURL)
 
     func saveUserMovie(withID movieID: String) {
         let savedMovie = SavedMovie()
         savedMovie.id = movieID
         do {
-            try self.idRealm.write {
-                self.idRealm.add(savedMovie)
+            try self.realm.write {
+                self.realm.add(savedMovie)
             }
         } catch {
             print("Error saving movie, \(error)")
@@ -26,16 +26,9 @@ class SavedMoviesManager {
     }
     
     func loadUserMovieIDs() -> [String] {
-        let movies = idRealm.objects(SavedMovie.self)
-        let movieIDs = convertToString(movies: movies)
-        return Array(movieIDs)
-    }
-    
-    func convertToString(movies: Results<SavedMovie>) -> [String] {
-        var moviesString: [String] = []
-        for movie in movies {
-            moviesString.append(movie.id)
+        let movieIDs = realm.objects(SavedMovie.self).map { savedMovie -> String in
+            return savedMovie.id
         }
-        return moviesString
+        return Array(movieIDs)
     }
 }

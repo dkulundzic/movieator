@@ -14,24 +14,18 @@ class UserProfileViewController: UIViewController {
     private let data = DataController()
     private let userMovieIDs = SavedMoviesManager()
     private lazy var movieIDs = userMovieIDs.loadUserMovieIDs()
-    private lazy var movies : [Movie] = data.loadMovies(with: movieIDs)
+    private lazy var movies = data.loadMovies(with: movieIDs)
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let longTitleLabel = UILabel()
-        longTitleLabel.text = "SAVED MOVIES"
-        let leftItem = UIBarButtonItem(customView: longTitleLabel)
-        
-        navigationItem.largeTitleDisplayMode = .automatic
-        navigationItem.backBarButtonItem = nil
-        navigationItem.hidesBackButton = true
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .stop, target: self, action: #selector(stopButttonPressed))
-        navigationItem.leftBarButtonItem = leftItem
+
+        navigationItem.title = "Saved movies"
+        navigationItem.largeTitleDisplayMode = .always
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .stop, target: self, action: #selector(dismissViewController))
     }
     
-    @objc func stopButttonPressed() {
-        navigationController?.popViewController(animated: true)
+    @objc func dismissViewController() {
+        dismiss(animated: true, completion: nil)
     }
 }
 
