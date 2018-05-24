@@ -27,10 +27,9 @@ class DataController {
         return realm.objects(Movie.self)
     }
     
-    func loadMovies(with movieIDs: [String]) -> [Movie] {
-        let movies = realm.objects(Movie.self).filter { movie -> Bool in
-            return movieIDs.contains(movie.imdbID)
-        }
-        return Array(movies)
+    func loadMovies(with movieIDs: Results<SavedMovie>) -> Results<Movie> {
+        let movieIDsArray = Array(movieIDs.map{$0.id})
+        let predicate = NSPredicate(format: "imdbID IN %@", movieIDsArray)
+        return realm.objects(Movie.self).filter(predicate)
     }
 }

@@ -14,7 +14,7 @@ class UserProfileViewController: UIViewController {
     private let data = DataController()
     private let userMovieIDs = SavedMoviesManager()
     private lazy var movieIDs = userMovieIDs.loadUserMovieIDs()
-    private lazy var movies : [Movie] = data.loadMovies(with: movieIDs)
+    private lazy var movies : Results<Movie> = data.loadMovies(with: movieIDs)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,7 +27,7 @@ class UserProfileViewController: UIViewController {
         navigationItem.backBarButtonItem = nil
         navigationItem.hidesBackButton = true
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .stop, target: self, action: #selector(stopButttonPressed))
-        navigationItem.leftBarButtonItem = leftItem
+        navigationItem.leftBarButtonItem = leftItem        
     }
     
     @objc func stopButttonPressed() {
@@ -61,5 +61,23 @@ extension UserProfileViewController: UICollectionViewDataSource {
                 print("Error getting poster, \(error)")
             })
         return cell
+    }
+    
+    func reloadData() {
+        movieIDs = userMovieIDs.loadUserMovieIDs()
+        movies = data.loadMovies(with: movieIDs)
+    }
+}
+
+extension UserProfileViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let alert = UIAlertController(title: "DELETE MOVIE: \n\(movies[indexPath.item].title)", message: "Are you sure you want to delete this movie?", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "CANCEL", style: .default, handler: nil))
+        alert.addAction(UIAlertAction(title: "DELETE", style: .default, handler: { (action) in
+            self.userMovieIDs.deleteSavedMovie(withId: self.movieIDs[indexPath.item])
+            self.reloadData()
+            collectionView.reloadData()
+        }))
+        self.present(alert, animated: true)
     }
 }

@@ -14,6 +14,10 @@ class SavedMoviesManager {
     lazy var idRealm = try! Realm(fileURL: documentsURL)
 
     func saveUserMovie(withID movieID: String) {
+        let savedMovies = loadUserMovieIDs()
+        for movie in savedMovies {
+            if movie.id == movieID {return}
+        }
         let savedMovie = SavedMovie()
         savedMovie.id = movieID
         do {
@@ -25,17 +29,17 @@ class SavedMoviesManager {
         }
     }
     
-    func loadUserMovieIDs() -> [String] {
-        let movies = idRealm.objects(SavedMovie.self)
-        let movieIDs = convertToString(movies: movies)
-        return Array(movieIDs)
+    func deleteSavedMovie(withId movieID: SavedMovie) {
+        do {
+            try self.idRealm.write {
+                self.idRealm.delete(movieID)
+            }
+        } catch {
+            print("Error deleting saved movie, \(error)")
+        }
     }
     
-    func convertToString(movies: Results<SavedMovie>) -> [String] {
-        var moviesString: [String] = []
-        for movie in movies {
-            moviesString.append(movie.id)
-        }
-        return moviesString
+    func loadUserMovieIDs() -> Results<SavedMovie> {
+        return idRealm.objects(SavedMovie.self)
     }
 }
