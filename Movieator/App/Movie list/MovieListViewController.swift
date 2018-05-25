@@ -10,6 +10,8 @@ import UIKit
 import RealmSwift
 
 class MovieListViewController: UIViewController {
+    @IBOutlet weak var collectionView: UICollectionView!
+    
     private let data = DataController()
     private let reuseIdentifier = "cell"
     private lazy var movies : Results<Movie> = data.loadMovies()
@@ -29,6 +31,29 @@ class MovieListViewController: UIViewController {
         navigationItem.searchController = searchController
         navigationItem.backBarButtonItem = nil
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "User", style: .plain, target: self, action: #selector(userButtonTapped))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Sort", style: .plain, target: self, action: #selector(sortButtonTapped))
+    }
+    
+    @objc func sortButtonTapped() {
+        let alert = UIAlertController(title: "Sort movies:", message: "", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "By title", style: .default, handler: { [weak self] action in
+            self?.sortMovies(withKey: "title")
+        }))
+        alert.addAction(UIAlertAction(title: "By release date", style: .default, handler: { [weak self] action in
+            self?.sortMovies(withKey: "releaseDate")
+        }))
+        alert.addAction(UIAlertAction(title: "By IMDB rating", style: .default, handler: { [weak self] action in
+            self?.sortMovies(withKey: "imdbRating")
+        }))
+        alert.addAction(UIAlertAction(title: "By Metascore rating", style: .default, handler: { [weak self] action in
+            self?.sortMovies(withKey: "metascore")
+        }))
+        present(alert, animated: true)
+    }
+    
+    func sortMovies(withKey: String) {
+        movies = movies.sorted(byKeyPath: withKey, ascending: true)
+        collectionView.reloadData()
     }
     
     @objc func userButtonTapped() {
