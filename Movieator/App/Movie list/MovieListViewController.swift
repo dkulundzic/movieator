@@ -51,11 +51,6 @@ class MovieListViewController: UIViewController {
         present(alert, animated: true)
     }
     
-    func sortMovies(withKey: String) {
-        movies = movies.sorted(byKeyPath: withKey, ascending: true)
-        collectionView.reloadData()
-    }
-    
     @objc func userButtonTapped() {
         let userProfileViewController = UserProfileViewController()
         navigationController?.pushViewController(userProfileViewController, animated: true)
@@ -92,17 +87,26 @@ extension MovieListViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
-// MARK: - Search Results Delegate
+// MARK: - Search Results Delegate Extension
 extension MovieListViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         movieSearchResultsViewController.filterMovies(movies: Array(movies), with: searchController.searchBar.text ?? "")
     }
 }
 
+// MARK: - MovieSearchViewController Delegate Extension
 extension MovieListViewController: MovieSearchViewControllerDelegate {
     func movieSearch(_ movieSearch: MovieSearchViewController, didSelectMovie movie: Movie) {
         let movieDetailsViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MovieDetailsViewController") as! MovieDetailsViewController
         movieDetailsViewController.movie = movie
         navigationController?.pushViewController(movieDetailsViewController, animated: true)
+    }
+}
+
+// MARK: - Private Methods Extenstion
+private extension MovieListViewController {
+    func sortMovies(withKey: String) {
+        movies = movies.sorted(byKeyPath: withKey, ascending: true)
+        collectionView.reloadData()
     }
 }
