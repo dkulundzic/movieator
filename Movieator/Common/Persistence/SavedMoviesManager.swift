@@ -14,15 +14,13 @@ class SavedMoviesManager {
     private lazy var realm = try! Realm(fileURL: documentsURL)
 
     func saveUserMovie(withID movieID: String) {
-        let savedMovies = loadUserMovieIDs()
-        for movie in savedMovies {
-            if movie.id == movieID {return}
-        }
+        let predicate = NSPredicate(format: "id LIKE %@", movieID)
+        guard realm.objects(SavedMovie.self).filter(predicate).first == nil else { return }
         let savedMovie = SavedMovie()
         savedMovie.id = movieID
         do {
-            try self.realm.write {
-                self.realm.add(savedMovie)
+            try realm.write {
+                realm.add(savedMovie)
             }
         } catch {
             print("Error saving movie, \(error)")
@@ -31,8 +29,8 @@ class SavedMoviesManager {
     
     func deleteSavedMovie(withId movieID: SavedMovie) {
         do {
-            try self.realm.write {
-                self.realm.delete(movieID)
+            try realm.write {
+                realm.delete(movieID)
             }
         } catch {
             print("Error deleting saved movie, \(error)")

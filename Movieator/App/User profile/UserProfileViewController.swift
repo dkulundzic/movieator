@@ -40,22 +40,26 @@ extension UserProfileViewController: UICollectionViewDataSource {
         cell.setupCell(with: movies[indexPath.item])
         return cell
     }
-    
-    func reloadData() {
-        movieIDs = userMovieIDs.loadUserMovieIDs()
-        movies = data.loadMovies(with: movieIDs)
-    }
 }
 
+// MARK: - UICollectionViewDelegate Extension
 extension UserProfileViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let alert = UIAlertController(title: "DELETE MOVIE: \n\(movies[indexPath.item].title)", message: "Are you sure you want to delete this movie?", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "CANCEL", style: .default, handler: nil))
-        alert.addAction(UIAlertAction(title: "DELETE", style: .default, handler: { (action) in
+        let alert = UIAlertController(title: "Delete movie: \n\(movies[indexPath.item].title)", message: "Are you sure you want to delete this movie?", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
+        alert.addAction(UIAlertAction(title: "Delete", style: .default, handler: { action in
             self.userMovieIDs.deleteSavedMovie(withId: self.movieIDs[indexPath.item])
             self.reloadData()
             collectionView.reloadData()
         }))
-        self.present(alert, animated: true)
+        present(alert, animated: true)
+    }
+}
+
+// MARK: - Reload Data Extension
+private extension UserProfileViewController {
+    func reloadData() {
+        movieIDs = userMovieIDs.loadUserMovieIDs()
+        movies = data.loadMovies(with: movieIDs)
     }
 }

@@ -28,7 +28,7 @@ class DataController {
     }
     
     func loadMovies(with movieIDs: Results<SavedMovie>) -> Results<Movie> {
-        let movieIDsArray = Array(movieIDs.map{$0.id})
+        let movieIDsArray = Array(movieIDs.map { $0.id })
         let predicate = NSPredicate(format: "imdbID IN %@", movieIDsArray)
         return realm.objects(Movie.self).filter(predicate)
     }
