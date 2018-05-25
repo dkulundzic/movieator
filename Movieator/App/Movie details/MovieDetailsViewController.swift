@@ -19,7 +19,8 @@ class MovieDetailsViewController: UIViewController {
     @IBOutlet weak var posterImageView: UIImageView!
     @IBOutlet weak var writerLabel: UILabel!
     @IBOutlet weak var directorLabel: UILabel!
-
+    @IBOutlet weak var backgroundImage: UIImageView!
+    
     var movie: Movie!
     
     override func viewDidLoad() {
@@ -38,8 +39,8 @@ class MovieDetailsViewController: UIViewController {
     
     func setupViews() {
         titleLabel.text = movie.title
-        imdbRatingLabel.text = "Imdb: \(movie.imdbRating)"
-        metascoreRatingLabel.text = "Metascore: \(movie.metascore)"
+        imdbRatingLabel.text = "\(movie.imdbRating)"
+        metascoreRatingLabel.text = "\(movie.metascore)"
         plotLabel.text = movie.plot
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .medium
