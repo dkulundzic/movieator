@@ -56,7 +56,7 @@ extension UserProfileViewController: UICollectionViewDelegate {
     }
 }
 
-// MARK: - Reload Data Extension
+// MARK: - Private Methods Extension
 private extension UserProfileViewController {
     func reloadData() {
         movieIDs = userMovieIDs.loadUserMovieIDs()
