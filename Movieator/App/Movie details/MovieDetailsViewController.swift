@@ -19,7 +19,6 @@ class MovieDetailsViewController: UIViewController {
     @IBOutlet weak var posterImageView: UIImageView!
     @IBOutlet weak var writerLabel: UILabel!
     @IBOutlet weak var directorLabel: UILabel!
-    @IBOutlet weak var backgroundImage: UIImageView!
     
     var movie: Movie!
     
