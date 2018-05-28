@@ -10,6 +10,8 @@ import UIKit
 import RealmSwift
 
 class MovieListViewController: UIViewController {
+    @IBOutlet weak var collectionView: UICollectionView!
+    
     private let data = DataController()
     private let reuseIdentifier = "cell"
     private lazy var movies : Results<Movie> = data.loadMovies()
@@ -29,6 +31,25 @@ class MovieListViewController: UIViewController {
         navigationItem.searchController = searchController
         navigationItem.backBarButtonItem = nil
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "User", style: .plain, target: self, action: #selector(userButtonTapped))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Sort", style: .plain, target: self, action: #selector(sortButtonTapped))
+    }
+    
+    @objc func sortButtonTapped() {
+        let alert = UIAlertController(title: "Sort movies:", message: "", preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "By title", style: .default, handler: { [weak self] action in
+            self?.sortMovies(withKey: "title")
+        }))
+        alert.addAction(UIAlertAction(title: "By release date", style: .default, handler: { [weak self] action in
+            self?.sortMovies(withKey: "releaseDate")
+        }))
+        alert.addAction(UIAlertAction(title: "By IMDB rating", style: .default, handler: { [weak self] action in
+            self?.sortMovies(withKey: "imdbRating")
+        }))
+        alert.addAction(UIAlertAction(title: "By Metascore rating", style: .default, handler: { [weak self] action in
+            self?.sortMovies(withKey: "metascore")
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        present(alert, animated: true)
     }
     
     @objc func userButtonTapped() {
@@ -39,7 +60,7 @@ class MovieListViewController: UIViewController {
     }
 }
 
-// MARK: - Data Source Extension
+// MARK: - UICollectionViewDataSource
 extension MovieListViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return movies.count
@@ -52,7 +73,7 @@ extension MovieListViewController: UICollectionViewDataSource {
     }
 }
 
-// MARK: - Collection View Delegate Extension
+// MARK: - UICollectionViewDelegate
 extension MovieListViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let movieDetailsViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MovieDetailsViewController") as! MovieDetailsViewController
@@ -61,7 +82,7 @@ extension MovieListViewController: UICollectionViewDelegate {
     }
 }
 
-// MARK: - Delegate Flow Layout Extension
+// MARK: - UICollectionViewDelegateFlowLayout
 extension MovieListViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let size = (collectionView.bounds.size.width - 30) / 2
@@ -69,17 +90,26 @@ extension MovieListViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
-// MARK: - Search Results Delegate
+// MARK: - UISearchResultsUpdating
 extension MovieListViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         movieSearchResultsViewController.filterMovies(movies: Array(movies), with: searchController.searchBar.text ?? "")
     }
 }
 
+// MARK: - MovieSearchViewControllerDelegate
 extension MovieListViewController: MovieSearchViewControllerDelegate {
     func movieSearch(_ movieSearch: MovieSearchViewController, didSelectMovie movie: Movie) {
         let movieDetailsViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MovieDetailsViewController") as! MovieDetailsViewController
         movieDetailsViewController.movie = movie
         navigationController?.pushViewController(movieDetailsViewController, animated: true)
+    }
+}
+
+// MARK: - Private Methods
+private extension MovieListViewController {
+    func sortMovies(withKey: String) {
+        movies = movies.sorted(byKeyPath: withKey, ascending: true)
+        collectionView.reloadData()
     }
 }
