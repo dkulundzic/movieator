@@ -35,7 +35,7 @@ class MovieListViewController: UIViewController {
     }
     
     @objc func sortButtonTapped() {
-        let alert = UIAlertController(title: "Sort movies:", message: "", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Sort movies:", message: "", preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: "By title", style: .default, handler: { [weak self] action in
             self?.sortMovies(withKey: "title")
         }))
@@ -48,6 +48,7 @@ class MovieListViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "By Metascore rating", style: .default, handler: { [weak self] action in
             self?.sortMovies(withKey: "metascore")
         }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
         present(alert, animated: true)
     }
     
@@ -57,7 +58,7 @@ class MovieListViewController: UIViewController {
     }
 }
 
-// MARK: - Data Source Extension
+// MARK: - UICollectionViewDataSource
 extension MovieListViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return movies.count
@@ -70,7 +71,7 @@ extension MovieListViewController: UICollectionViewDataSource {
     }
 }
 
-// MARK: - Collection View Delegate Extension
+// MARK: - UICollectionViewDelegate
 extension MovieListViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let movieDetailsViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MovieDetailsViewController") as! MovieDetailsViewController
@@ -79,7 +80,7 @@ extension MovieListViewController: UICollectionViewDelegate {
     }
 }
 
-// MARK: - Delegate Flow Layout Extension
+// MARK: - UICollectionViewDelegateFlowLayout
 extension MovieListViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let size = (collectionView.bounds.size.width - 30) / 2
@@ -87,14 +88,14 @@ extension MovieListViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
-// MARK: - Search Results Delegate Extension
+// MARK: - UISearchResultsUpdating
 extension MovieListViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         movieSearchResultsViewController.filterMovies(movies: Array(movies), with: searchController.searchBar.text ?? "")
     }
 }
 
-// MARK: - MovieSearchViewController Delegate Extension
+// MARK: - MovieSearchViewControllerDelegate
 extension MovieListViewController: MovieSearchViewControllerDelegate {
     func movieSearch(_ movieSearch: MovieSearchViewController, didSelectMovie movie: Movie) {
         let movieDetailsViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MovieDetailsViewController") as! MovieDetailsViewController
@@ -103,7 +104,7 @@ extension MovieListViewController: MovieSearchViewControllerDelegate {
     }
 }
 
-// MARK: - Private Methods Extenstion
+// MARK: - Private Methods
 private extension MovieListViewController {
     func sortMovies(withKey: String) {
         movies = movies.sorted(byKeyPath: withKey, ascending: true)
