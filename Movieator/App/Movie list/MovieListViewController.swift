@@ -16,6 +16,7 @@ class MovieListViewController: UIViewController {
     private let reuseIdentifier = "cell"
     private lazy var movies : Results<Movie> = data.loadMovies()
     private let movieSearchResultsViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MovieSearchViewController") as! MovieSearchViewController
+    private var realmToken = NotificationToken()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,11 +28,36 @@ class MovieListViewController: UIViewController {
         searchController.searchResultsUpdater = self
         movieSearchResultsViewController.delegate = self
         
+        let userButton = UIBarButtonItem(image: #imageLiteral(resourceName: "userProfileIcon"), style: .plain, target: self, action: #selector(userButtonTapped))
+        let addButton = UIBarButtonItem(image: #imageLiteral(resourceName: "addIcon"), style: .plain, target: self, action: #selector(addButtonTapped))
+
         navigationItem.largeTitleDisplayMode = .always
         navigationItem.searchController = searchController
         navigationItem.backBarButtonItem = nil
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "User", style: .plain, target: self, action: #selector(userButtonTapped))
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Sort", style: .plain, target: self, action: #selector(sortButtonTapped))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "sortIcon"), style: .plain, target: self, action: #selector(sortButtonTapped))
+        navigationItem.rightBarButtonItems = [userButton, addButton]
+        
+        realmToken = movies.observe { realm in
+            self.collectionView.reloadData()
+        }
+    }
+    
+    @objc func addButtonTapped() {
+        let alert = UIAlertController(title: "Add new movies", message: "", preferredStyle: .alert)
+        let importButton = UIAlertAction(title: "Import", style: .default, handler: { action in
+            if let id = alert.textFields?.first?.text {
+                self.importMovie(with: id)
+            }
+        })
+        alert.addAction(importButton)
+        alert.addTextField { textField in
+            textField.placeholder = "Place IMDB ID here."
+            NotificationCenter.default.addObserver(forName: nil, object: textField, queue: OperationQueue.main, using: { _ in
+                importButton.isEnabled = textField.text?.count == 9
+            })
+        }
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        present(alert, animated: true)
     }
     
     @objc func sortButtonTapped() {
@@ -111,5 +137,19 @@ private extension MovieListViewController {
     func sortMovies(withKey: String) {
         movies = movies.sorted(byKeyPath: withKey, ascending: true)
         collectionView.reloadData()
+    }
+    
+    func importMovie(with id: String) {
+        let movieFetcher = MovieFetcher()
+        movieFetcher.fetchMovie(byId: id,
+            success: { movie in
+                self.data.saveMovies(movie: movie)
+                let alert = UIAlertController(title: "Movie saved", message: "", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+                self.present(alert, animated: true) },
+            failure: { error in
+                let alert = UIAlertController(title: "Movie not saved", message: "Error ocured while trying to fetch movie", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+                self.present(alert, animated: true) })
     }
 }
