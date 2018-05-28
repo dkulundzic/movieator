@@ -48,7 +48,7 @@ class MovieListViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "By Metascore rating", style: .default, handler: { [weak self] action in
             self?.sortMovies(withKey: "metascore")
         }))
-        alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         present(alert, animated: true)
     }
     
