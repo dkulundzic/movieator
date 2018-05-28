@@ -33,7 +33,12 @@ class MovieDetailsViewController: UIViewController {
     }
     
     @objc func saveButtonTapped() {
-        //save Movie
+        let savedMoviesManager = SavedMoviesManager()
+        savedMoviesManager.saveUserMovie(withID: movie.imdbID)
+        
+        let alert = UIAlertController(title: "SAVE MOVIE", message: "Movie saved!", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alert, animated: true)
     }
     
     func setupViews() {

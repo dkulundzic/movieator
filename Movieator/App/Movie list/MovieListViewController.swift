@@ -32,8 +32,10 @@ class MovieListViewController: UIViewController {
     }
     
     @objc func userButtonTapped() {
-        let userProfileViewController = UserProfileViewController()
-        navigationController?.pushViewController(userProfileViewController, animated: true)
+        let userProfileViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "UserProfileViewController")
+        let navController = UINavigationController(rootViewController: userProfileViewController)
+        navController.navigationBar.prefersLargeTitles = true
+        present(navController, animated: true, completion: nil)
     }
 }
 

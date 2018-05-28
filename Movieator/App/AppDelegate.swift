@@ -22,7 +22,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PreparationViewController")
         
         window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = UINavigationController(rootViewController: rootViewController)
+        let navController = UINavigationController(rootViewController: rootViewController)
+        navController.navigationBar.prefersLargeTitles = true
+        window?.rootViewController = navController
         window?.makeKeyAndVisible()
         
         return true
