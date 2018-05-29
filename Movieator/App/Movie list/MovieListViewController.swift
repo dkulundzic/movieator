@@ -44,16 +44,16 @@ class MovieListViewController: UIViewController {
     
     @objc func addButtonTapped() {
         let alert = UIAlertController(title: "Add new movies", message: "", preferredStyle: .alert)
-        let importButton = UIAlertAction(title: "Import", style: .default, handler: { action in
+        let findButton = UIAlertAction(title: "Find", style: .default, handler: { action in
             if let id = alert.textFields?.first?.text {
-                self.importMovie(with: id)
+                self.findMovie(with: id)
             }
         })
-        alert.addAction(importButton)
+        alert.addAction(findButton)
         alert.addTextField { textField in
             textField.placeholder = "Place IMDB ID here."
             NotificationCenter.default.addObserver(forName: nil, object: textField, queue: OperationQueue.main, using: { _ in
-                importButton.isEnabled = textField.text?.count == 9
+                findButton.isEnabled = textField.text?.count == 9
             })
         }
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
@@ -139,17 +139,25 @@ private extension MovieListViewController {
         collectionView.reloadData()
     }
     
-    func importMovie(with id: String) {
+    func findMovie(with id: String) {
         let movieFetcher = MovieFetcher()
         movieFetcher.fetchMovie(byId: id,
             success: { movie in
-                self.data.saveMovies(movie: movie)
-                let alert = UIAlertController(title: "Movie saved", message: "", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+                let year = String(Calendar.current.component(.year, from: movie.releaseDate))
+                let alert = UIAlertController(title: "Movie found", message: "Found movie titled \(movie.title), released in \(year).", preferredStyle: .actionSheet)
+                alert.addAction(UIAlertAction(title: "Import", style: .default, handler: { action in self.importMovie(for: movie) } ))
+                alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
                 self.present(alert, animated: true) },
             failure: { error in
-                let alert = UIAlertController(title: "Movie not saved", message: "Error ocured while trying to fetch movie", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+                let alert = UIAlertController(title: "Movie not found", message: error.errorDescription, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
                 self.present(alert, animated: true) })
+    }
+    
+    func importMovie(for movie: Movie) {
+        self.data.saveMovies(movie: movie)
+        let alert = UIAlertController(title: "Movie saved", message: "", preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
+        self.present(alert, animated: true)
     }
 }
