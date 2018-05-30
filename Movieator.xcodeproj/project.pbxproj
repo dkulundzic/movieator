@@ -20,6 +20,7 @@
 		F5337BEA20B309F3004C6E77 /* SavedMoviesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5337BE920B309F3004C6E77 /* SavedMoviesManager.swift */; };
 		F5337BEC20B30F48004C6E77 /* SavedMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5337BEB20B30F48004C6E77 /* SavedMovie.swift */; };
 		F555BDB720AAEE43004466D3 /* MovieListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F555BDB620AAEE43004466D3 /* MovieListViewController.swift */; };
+		F566D9E620BE8EA200B1D197 /* UIAlertControllerExtension-Movieator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F566D9E520BE8EA200B1D197 /* UIAlertControllerExtension-Movieator.swift */; };
 		F585701120A47CA600A6E98F /* PreparationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F585701020A47CA600A6E98F /* PreparationViewController.swift */; };
 		F585701320A47CCB00A6E98F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F585701220A47CCB00A6E98F /* Main.storyboard */; };
 		F585701920A5E67C00A6E98F /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F585701820A5E67C00A6E98F /* DataController.swift */; };
@@ -61,6 +62,7 @@
 		F5337BE920B309F3004C6E77 /* SavedMoviesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedMoviesManager.swift; sourceTree = "<group>"; };
 		F5337BEB20B30F48004C6E77 /* SavedMovie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedMovie.swift; sourceTree = "<group>"; };
 		F555BDB620AAEE43004466D3 /* MovieListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListViewController.swift; sourceTree = "<group>"; };
+		F566D9E520BE8EA200B1D197 /* UIAlertControllerExtension-Movieator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertControllerExtension-Movieator.swift"; sourceTree = "<group>"; };
 		F585701020A47CA600A6E98F /* PreparationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreparationViewController.swift; sourceTree = "<group>"; };
 		F585701220A47CCB00A6E98F /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		F585701820A5E67C00A6E98F /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
@@ -266,6 +268,7 @@
 		48DBE52120A42CBD00572B73 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				F566D9E520BE8EA200B1D197 /* UIAlertControllerExtension-Movieator.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -466,6 +469,7 @@
 				F5AB6D0F20AC1A620084DE49 /* MovieCollectionViewCell.swift in Sources */,
 				F5FD545C20AD6E5800506C50 /* MovieSearchViewController.swift in Sources */,
 				F5337BEA20B309F3004C6E77 /* SavedMoviesManager.swift in Sources */,
+				F566D9E620BE8EA200B1D197 /* UIAlertControllerExtension-Movieator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

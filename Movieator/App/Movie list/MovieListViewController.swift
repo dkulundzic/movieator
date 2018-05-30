@@ -43,7 +43,7 @@ class MovieListViewController: UIViewController {
     }
     
     @objc func addButtonTapped() {
-        let alert = UIAlertController(title: "Add new movies", message: "", preferredStyle: .alert)
+        let alert = UIAlertController.generic(title: "Add new movies", message: "Copy id from URL and paste it below.")
         let findButton = UIAlertAction(title: "Find", style: .default, handler: { action in
             if let id = alert.textFields?.first?.text {
                 self.findMovie(with: id)
@@ -56,26 +56,24 @@ class MovieListViewController: UIViewController {
                 findButton.isEnabled = textField.text?.count == 9
             })
         }
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        present(alert, animated: true)
+        alert.present(target: self)
     }
     
     @objc func sortButtonTapped() {
-        let alert = UIAlertController(title: "Sort movies:", message: "", preferredStyle: .actionSheet)
-        alert.addAction(UIAlertAction(title: "By title", style: .default, handler: { [weak self] action in
-            self?.sortMovies(withKey: "title")
-        }))
-        alert.addAction(UIAlertAction(title: "By release date", style: .default, handler: { [weak self] action in
-            self?.sortMovies(withKey: "releaseDate")
-        }))
-        alert.addAction(UIAlertAction(title: "By IMDB rating", style: .default, handler: { [weak self] action in
-            self?.sortMovies(withKey: "imdbRating")
-        }))
-        alert.addAction(UIAlertAction(title: "By Metascore rating", style: .default, handler: { [weak self] action in
-            self?.sortMovies(withKey: "metascore")
-        }))
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        present(alert, animated: true)
+        let actions = [UIAlertAction(title: "Title", style: .default, handler: { [weak self] action in
+                        self?.sortMovies(withKey: "title")
+                        }),
+                       UIAlertAction(title: "Release date", style: .default, handler: { [weak self] action in
+                        self?.sortMovies(withKey: "releaseDate")
+                        }),
+                       UIAlertAction(title: "IMDB rating", style: .default, handler: { [weak self] action in
+                        self?.sortMovies(withKey: "imdbRating")
+                        }),
+                       UIAlertAction(title: "Metascore rating", style: .default, handler: { [weak self] action in
+                        self?.sortMovies(withKey: "metascore")
+                        })]
+        let alert = UIAlertController.generic(title: "Sort movies by", actions: actions)
+        alert.present(target: self)
     }
     
     @objc func userButtonTapped() {
@@ -135,7 +133,7 @@ extension MovieListViewController: MovieSearchViewControllerDelegate {
 // MARK: - Private Methods
 private extension MovieListViewController {
     func sortMovies(withKey: String) {
-        movies = movies.sorted(byKeyPath: withKey, ascending: true)
+        movies = movies.sorted(byKeyPath: withKey, ascending: false)
         collectionView.reloadData()
     }
     
@@ -144,20 +142,17 @@ private extension MovieListViewController {
         movieFetcher.fetchMovie(byId: id,
             success: { movie in
                 let year = String(Calendar.current.component(.year, from: movie.releaseDate))
-                let alert = UIAlertController(title: "Movie found", message: "Found movie titled \(movie.title), released in \(year).", preferredStyle: .actionSheet)
-                alert.addAction(UIAlertAction(title: "Import", style: .default, handler: { action in self.importMovie(for: movie) } ))
-                alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-                self.present(alert, animated: true) },
+                let actions = [UIAlertAction(title: "Import", style: .default, handler: { action in self.importMovie(for: movie) } )]
+                let alert = UIAlertController.generic(title: "Movie found", message: "Found movie titled \(movie.title), released in \(year).", preferredStyle: .actionSheet, actions: actions)
+                alert.present(target: self) },
             failure: { error in
-                let alert = UIAlertController(title: "Movie not found", message: error.errorDescription, preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
-                self.present(alert, animated: true) })
+                let alert = UIAlertController.generic(title: "Movie not found", message: error.localizedDescription, cancelTitle: "Ok")
+                alert.present(target: self) })
     }
     
     func importMovie(for movie: Movie) {
-        self.data.saveMovies(movie: movie)
-        let alert = UIAlertController(title: "Movie saved", message: "", preferredStyle: .actionSheet)
-        alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
-        self.present(alert, animated: true)
+        data.saveMovies(movie: movie)
+        let alert = UIAlertController.generic(title: "Movie saved", cancelTitle: "Ok")
+        alert.present(target: self)
     }
 }
