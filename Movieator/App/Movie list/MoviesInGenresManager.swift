@@ -14,11 +14,11 @@ class MoviesInGenresManager {
     private let dataController = DataController()
     private lazy var movies: Results<Movie> = dataController.loadMovies()
     private var moviesInGenres: [MoviesInGenres] = []
-    private var sort = ""
+    private var sortKey = ""
     {
         didSet {
             for movies in moviesInGenres {
-                movies.sortMovies(byKey: sort)
+                movies.sortMovies(byKey: sortKey)
             }
         }
     }
@@ -51,9 +51,9 @@ class MoviesInGenresManager {
         return avalibleGenres
     }
     
-    func setSort(withKey sortKey: String) -> Bool {
-        if sort == sortKey { return false }
-        sort = sortKey
+    func sortMovies(withKey sortKey: String) -> Bool {
+        if self.sortKey == sortKey { return false }
+        self.sortKey = sortKey
         return true
     }
     

@@ -129,7 +129,7 @@ extension MovieListViewController: MovieSearchViewControllerDelegate {
 // MARK: - Private Methods
 private extension MovieListViewController {
     func sortMovies(withKey sortKey: String) {
-        if moviesInGenresManager.setSort(withKey: sortKey) {
+        if moviesInGenresManager.sortMovies(withKey: sortKey) {
             collectionView.reloadData()
         }
     }
