@@ -7,15 +7,18 @@
 //
 
 import UIKit
+import RealmSwift
 
 class MovieSearchViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     
+    private let dataController = DataController()
+    private lazy var movies: Results<Movie> = dataController.loadMovies()
     private var filteredMovies = [Movie]()
     private let reuseIdentifier = "cell"
     weak var delegate: MovieSearchViewControllerDelegate?
 
-    func filterMovies(movies: [Movie], with query: String) {
+    func filterMovies(with query: String) {
         filteredMovies = movies.filter { movies in movies.title.lowercased().contains(query.lowercased()) }
         collectionView.reloadData()
     }
