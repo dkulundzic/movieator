@@ -56,24 +56,25 @@ class MovieListViewController: UIViewController {
                 findButton.isEnabled = textField.text?.count == 9
             })
         }
-        alert.present(target: self)
+        alert.present(on: self)
     }
     
     @objc func sortButtonTapped() {
-        let actions = [UIAlertAction(title: "Title", style: .default, handler: { [weak self] action in
+        let actions = [
+                    UIAlertAction(title: "Title", style: .default, handler: { [weak self] action in
                         self?.sortMovies(withKey: "title")
-                        }),
-                       UIAlertAction(title: "Release date", style: .default, handler: { [weak self] action in
+                    }),
+                    UIAlertAction(title: "Release date", style: .default, handler: { [weak self] action in
                         self?.sortMovies(withKey: "releaseDate")
-                        }),
-                       UIAlertAction(title: "IMDB rating", style: .default, handler: { [weak self] action in
+                    }),
+                    UIAlertAction(title: "IMDB rating", style: .default, handler: { [weak self] action in
                         self?.sortMovies(withKey: "imdbRating")
-                        }),
-                       UIAlertAction(title: "Metascore rating", style: .default, handler: { [weak self] action in
+                    }),
+                    UIAlertAction(title: "Metascore rating", style: .default, handler: { [weak self] action in
                         self?.sortMovies(withKey: "metascore")
-                        })]
+                    })]
         let alert = UIAlertController.generic(title: "Sort movies by", actions: actions)
-        alert.present(target: self)
+        alert.present(on: self)
     }
     
     @objc func userButtonTapped() {
@@ -144,15 +145,15 @@ private extension MovieListViewController {
                 let year = String(Calendar.current.component(.year, from: movie.releaseDate))
                 let actions = [UIAlertAction(title: "Import", style: .default, handler: { action in self.importMovie(for: movie) } )]
                 let alert = UIAlertController.generic(title: "Movie found", message: "Found movie titled \(movie.title), released in \(year).", preferredStyle: .actionSheet, actions: actions)
-                alert.present(target: self) },
+                alert.present(on: self) },
             failure: { error in
                 let alert = UIAlertController.generic(title: "Movie not found", message: error.localizedDescription, cancelTitle: "Ok")
-                alert.present(target: self) })
+                alert.present(on: self) })
     }
     
     func importMovie(for movie: Movie) {
         data.saveMovies(movie: movie)
         let alert = UIAlertController.generic(title: "Movie saved", cancelTitle: "Ok")
-        alert.present(target: self)
+        alert.present(on: self)
     }
 }

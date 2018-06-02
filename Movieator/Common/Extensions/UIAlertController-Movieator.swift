@@ -24,7 +24,7 @@ extension UIAlertController {
         return alertController
     }
     
-    func present(target: UIViewController, animated: Bool = true) {
-        target.present(self, animated: animated)
+    func present(on viewController: UIViewController, animated: Bool = true) {
+        viewController.present(self, animated: animated)
     }
 }
