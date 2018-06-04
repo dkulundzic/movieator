@@ -11,7 +11,7 @@ import UIKit
 class MovieListViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     
-    private let moviesInGenresManager = MoviesInGenresManager()
+    private let moviesInGenresManager = GenreMovieGroupingManager()
     private let reuseIdentifier = "cell"
     private let movieSearchResultsViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MovieSearchViewController") as! MovieSearchViewController
     
@@ -35,16 +35,16 @@ class MovieListViewController: UIViewController {
     @objc func sortButtonTapped() {
         let alert = UIAlertController(title: "Sort movies:", message: "", preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: "By title", style: .default, handler: { [weak self] action in
-            self?.sortMovies(withKey: "title")
+            self?.sortMovies(withKey: .title)
         }))
         alert.addAction(UIAlertAction(title: "By release date", style: .default, handler: { [weak self] action in
-            self?.sortMovies(withKey: "releaseDate")
+            self?.sortMovies(withKey: .releaseDate)
         }))
         alert.addAction(UIAlertAction(title: "By IMDB rating", style: .default, handler: { [weak self] action in
-            self?.sortMovies(withKey: "imdbRating")
+            self?.sortMovies(withKey: .imdbRating)
         }))
         alert.addAction(UIAlertAction(title: "By Metascore rating", style: .default, handler: { [weak self] action in
-            self?.sortMovies(withKey: "metascore")
+            self?.sortMovies(withKey: .metascore)
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         present(alert, animated: true)
@@ -61,7 +61,7 @@ class MovieListViewController: UIViewController {
 // MARK: - UICollectionViewDataSource
 extension MovieListViewController: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return moviesInGenresManager.getAvalibleGenres().count
+        return moviesInGenresManager.getAvailibleGenres().count
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
@@ -70,7 +70,7 @@ extension MovieListViewController: UICollectionViewDataSource {
             let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
                                                                              withReuseIdentifier: "MovieListHeaderView",
                                                                              for: indexPath) as! MovieListHeaderView
-            headerView.label.text = moviesInGenresManager.getAvalibleGenres()[indexPath.section].capitalized
+            headerView.label.text = moviesInGenresManager.getAvailibleGenres()[indexPath.section].capitalized
             return headerView
         default:
             assert(false, "Unexpected element kind")
@@ -78,13 +78,13 @@ extension MovieListViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        let genre = moviesInGenresManager.getAvalibleGenres()[section]
+        let genre = moviesInGenresManager.getAvailibleGenres()[section]
         return moviesInGenresManager.getGenreMovies(for: genre).count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath as IndexPath) as! MovieCollectionViewCell
-        let genre = moviesInGenresManager.getAvalibleGenres()[indexPath.section]
+        let genre = moviesInGenresManager.getAvailibleGenres()[indexPath.section]
         let movie = moviesInGenresManager.getGenreMovies(for: genre)[indexPath.item]
         cell.setupCell(with: movie)
         return cell
@@ -95,7 +95,7 @@ extension MovieListViewController: UICollectionViewDataSource {
 extension MovieListViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let movieDetailsViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MovieDetailsViewController") as! MovieDetailsViewController
-        let genre = moviesInGenresManager.getAvalibleGenres()[indexPath.section]
+        let genre = moviesInGenresManager.getAvailibleGenres()[indexPath.section]
         let movie = moviesInGenresManager.getGenreMovies(for: genre)[indexPath.item]
         movieDetailsViewController.movie = movie
         navigationController?.pushViewController(movieDetailsViewController, animated: true)
@@ -128,7 +128,7 @@ extension MovieListViewController: MovieSearchViewControllerDelegate {
 
 // MARK: - Private Methods
 private extension MovieListViewController {
-    func sortMovies(withKey sortKey: String) {
+    func sortMovies(withKey sortKey: MovieSortKey) {
         if moviesInGenresManager.sortMovies(withKey: sortKey) {
             collectionView.reloadData()
         }
