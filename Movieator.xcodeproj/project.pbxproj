@@ -19,6 +19,7 @@
 		5E5EDBD4C88821AC9A311787 /* Pods_Movieator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92B7BD7731B349FFE410AA21 /* Pods_Movieator.framework */; };
 		F5337BEA20B309F3004C6E77 /* SavedMoviesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5337BE920B309F3004C6E77 /* SavedMoviesManager.swift */; };
 		F5337BEC20B30F48004C6E77 /* SavedMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5337BEB20B30F48004C6E77 /* SavedMovie.swift */; };
+		F551A9F920C5639F00B33756 /* EnumCollection-Movieator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F551A9F820C5639F00B33756 /* EnumCollection-Movieator.swift */; };
 		F555BDB720AAEE43004466D3 /* MovieListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F555BDB620AAEE43004466D3 /* MovieListViewController.swift */; };
 		F555F12220C2B345009CA3E6 /* GenreMovieGrouping.swift in Sources */ = {isa = PBXBuildFile; fileRef = F555F12120C2B345009CA3E6 /* GenreMovieGrouping.swift */; };
 		F555F12420C2B415009CA3E6 /* GenreMovieGroupingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F555F12320C2B415009CA3E6 /* GenreMovieGroupingManager.swift */; };
@@ -63,6 +64,7 @@
 		C1EC2AED1CFB4F13C4D2D22E /* Pods-Movieator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Movieator.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Movieator/Pods-Movieator.debug.xcconfig"; sourceTree = "<group>"; };
 		F5337BE920B309F3004C6E77 /* SavedMoviesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedMoviesManager.swift; sourceTree = "<group>"; };
 		F5337BEB20B30F48004C6E77 /* SavedMovie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedMovie.swift; sourceTree = "<group>"; };
+		F551A9F820C5639F00B33756 /* EnumCollection-Movieator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EnumCollection-Movieator.swift"; sourceTree = "<group>"; };
 		F555BDB620AAEE43004466D3 /* MovieListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListViewController.swift; sourceTree = "<group>"; };
 		F555F12120C2B345009CA3E6 /* GenreMovieGrouping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreMovieGrouping.swift; sourceTree = "<group>"; };
 		F555F12320C2B415009CA3E6 /* GenreMovieGroupingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreMovieGroupingManager.swift; sourceTree = "<group>"; };
@@ -275,6 +277,7 @@
 		48DBE52120A42CBD00572B73 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				F551A9F820C5639F00B33756 /* EnumCollection-Movieator.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -475,6 +478,7 @@
 				F5AB6D1520AC7EFA0084DE49 /* UserProfileViewController.swift in Sources */,
 				F5AB6D0F20AC1A620084DE49 /* MovieCollectionViewCell.swift in Sources */,
 				F555F12420C2B415009CA3E6 /* GenreMovieGroupingManager.swift in Sources */,
+				F551A9F920C5639F00B33756 /* EnumCollection-Movieator.swift in Sources */,
 				F555F12220C2B345009CA3E6 /* GenreMovieGrouping.swift in Sources */,
 				F5FD545C20AD6E5800506C50 /* MovieSearchViewController.swift in Sources */,
 				F5337BEA20B309F3004C6E77 /* SavedMoviesManager.swift in Sources */,

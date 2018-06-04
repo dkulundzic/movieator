@@ -9,24 +9,51 @@
 import UIKit
 import RealmSwift
 
+enum AllGenres: String, EnumCollection {
+    case action
+    case adventure
+    case animation
+    case biography
+    case comedy
+    case crime
+    case documentary
+    case drama
+    case family
+    case fantasy
+    case filmNoir = "film-noir"
+    case history
+    case horror
+    case music
+    case musical
+    case mystery
+    case romance
+    case sciFi = "sci-fi"
+    case short
+    case sport
+    case superhero
+    case thriller
+    case war
+    case western
+    case gameShow = "game-show"
+    case realityTv = "reality-tv"
+    case talkShow = "talk-show"
+    
+    static func string() -> [String] {
+        return Array(AllGenres.cases).map({$0.rawValue})
+    }
+}
+
 class GenreMovieGroupingManager {
-    private let allGenres = ["action", "adventure", "animation", "biography", "comedy", "crime", "documentary", "drama", "family", "fantasy", "film-noir", "history", "horror", "music", "musical", "mystery", "romance", "sci-fi", "short", "sport", "superhero", "thriller", "war", "western", "game-show", "reality-tv", "talk-show"]
     private let dataController = DataController()
     private lazy var movies: Results<Movie> = dataController.loadMovies()
     private var moviesInGenres: [GenreMovieGrouping] = []
-    private var sortKey: MovieSortKey = .title
-    {
-        didSet {
-            moviesInGenres.forEach { $0.sortMovies(byKey: sortKey) }
-        }
-    }
+    private var sortKey: MovieSortKey?
 
     init() {
-        moviesInGenres = allGenres.map { genre -> GenreMovieGrouping in
+        moviesInGenres = AllGenres.string().map { genre -> GenreMovieGrouping in
             let genreMovies = movies.filter { $0.genre.lowercased().contains(genre) }
             return GenreMovieGrouping(genre: genre, movies: Array(genreMovies))
         }
-        moviesInGenres.forEach { $0.sortMovies(byKey: sortKey) }
     }
     
     func getGenreMovies(for genre: String) -> [Movie] {
@@ -38,8 +65,9 @@ class GenreMovieGroupingManager {
     }
     
     func sortMovies(withKey sortKey: MovieSortKey) -> Bool {
-        if self.sortKey == sortKey { return false }
+        guard self.sortKey != sortKey else { return false }
         self.sortKey = sortKey
+        moviesInGenres.forEach{ $0.sortMovies(byKey: sortKey) }
         return true
     }
 }
