@@ -24,12 +24,34 @@ class MovieListViewController: UIViewController {
         searchController.searchBar.placeholder = "Search Movies"
         searchController.searchResultsUpdater = self
         movieSearchResultsViewController.delegate = self
+        moviesInGenresManager.delegate = self
         
+        let userButton = UIBarButtonItem(image: #imageLiteral(resourceName: "userProfileIcon"), style: .plain, target: self, action: #selector(userButtonTapped))
+        let addButton = UIBarButtonItem(image: #imageLiteral(resourceName: "addIcon"), style: .plain, target: self, action: #selector(addButtonTapped))
+
         navigationItem.largeTitleDisplayMode = .always
         navigationItem.searchController = searchController
         navigationItem.backBarButtonItem = nil
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "User", style: .plain, target: self, action: #selector(userButtonTapped))
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Sort", style: .plain, target: self, action: #selector(sortButtonTapped))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "sortIcon"), style: .plain, target: self, action: #selector(sortButtonTapped))
+        navigationItem.rightBarButtonItems = [userButton, addButton]
+        
+    }
+    
+    @objc func addButtonTapped() {
+        let alert = UIAlertController.generic(title: "Add new movies", message: "Copy id from URL and paste it below.")
+        let findButton = UIAlertAction(title: "Find", style: .default, handler: { action in
+            if let id = alert.textFields?.first?.text {
+                self.findMovie(with: id)
+            }
+        })
+        alert.addAction(findButton)
+        alert.addTextField { textField in
+            textField.placeholder = "Place IMDB ID here."
+            NotificationCenter.default.addObserver(forName: nil, object: textField, queue: OperationQueue.main, using: { _ in
+                findButton.isEnabled = textField.text?.count == 9
+            })
+        }
+        alert.present(on: self)
     }
     
     @objc func sortButtonTapped() {
@@ -126,11 +148,37 @@ extension MovieListViewController: MovieSearchViewControllerDelegate {
     }
 }
 
+// MARK: - GenreMovieGroupingManagerDelegate
+extension MovieListViewController: GenreMovieGroupingManagerDelegate {
+    func shouldReloadData() {
+        collectionView.reloadData()
+    }
+}
+
 // MARK: - Private Methods
 private extension MovieListViewController {
     func sortMovies(withKey sortKey: MovieSortKey) {
         if moviesInGenresManager.sortMovies(withKey: sortKey) {
             collectionView.reloadData()
         }
+    }
+    
+    func findMovie(with id: String) {
+        let movieFetcher = MovieFetcher()
+        movieFetcher.fetchMovie(byId: id,
+            success: { movie in
+                let year = String(Calendar.current.component(.year, from: movie.releaseDate))
+                let actions = [UIAlertAction(title: "Import", style: .default, handler: { action in self.importMovie(for: movie) } )]
+                let alert = UIAlertController.generic(title: "Movie found", message: "Found movie titled \(movie.title), released in \(year).", preferredStyle: .actionSheet, actions: actions)
+                alert.present(on: self) },
+            failure: { error in
+                let alert = UIAlertController.generic(title: "Movie not found", message: error.localizedDescription, cancelTitle: "Ok")
+                alert.present(on: self) })
+    }
+    
+    func importMovie(for movie: Movie) {
+        moviesInGenresManager.saveNewMovie(movie: movie)
+        let alert = UIAlertController.generic(title: "Movie saved", cancelTitle: "Ok")
+        alert.present(on: self)
     }
 }

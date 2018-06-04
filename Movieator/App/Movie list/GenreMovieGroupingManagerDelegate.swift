@@ -1,5 +1,5 @@
 //
-//  MovieSearchViewControllerDelegate.swift
+//  GenreMovieGroupingManagerDelegate.swift
 //  Movieator
 //
 //  Created by Matej Korman on 04/06/2018.
@@ -7,3 +7,7 @@
 //
 
 import Foundation
+
+protocol GenreMovieGroupingManagerDelegate: class {
+    func shouldReloadData()
+}

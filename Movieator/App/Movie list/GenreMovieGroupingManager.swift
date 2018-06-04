@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-enum AllGenres: String, EnumCollection {
+enum Genre: String, EnumCollection {
     case action
     case adventure
     case animation
@@ -38,8 +38,8 @@ enum AllGenres: String, EnumCollection {
     case realityTv = "reality-tv"
     case talkShow = "talk-show"
     
-    static func string() -> [String] {
-        return Array(AllGenres.cases).map({$0.rawValue})
+    static func allCases() -> [String] {
+        return Array(Genre.cases).map({ $0.rawValue })
     }
 }
 
@@ -48,11 +48,14 @@ class GenreMovieGroupingManager {
     private lazy var movies: Results<Movie> = dataController.loadMovies()
     private var moviesInGenres: [GenreMovieGrouping] = []
     private var sortKey: MovieSortKey?
+    private var realmToken = NotificationToken()
+    weak var delegate: GenreMovieGroupingManagerDelegate?
 
     init() {
-        moviesInGenres = AllGenres.string().map { genre -> GenreMovieGrouping in
-            let genreMovies = movies.filter { $0.genre.lowercased().contains(genre) }
-            return GenreMovieGrouping(genre: genre, movies: Array(genreMovies))
+        groupMoviesInGenres()
+        realmToken = movies.observe { realm in
+            self.groupMoviesInGenres()
+            self.delegate?.shouldReloadData()
         }
     }
     
@@ -69,5 +72,19 @@ class GenreMovieGroupingManager {
         self.sortKey = sortKey
         moviesInGenres.forEach{ $0.sortMovies(byKey: sortKey) }
         return true
+    }
+    
+    func saveNewMovie(movie: Movie) {
+        dataController.saveMovies(movie: movie)
+    }
+}
+
+// MARK: - Private Methods
+private extension GenreMovieGroupingManager {
+    func groupMoviesInGenres() {
+        moviesInGenres = Genre.allCases().map { genre -> GenreMovieGrouping in
+            let genreMovies = movies.filter { $0.genre.lowercased().contains(genre) }
+            return GenreMovieGrouping(genre: genre, movies: Array(genreMovies))
+        }
     }
 }
