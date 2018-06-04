@@ -14,6 +14,8 @@ class DataController {
     lazy var realm = try! Realm(fileURL: documentsURL)
     
     func saveMovies(movie: Movie) {
+        let predicate = NSPredicate(format: "imdbID LIKE %@", movie.imdbID)
+        guard realm.objects(Movie.self).filter(predicate).first == nil else { return }
         do {
             try self.realm.write {
                 self.realm.add(movie)
