@@ -7,3 +7,7 @@
 //
 
 import Foundation
+
+protocol MovieSearchViewControllerDelegate: class {
+    func movieSearch(_ movieSearch: MovieSearchViewController, didSelectMovie movie: Movie)
+}
