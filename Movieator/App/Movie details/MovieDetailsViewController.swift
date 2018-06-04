@@ -25,9 +25,12 @@ class MovieDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let saveButton = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(saveButtonTapped))
+        let shareButton = UIBarButtonItem(title: "Share", style: .plain, target: self, action: #selector(shareButtonTapped))
+        
         navigationItem.title = "MOVIE DETAILS"
         navigationItem.largeTitleDisplayMode = .automatic
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(saveButtonTapped))
+        navigationItem.rightBarButtonItems = [saveButton, shareButton]
 
         setupViews()
     }
@@ -39,6 +42,16 @@ class MovieDetailsViewController: UIViewController {
         let alert = UIAlertController(title: "SAVE MOVIE", message: "Movie saved!", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         self.present(alert, animated: true)
+    }
+    
+    @objc func shareButtonTapped(_ sender: AnyObject) {
+        let url = getMovieURL()
+        let activityViewController = UIActivityViewController(activityItems: ["Look I've found a cool movie!", url], applicationActivities: nil)
+
+        if let popoverPresentationController = activityViewController.popoverPresentationController {
+            popoverPresentationController.barButtonItem = (sender as! UIBarButtonItem)
+        }
+        present(activityViewController, animated: true, completion: nil)
     }
     
     func setupViews() {
@@ -63,5 +76,14 @@ class MovieDetailsViewController: UIViewController {
            failure: { error in
                 print("Error getting poster, \(error)")
         })
+    }
+}
+
+private extension MovieDetailsViewController {
+    func getMovieURL() -> URL {
+        guard let url = URL(string: "https://www.imdb.com/title/\(movie.imdbID)") else {
+            fatalError("Error creating url for this movie.")
+        }
+        return url
     }
 }
