@@ -10,48 +10,60 @@ import UIKit
 import RealmSwift
 
 class MoviesInGenresManager {
-    private let allGenres = ["action", "adventure", "animation", "biography", "comedy", "crime", "documentary", "drama", "family", "fantasy", "film-noir", "history", "horror", "music", "musical", "mystery", "romance", "sci-fi", "short", "sport", "superhero", "thriller", "war", "western", "game-show", "reality-tv", "talk-show"]
+    private let allGenres = [
+        "action",
+        "adventure",
+        "animation",
+        "biography",
+        "comedy",
+        "crime",
+        "documentary",
+        "drama",
+        "family",
+        "fantasy",
+        "film-noir",
+        "history",
+        "horror",
+        "music",
+        "musical",
+        "mystery",
+        "romance",
+        "sci-fi",
+        "short",
+        "sport",
+        "superhero",
+        "thriller",
+        "war",
+        "western",
+        "game-show",
+        "reality-tv",
+        "talk-show"
+    ]
     private let dataController = DataController()
     private lazy var movies: Results<Movie> = dataController.loadMovies()
     private var moviesInGenres: [MoviesInGenres] = []
-    private var sortKey = ""
-    {
+    private var sortKey: MovieSortKey = .title {
         didSet {
-            for movies in moviesInGenres {
-                movies.sortMovies(byKey: sortKey)
-            }
+            moviesInGenres.forEach { $0.sortMovies(byKey: sortKey) }
         }
     }
-
+    
     init() {
-        for genre in allGenres {
-            moviesInGenres.append(MoviesInGenres(genre: genre))
-            for movie in movies {
-                if movie.genre.lowercased().range(of: genre) != nil {
-                    moviesInGenres.last?.movies.append(movie)
-                }
-            }
+        moviesInGenres = allGenres.map { genre -> MoviesInGenres in
+            let genreMovies = movies.filter { $0.genre.contains(genre) }
+            return MoviesInGenres(genre: genre, movies: Array(genreMovies))
         }
     }
     
     func getGenreMovies(for genre: String) -> [Movie] {
-        if let genreMovies = moviesInGenres.first(where: { $0.genre == genre }) {
-            return genreMovies.movies
-        }
-        return []
+        return moviesInGenres.first(where: { $0.genre == genre })?.movies ?? []
     }
     
     func getAvalibleGenres() -> [String] {
-        var avalibleGenres: [String] = []
-        for genre in moviesInGenres {
-            if !genre.movies.isEmpty {
-                avalibleGenres.append(genre.genre)
-            }
-        }
-        return avalibleGenres
+        return moviesInGenres.filter { !$0.movies.isEmpty }.map { $0.genre }
     }
     
-    func sortMovies(withKey sortKey: String) -> Bool {
+    func sortMovies(withKey sortKey: MovieSortKey) -> Bool {
         if self.sortKey == sortKey { return false }
         self.sortKey = sortKey
         return true

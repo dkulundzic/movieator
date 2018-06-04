@@ -35,16 +35,16 @@ class MovieListViewController: UIViewController {
     @objc func sortButtonTapped() {
         let alert = UIAlertController(title: "Sort movies:", message: "", preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: "By title", style: .default, handler: { [weak self] action in
-            self?.sortMovies(withKey: "title")
+            self?.sortMovies(withKey: .title)
         }))
         alert.addAction(UIAlertAction(title: "By release date", style: .default, handler: { [weak self] action in
-            self?.sortMovies(withKey: "releaseDate")
+            self?.sortMovies(withKey: .releaseDate)
         }))
         alert.addAction(UIAlertAction(title: "By IMDB rating", style: .default, handler: { [weak self] action in
-            self?.sortMovies(withKey: "imdbRating")
+            self?.sortMovies(withKey: .imdbRating)
         }))
         alert.addAction(UIAlertAction(title: "By Metascore rating", style: .default, handler: { [weak self] action in
-            self?.sortMovies(withKey: "metascore")
+            self?.sortMovies(withKey: .title)
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         present(alert, animated: true)
@@ -128,7 +128,7 @@ extension MovieListViewController: MovieSearchViewControllerDelegate {
 
 // MARK: - Private Methods
 private extension MovieListViewController {
-    func sortMovies(withKey sortKey: String) {
+    func sortMovies(withKey sortKey: MovieSortKey) {
         if moviesInGenresManager.sortMovies(withKey: sortKey) {
             collectionView.reloadData()
         }
