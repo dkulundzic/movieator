@@ -44,13 +44,9 @@ class MovieDetailsViewController: UIViewController {
         self.present(alert, animated: true)
     }
     
-    @objc func shareButtonTapped(_ sender: AnyObject) {
+    @objc func shareButtonTapped() {
         let url = getMovieURL()
         let activityViewController = UIActivityViewController(activityItems: ["Look I've found a cool movie!", url], applicationActivities: nil)
-
-        if let popoverPresentationController = activityViewController.popoverPresentationController {
-            popoverPresentationController.barButtonItem = (sender as! UIBarButtonItem)
-        }
         present(activityViewController, animated: true, completion: nil)
     }
     
