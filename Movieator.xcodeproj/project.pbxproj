@@ -179,7 +179,6 @@
 			isa = PBXGroup;
 			children = (
 				F555BDB620AAEE43004466D3 /* MovieListViewController.swift */,
-				F555F12320C2B415009CA3E6 /* GenreMovieGroupingManager.swift */,
 			);
 			path = "Movie list";
 			sourceTree = "<group>";
@@ -238,6 +237,7 @@
 		48DBE51D20A42CBD00572B73 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				F514FFD020C6936300982F6B /* Utilities */,
 				48DBE51E20A42CBD00572B73 /* UI */,
 				48DBE51F20A42CBD00572B73 /* Network */,
 				48DBE52020A42CBD00572B73 /* Models */,
@@ -301,6 +301,22 @@
 				7B2DDD56E21CD4F6316ACC14 /* Pods_MovieatorTests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F514FFD020C6936300982F6B /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				F514FFD120C696DC00982F6B /* Movie grouping */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		F514FFD120C696DC00982F6B /* Movie grouping */ = {
+			isa = PBXGroup;
+			children = (
+				F555F12320C2B415009CA3E6 /* GenreMovieGroupingManager.swift */,
+			);
+			path = "Movie grouping";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
