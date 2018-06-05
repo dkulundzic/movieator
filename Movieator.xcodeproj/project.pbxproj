@@ -21,7 +21,6 @@
 		F5337BEC20B30F48004C6E77 /* SavedMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5337BEB20B30F48004C6E77 /* SavedMovie.swift */; };
 		F551A9F920C5639F00B33756 /* EnumCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F551A9F820C5639F00B33756 /* EnumCollection.swift */; };
 		F551A9FF20C5893900B33756 /* MovieSearchViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F551A9FE20C5893900B33756 /* MovieSearchViewControllerDelegate.swift */; };
-		F551AA0120C5896100B33756 /* GenreMovieGroupingManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F551AA0020C5896100B33756 /* GenreMovieGroupingManagerDelegate.swift */; };
 		F555BDB720AAEE43004466D3 /* MovieListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F555BDB620AAEE43004466D3 /* MovieListViewController.swift */; };
 		F555F12220C2B345009CA3E6 /* GenreMovieGrouping.swift in Sources */ = {isa = PBXBuildFile; fileRef = F555F12120C2B345009CA3E6 /* GenreMovieGrouping.swift */; };
 		F555F12420C2B415009CA3E6 /* GenreMovieGroupingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F555F12320C2B415009CA3E6 /* GenreMovieGroupingManager.swift */; };
@@ -68,7 +67,6 @@
 		F5337BEB20B30F48004C6E77 /* SavedMovie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedMovie.swift; sourceTree = "<group>"; };
 		F551A9F820C5639F00B33756 /* EnumCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnumCollection.swift; sourceTree = "<group>"; };
 		F551A9FE20C5893900B33756 /* MovieSearchViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieSearchViewControllerDelegate.swift; sourceTree = "<group>"; };
-		F551AA0020C5896100B33756 /* GenreMovieGroupingManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreMovieGroupingManagerDelegate.swift; sourceTree = "<group>"; };
 		F555BDB620AAEE43004466D3 /* MovieListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListViewController.swift; sourceTree = "<group>"; };
 		F555F12120C2B345009CA3E6 /* GenreMovieGrouping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreMovieGrouping.swift; sourceTree = "<group>"; };
 		F555F12320C2B415009CA3E6 /* GenreMovieGroupingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreMovieGroupingManager.swift; sourceTree = "<group>"; };
@@ -182,7 +180,6 @@
 			children = (
 				F555BDB620AAEE43004466D3 /* MovieListViewController.swift */,
 				F555F12320C2B415009CA3E6 /* GenreMovieGroupingManager.swift */,
-				F551AA0020C5896100B33756 /* GenreMovieGroupingManagerDelegate.swift */,
 			);
 			path = "Movie list";
 			sourceTree = "<group>";
@@ -485,7 +482,6 @@
 				F5AB6D0F20AC1A620084DE49 /* MovieCollectionViewCell.swift in Sources */,
 				F555F12420C2B415009CA3E6 /* GenreMovieGroupingManager.swift in Sources */,
 				F551A9F920C5639F00B33756 /* EnumCollection.swift in Sources */,
-				F551AA0120C5896100B33756 /* GenreMovieGroupingManagerDelegate.swift in Sources */,
 				F555F12220C2B345009CA3E6 /* GenreMovieGrouping.swift in Sources */,
 				F5FD545C20AD6E5800506C50 /* MovieSearchViewController.swift in Sources */,
 				F5337BEA20B309F3004C6E77 /* SavedMoviesManager.swift in Sources */,

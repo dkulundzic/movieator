@@ -49,13 +49,13 @@ class GenreMovieGroupingManager {
     private var moviesInGenres: [GenreMovieGrouping] = []
     private var sortKey: MovieSortKey?
     private var realmToken = NotificationToken()
-    weak var delegate: GenreMovieGroupingManagerDelegate?
+    var dataChanged: (() -> Void)?
 
     init() {
         groupMoviesInGenres()
         realmToken = movies.observe { realm in
             self.groupMoviesInGenres()
-            self.delegate?.shouldReloadData()
+            self.dataChanged?()
         }
     }
     

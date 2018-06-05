@@ -24,7 +24,9 @@ class MovieListViewController: UIViewController {
         searchController.searchBar.placeholder = "Search Movies"
         searchController.searchResultsUpdater = self
         movieSearchResultsViewController.delegate = self
-        moviesInGenresManager.delegate = self
+        moviesInGenresManager.dataChanged = { [weak self] in
+            self?.collectionView.reloadData()
+        }
         
         let userButton = UIBarButtonItem(image: #imageLiteral(resourceName: "userProfileIcon"), style: .plain, target: self, action: #selector(userButtonTapped))
         let addButton = UIBarButtonItem(image: #imageLiteral(resourceName: "addIcon"), style: .plain, target: self, action: #selector(addButtonTapped))
@@ -34,7 +36,6 @@ class MovieListViewController: UIViewController {
         navigationItem.backBarButtonItem = nil
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "sortIcon"), style: .plain, target: self, action: #selector(sortButtonTapped))
         navigationItem.rightBarButtonItems = [userButton, addButton]
-        
     }
     
     @objc func addButtonTapped() {
@@ -55,21 +56,21 @@ class MovieListViewController: UIViewController {
     }
     
     @objc func sortButtonTapped() {
-        let alert = UIAlertController(title: "Sort movies:", message: "", preferredStyle: .actionSheet)
-        alert.addAction(UIAlertAction(title: "By title", style: .default, handler: { [weak self] action in
-            self?.sortMovies(withKey: .title)
-        }))
-        alert.addAction(UIAlertAction(title: "By release date", style: .default, handler: { [weak self] action in
-            self?.sortMovies(withKey: .releaseDate)
-        }))
-        alert.addAction(UIAlertAction(title: "By IMDB rating", style: .default, handler: { [weak self] action in
-            self?.sortMovies(withKey: .imdbRating)
-        }))
-        alert.addAction(UIAlertAction(title: "By Metascore rating", style: .default, handler: { [weak self] action in
-            self?.sortMovies(withKey: .metascore)
-        }))
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        present(alert, animated: true)
+        let actions = [
+            UIAlertAction(title: "Title", style: .default, handler: { [weak self] action in
+                self?.sortMovies(withKey: .title)
+            }),
+            UIAlertAction(title: "Release date", style: .default, handler: { [weak self] action in
+                self?.sortMovies(withKey: .releaseDate)
+            }),
+            UIAlertAction(title: "IMDB rating", style: .default, handler: { [weak self] action in
+                self?.sortMovies(withKey: .imdbRating)
+            }),
+            UIAlertAction(title: "Metascore rating", style: .default, handler: { [weak self] action in
+                self?.sortMovies(withKey: .metascore)
+            })]
+        let alert = UIAlertController.generic(title: "Sort movies by", actions: actions)
+        alert.present(on: self)
     }
     
     @objc func userButtonTapped() {
@@ -145,13 +146,6 @@ extension MovieListViewController: MovieSearchViewControllerDelegate {
         let movieDetailsViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MovieDetailsViewController") as! MovieDetailsViewController
         movieDetailsViewController.movie = movie
         navigationController?.pushViewController(movieDetailsViewController, animated: true)
-    }
-}
-
-// MARK: - GenreMovieGroupingManagerDelegate
-extension MovieListViewController: GenreMovieGroupingManagerDelegate {
-    func shouldReloadData() {
-        collectionView.reloadData()
     }
 }
 
