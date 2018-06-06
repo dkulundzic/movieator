@@ -17,10 +17,8 @@ class MovieListViewController: UIViewController {
         super.viewDidLoad()
         definesPresentationContext = true
         
-//        tableView.rowHeight = UITableViewAutomaticDimension
-//        tableView.estimatedRowHeight = 200
-        tableView.rowHeight = CGFloat(200)
-        tableView.tableFooterView = UIView()
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 200
         
         let searchController = UISearchController(searchResultsController: movieSearchResultsViewController)
         searchController.obscuresBackgroundDuringPresentation = true
@@ -95,7 +93,7 @@ extension MovieListViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TableViewCell", for: indexPath) as! TableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TableViewCell", for: indexPath) as! GenreTableViewCell
         cell.row = indexPath.section
         cell.moviesInGenresManager = moviesInGenresManager
         cell.didSelectItemAt = { [weak self] row, item in

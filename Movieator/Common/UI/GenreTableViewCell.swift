@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TableViewCell: UITableViewCell {
+class GenreTableViewCell: UITableViewCell {
     @IBOutlet weak var collectionView: UICollectionView!
     
     var moviesInGenresManager: GenreMovieGroupingManager?
@@ -22,7 +22,7 @@ class TableViewCell: UITableViewCell {
 }
 
 // MARK: - UICollectionViewDataSource
-extension TableViewCell: UICollectionViewDataSource {
+extension GenreTableViewCell: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
@@ -44,7 +44,7 @@ extension TableViewCell: UICollectionViewDataSource {
 }
 
 // MARK: - UICollectionViewDelegateFlowLayout
-extension TableViewCell: UICollectionViewDelegateFlowLayout {
+extension GenreTableViewCell: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let size = (collectionView.bounds.size.width - 30) / 2
         return CGSize(width: size, height: size)
@@ -52,7 +52,7 @@ extension TableViewCell: UICollectionViewDelegateFlowLayout {
 }
 
 // MARK: - UICollectionViewDelegate
-extension TableViewCell: UICollectionViewDelegate {
+extension GenreTableViewCell: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         didSelectItemAt?(row,indexPath.item)
     }
