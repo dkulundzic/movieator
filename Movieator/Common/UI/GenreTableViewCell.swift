@@ -24,19 +24,21 @@ class GenreTableViewCell: UITableViewCell {
 // MARK: - UICollectionViewDataSource
 extension GenreTableViewCell: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
+        guard moviesInGenresManager != nil else { return 0 }
         return 1
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        guard let moviesInGenresManager = moviesInGenresManager else { return 1 }
-        let genre = moviesInGenresManager.getAvailibleGenres()[row]
+        guard let moviesInGenresManager = moviesInGenresManager else { return 0 }
+        let genre = moviesInGenresManager.getAvailableGenres()[row]
         return moviesInGenresManager.getGenreMovies(for: genre).count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let moviesInGenresManager = moviesInGenresManager
+            else { return UICollectionViewCell() }
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath as IndexPath) as! MovieCollectionViewCell
-        guard let moviesInGenresManager = moviesInGenresManager else { return cell }
-        let genre = moviesInGenresManager.getAvailibleGenres()[row]
+        let genre = moviesInGenresManager.getAvailableGenres()[row]
         let movie = moviesInGenresManager.getGenreMovies(for: genre)[indexPath.item]
         cell.setupCell(with: movie)
         return cell

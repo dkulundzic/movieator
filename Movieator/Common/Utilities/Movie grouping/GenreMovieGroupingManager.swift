@@ -63,7 +63,7 @@ class GenreMovieGroupingManager {
         return moviesInGenres.first(where: { $0.genre == genre })?.movies ?? []
     }
     
-    func getAvailibleGenres() -> [String] {
+    func getAvailableGenres() -> [String] {
         return moviesInGenres.filter { !$0.movies.isEmpty }.map{ $0.genre }
     }
     

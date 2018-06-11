@@ -85,7 +85,7 @@ class MovieListViewController: UIViewController {
 // MARK: - UICollectionViewDataSource
 extension MovieListViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return moviesInGenresManager.getAvailibleGenres().count
+        return moviesInGenresManager.getAvailableGenres().count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -97,17 +97,18 @@ extension MovieListViewController: UITableViewDataSource {
         cell.row = indexPath.section
         cell.moviesInGenresManager = moviesInGenresManager
         cell.didSelectItemAt = { [weak self] row, item in
+            guard let strongSelf = self else { return }
             let movieDetailsViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MovieDetailsViewController") as! MovieDetailsViewController
-            let genre = self?.moviesInGenresManager.getAvailibleGenres()[row]
-            let movie = self?.moviesInGenresManager.getGenreMovies(for: genre!)[item]
+            let genre = strongSelf.moviesInGenresManager.getAvailableGenres()[row]
+            let movie = strongSelf.moviesInGenresManager.getGenreMovies(for: genre)[item]
             movieDetailsViewController.movie = movie
-            self?.navigationController?.pushViewController(movieDetailsViewController, animated: true)
+            strongSelf.navigationController?.pushViewController(movieDetailsViewController, animated: true)
         }
         return cell
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return moviesInGenresManager.getAvailibleGenres()[section].capitalized
+        return moviesInGenresManager.getAvailableGenres()[section].capitalized
     }
 }
 
