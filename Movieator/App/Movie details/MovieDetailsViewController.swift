@@ -25,10 +25,12 @@ class MovieDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let saveButton = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(saveButtonTapped))
-        let shareButton = UIBarButtonItem(title: "Share", style: .plain, target: self, action: #selector(shareButtonTapped))
+        let saveButtonTitle = NSLocalizedString("Save", comment: "Confirming the action. Saving the movie.")
+        let shareButtonTitle = NSLocalizedString("Share", comment: "Confirming the action. Sharing the movie.")
+        let saveButton = UIBarButtonItem(title: saveButtonTitle, style: .plain, target: self, action: #selector(saveButtonTapped))
+        let shareButton = UIBarButtonItem(title: shareButtonTitle, style: .plain, target: self, action: #selector(shareButtonTapped))
         
-        navigationItem.title = "MOVIE DETAILS"
+        navigationItem.title = NSLocalizedString("Movie details", comment: "Title in navigation bar representing current screen.")
         navigationItem.largeTitleDisplayMode = .automatic
         navigationItem.rightBarButtonItems = [saveButton, shareButton]
 
@@ -39,14 +41,19 @@ class MovieDetailsViewController: UIViewController {
         let savedMoviesManager = SavedMoviesManager()
         savedMoviesManager.saveUserMovie(withID: movie.imdbID)
         
-        let alert = UIAlertController(title: "SAVE MOVIE", message: "Movie saved!", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        let alertTitle = NSLocalizedString("Save movie", comment: "Notifying the user that current action is saving movies.")
+        let alertMassage = NSLocalizedString("Movie saved!", comment: "Notifying the user that the movie is saved.")
+        let confirmingActionTitle = NSLocalizedString("Ok", comment: "Confirming the action. Acknowledging that movie is saved.")
+
+        let alert = UIAlertController(title: alertTitle, message: alertMassage, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: confirmingActionTitle, style: .default, handler: nil))
         self.present(alert, animated: true)
     }
     
     @objc func shareButtonTapped(_ sender: UIBarButtonItem) {
         let url = getMovieURL()
-        let activityViewController = UIActivityViewController(activityItems: ["Look I've found a cool movie!", url], applicationActivities: nil)
+        let activityMessage = NSLocalizedString("Look I've found a cool movie!", comment: "Telling your frieds that you found a movie that you like.")
+        let activityViewController = UIActivityViewController(activityItems: [activityMessage, url], applicationActivities: nil)
         
         if let popoverPresentationController = activityViewController.popoverPresentationController {
             popoverPresentationController.barButtonItem = sender

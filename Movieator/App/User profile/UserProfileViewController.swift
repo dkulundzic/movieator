@@ -19,7 +19,7 @@ class UserProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationItem.title = "Saved movies"
+        navigationItem.title = NSLocalizedString("Saved movies", comment: "Title in navigation bar representing current screen.")
         navigationItem.largeTitleDisplayMode = .always
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .stop, target: self, action: #selector(dismissViewController))
     }
@@ -45,14 +45,16 @@ extension UserProfileViewController: UICollectionViewDataSource {
 // MARK: - UICollectionViewDelegate Extension
 extension UserProfileViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let alert = UIAlertController(title: "Delete movie: \n\(movies[indexPath.item].title)", message: "Are you sure you want to delete this movie?", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
-        alert.addAction(UIAlertAction(title: "Delete", style: .default, handler: { action in
+        let alertTitle = NSLocalizedString("Delete movie: \n\(movies[indexPath.item].title)", comment: "Notifying the user he is going to delete movie with supplied title.")
+        let alertMassage = NSLocalizedString("Are you sure you want to delete this movie?", comment: "Asking for confirmation to delete the movie.")
+        let deleteActionTitle = NSLocalizedString("Delete", comment: "Confirming the action. Deleting movie.")
+        let alert = UIAlertController.generic(title: alertTitle, message: alertMassage)
+        alert.addAction(UIAlertAction(title: deleteActionTitle, style: .default, handler: { action in
             self.userMovieIDs.deleteSavedMovie(withId: self.movieIDs[indexPath.item])
             self.reloadData()
             collectionView.reloadData()
         }))
-        present(alert, animated: true)
+        alert.present(on: self)
     }
 }
 
