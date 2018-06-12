@@ -104,7 +104,8 @@ extension MovieListViewController: UICollectionViewDataSource {
             let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
                                                                              withReuseIdentifier: "MovieListHeaderView",
                                                                              for: indexPath) as! MovieListHeaderView
-            let genre = NSLocalizedString(moviesInGenresManager.getAvailibleGenres()[indexPath.section], comment: "Displaying genre for headers.")
+            let genre = NSLocalizedString(moviesInGenresManager.getAvailibleGenres()[indexPath.section],
+                                          comment: "Displaying genre for headers.")
             headerView.label.text = genre
             return headerView
         default:

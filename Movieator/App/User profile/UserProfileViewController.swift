@@ -45,9 +45,12 @@ extension UserProfileViewController: UICollectionViewDataSource {
 // MARK: - UICollectionViewDelegate Extension
 extension UserProfileViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let alertTitle = String(format: NSLocalizedString("Delete movie: \n%@", comment: "Notifying the user he is going to delete movie with supplied title."), movies[indexPath.item].title)
-        let alertMassage = NSLocalizedString("Are you sure you want to delete this movie?", comment: "Asking for confirmation to delete the movie.")
+        let alertTitle = String(format: NSLocalizedString("Delete movie: \n%@", comment: "Notifying the user he is going to delete movie with supplied title."),
+                                movies[indexPath.item].title)
+        let alertMassage = NSLocalizedString("Are you sure you want to delete this movie?",
+                                             comment: "Asking for confirmation to delete the movie.")
         let deleteActionTitle = NSLocalizedString("Delete", comment: "Confirming the action. Deleting movie.")
+        
         let alert = UIAlertController.generic(title: alertTitle, message: alertMassage)
         alert.addAction(UIAlertAction(title: deleteActionTitle, style: .default, handler: { action in
             self.userMovieIDs.deleteSavedMovie(withId: self.movieIDs[indexPath.item])
