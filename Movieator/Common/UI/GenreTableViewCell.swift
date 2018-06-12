@@ -35,8 +35,7 @@ extension GenreTableViewCell: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let moviesInGenresManager = moviesInGenresManager
-            else { return UICollectionViewCell() }
+        guard let moviesInGenresManager = moviesInGenresManager else { return UICollectionViewCell() }
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath as IndexPath) as! MovieCollectionViewCell
         let genre = moviesInGenresManager.getAvailableGenres()[row]
         let movie = moviesInGenresManager.getGenreMovies(for: genre)[indexPath.item]
