@@ -65,6 +65,8 @@
 		985F4ED202B1C0C630D83045 /* Pods-MovieatorTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieatorTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MovieatorTests/Pods-MovieatorTests.release.xcconfig"; sourceTree = "<group>"; };
 		C1EC2AED1CFB4F13C4D2D22E /* Pods-Movieator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Movieator.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Movieator/Pods-Movieator.debug.xcconfig"; sourceTree = "<group>"; };
 		F514FFE220CF0E9E00982F6B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		F514FFE420CFAF4D00982F6B /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
+		F514FFE520CFBCC100982F6B /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F5337BE920B309F3004C6E77 /* SavedMoviesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedMoviesManager.swift; sourceTree = "<group>"; };
 		F5337BEB20B30F48004C6E77 /* SavedMovie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedMovie.swift; sourceTree = "<group>"; };
 		F551A9F820C5639F00B33756 /* EnumCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnumCollection.swift; sourceTree = "<group>"; };
@@ -396,6 +398,8 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				es,
+				de,
 			);
 			mainGroup = 48DBE4E520A42B0E00572B73;
 			productRefGroup = 48DBE4EF20A42B0E00572B73 /* Products */;
@@ -540,6 +544,8 @@
 			isa = PBXVariantGroup;
 			children = (
 				F514FFE220CF0E9E00982F6B /* en */,
+				F514FFE420CFAF4D00982F6B /* es */,
+				F514FFE520CFBCC100982F6B /* de */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -551,6 +557,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -611,6 +618,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";

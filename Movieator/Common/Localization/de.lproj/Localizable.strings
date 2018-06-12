@@ -1,0 +1,64 @@
+/* 
+  Localizable.strings
+  Movieator
+
+  Created by Matej Korman on 11/06/2018.
+  Copyright © 2018 Codeopolius. All rights reserved.
+*/
+
+"Saved movies" = "Gespeicherte Filme";
+"Delete movie: \n%@" = "Film löschen: \n%@";
+"Are you sure you want to delete this movie?" = "Möchtest du diesen Film wirklich löschen?";
+"Cancel" = "Stornieren";
+"Delete" = "Löschen";
+"Search Movies" = "Filme suchen";
+"Add new movies" = "Füge neue Filme hinzu";
+"Copy id from URL and paste it below." = "Kopieren Sie die ID aus der URL und fügen Sie sie unten ein.";
+"Place IMDB ID here." = "Platzieren Sie die ID der IMDB hier.";
+"Title" = "Titel";
+"Release date" = "Veröffentlichungsdatum";
+"IMDB rating" = "IMDB-Bewertung";
+"Metascore rating" = "Metascore-Bewertung";
+"Sort movies by" = "Filme sortieren nach";
+"Import" = "Einführen";
+"Movie found" = "Film gefunden";
+"Found movie titled %@, released in %@." = "Gefunden Film mit dem Titel %@, veröffentlicht in %@.";
+"Movie not found" = "Film nicht gefunden";
+"Movie saved" = "Film gespeichert";
+"Save" = "Speichern";
+"Share" = "Teilen";
+"Movie details" = "Filmdetails";
+"Save movie" = "Sicherer Film";
+"Movie saved!" = "Film gespeichert!";
+"Ok" = "Ok";
+"Look I've found a cool movie!" = "Schau, ich habe einen coolen Film gefunden!";
+"Find" = "Finden";
+"Main list" = "Hauptliste";
+
+"action" = "Aktion";
+"adventure" = "Abenteuer";
+"animation" = "Animation";
+"biography" = "Biografie";
+"comedy" = "Komödie";
+"crime" = "Kriminalität";
+"documentary" = "Dokumentarfilm";
+"drama" = "Drama";
+"family" = "Familie";
+"fantasy" = "Fantasie";
+"film-noir" = "Film-noir";
+"history" = "Geschichte";
+"horror" = "Horror";
+"music" = "Musik";
+"musical" = "Musical";
+"mystery" = "Geheimnis";
+"romance" = "Romantik";
+"sci-fi" = "Sci-fi";
+"short" = "Kurz";
+"sport" = "Sport";
+"superhero" = "Superheld";
+"thriller" = "Thriller";
+"war" = "Krieg";
+"western" = "Western";
+"game-show" = "Spielshow";
+"reality-tv" = "Reality-TV";
+"talk-show" = "Talkshow";

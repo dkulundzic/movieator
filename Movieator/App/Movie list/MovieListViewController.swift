@@ -31,6 +31,7 @@ class MovieListViewController: UIViewController {
         let userButton = UIBarButtonItem(image: #imageLiteral(resourceName: "userProfileIcon"), style: .plain, target: self, action: #selector(userButtonTapped))
         let addButton = UIBarButtonItem(image: #imageLiteral(resourceName: "addIcon"), style: .plain, target: self, action: #selector(addButtonTapped))
 
+        navigationItem.title = NSLocalizedString("Main list", comment: "Informing the user he is in main list screen where all movies are displayed.")
         navigationItem.largeTitleDisplayMode = .always
         navigationItem.searchController = searchController
         navigationItem.backBarButtonItem = nil
@@ -42,6 +43,7 @@ class MovieListViewController: UIViewController {
         let alertTitle = NSLocalizedString("Add new movies", comment: "Notifying the user he can add a new movie.")
         let alertMassage = NSLocalizedString("Copy id from URL and paste it below.", comment: "Instructions how to add new movie.")
         let findActionTitle = NSLocalizedString("Find", comment: "Confirming the action. Finding new movie.")
+        
         let alert = UIAlertController.generic(title: alertTitle, message: alertMassage)
         let findButton = UIAlertAction(title: findActionTitle, style: .default, handler: { action in
             if let id = alert.textFields?.first?.text {
@@ -64,6 +66,7 @@ class MovieListViewController: UIViewController {
         let sortByReleaseDateActionTitle = NSLocalizedString("Release date", comment: "Confirming the action. Sorting movies by release date.")
         let sortByImdbRatingActionTitle = NSLocalizedString("IMDB rating", comment: "Confirming the action. Sorting movies by IMDB rating.")
         let sortByMetascoreRatingActionTitle = NSLocalizedString("Metascore rating", comment: "Confirming the action. Sorting movies by Metascore rating.")
+        
         let actions = [
             UIAlertAction(title: sortByTitleActionTitle, style: .default, handler: { [weak self] action in
                 self?.sortMovies(withKey: .title)
@@ -101,7 +104,8 @@ extension MovieListViewController: UICollectionViewDataSource {
             let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
                                                                              withReuseIdentifier: "MovieListHeaderView",
                                                                              for: indexPath) as! MovieListHeaderView
-            headerView.label.text = moviesInGenresManager.getAvailibleGenres()[indexPath.section].capitalized
+            let genre = NSLocalizedString(moviesInGenresManager.getAvailibleGenres()[indexPath.section], comment: "Displaying genre for headers.")
+            headerView.label.text = genre
             return headerView
         default:
             assert(false, "Unexpected element kind")
@@ -171,7 +175,7 @@ private extension MovieListViewController {
             success: { movie in
                 let year = String(Calendar.current.component(.year, from: movie.releaseDate))
                 let alertTitle = NSLocalizedString("Movie found", comment: "Notifying the user that a new movie was found.")
-                let alertMassage = NSLocalizedString("Found movie titled \(movie.title), released in \(year).", comment: "Notifying the user that movie with supplied title released in supplied year was found.")
+                let alertMassage = String(format: NSLocalizedString("Found movie titled %@, released in %@.", comment: "Notifying the user that movie with supplied title released in supplied year was found."), movie.title, year)
                 let importActionTitle = NSLocalizedString("Import", comment: "Confirming the action. Importing new movie.")
                 
                 let actions = [UIAlertAction(title: importActionTitle, style: .default, handler: { action in self.importMovie(for: movie) } )]
@@ -180,6 +184,7 @@ private extension MovieListViewController {
             failure: { error in
                 let alertTitle = NSLocalizedString("Movie not found", comment: "Notifying the user that the movie wasn't found.")
                 let confirmingActionTitle = NSLocalizedString("Ok", comment: "Confirming the action. Acknowledging that movie isn't found.")
+                
                 let alert = UIAlertController.generic(title: alertTitle, message: error.localizedDescription, cancelTitle: confirmingActionTitle)
                 alert.present(on: self) })
     }
@@ -188,6 +193,7 @@ private extension MovieListViewController {
         moviesInGenresManager.saveNewMovie(movie: movie)
         let alertTitle = NSLocalizedString("Movie saved", comment: "Notifying the user that a movie was saved.")
         let confirmingActionTitle = NSLocalizedString("Ok", comment: "Confirming the action. Acknowledging that movie is saved.")
+        
         let alert = UIAlertController.generic(title: alertTitle, cancelTitle: confirmingActionTitle)
         alert.present(on: self)
     }
