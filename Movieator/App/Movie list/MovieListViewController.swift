@@ -9,15 +9,16 @@
 import UIKit
 
 class MovieListViewController: UIViewController {
-    @IBOutlet weak var collectionView: UICollectionView!
-    
+    @IBOutlet weak var tableView: UITableView!
     private let moviesInGenresManager = GenreMovieGroupingManager()
-    private let reuseIdentifier = "cell"
     private let movieSearchResultsViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MovieSearchViewController") as! MovieSearchViewController
     
     override func viewDidLoad() {
         super.viewDidLoad()
         definesPresentationContext = true
+        
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 200
         
         let searchController = UISearchController(searchResultsController: movieSearchResultsViewController)
         searchController.obscuresBackgroundDuringPresentation = true
@@ -25,7 +26,7 @@ class MovieListViewController: UIViewController {
         searchController.searchResultsUpdater = self
         movieSearchResultsViewController.delegate = self
         moviesInGenresManager.dataChanged = { [weak self] in
-            self?.collectionView.reloadData()
+            self?.tableView.reloadData()
         }
         
         let userButton = UIBarButtonItem(image: #imageLiteral(resourceName: "userProfileIcon"), style: .plain, target: self, action: #selector(userButtonTapped))
@@ -93,56 +94,32 @@ class MovieListViewController: UIViewController {
 }
 
 // MARK: - UICollectionViewDataSource
-extension MovieListViewController: UICollectionViewDataSource {
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return moviesInGenresManager.getAvailibleGenres().count
+extension MovieListViewController: UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return moviesInGenresManager.getAvailableGenres().count
     }
     
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        switch kind {
-        case UICollectionElementKindSectionHeader:
-            let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
-                                                                             withReuseIdentifier: "MovieListHeaderView",
-                                                                             for: indexPath) as! MovieListHeaderView
-            let genre = NSLocalizedString(moviesInGenresManager.getAvailibleGenres()[indexPath.section],
-                                          comment: "Displaying genre for headers.")
-            headerView.label.text = genre
-            return headerView
-        default:
-            assert(false, "Unexpected element kind")
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TableViewCell", for: indexPath) as! GenreTableViewCell
+        cell.row = indexPath.section
+        cell.moviesInGenresManager = moviesInGenresManager
+        cell.didSelectItemAt = { [weak self] row, item in
+            guard let strongSelf = self else { return }
+            let movieDetailsViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MovieDetailsViewController") as! MovieDetailsViewController
+            let genre = strongSelf.moviesInGenresManager.getAvailableGenres()[row]
+            let movie = strongSelf.moviesInGenresManager.getGenreMovies(for: genre)[item]
+            movieDetailsViewController.movie = movie
+            strongSelf.navigationController?.pushViewController(movieDetailsViewController, animated: true)
         }
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        let genre = moviesInGenresManager.getAvailibleGenres()[section]
-        return moviesInGenresManager.getGenreMovies(for: genre).count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath as IndexPath) as! MovieCollectionViewCell
-        let genre = moviesInGenresManager.getAvailibleGenres()[indexPath.section]
-        let movie = moviesInGenresManager.getGenreMovies(for: genre)[indexPath.item]
-        cell.setupCell(with: movie)
         return cell
     }
-}
-
-// MARK: - UICollectionViewDelegate
-extension MovieListViewController: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let movieDetailsViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MovieDetailsViewController") as! MovieDetailsViewController
-        let genre = moviesInGenresManager.getAvailibleGenres()[indexPath.section]
-        let movie = moviesInGenresManager.getGenreMovies(for: genre)[indexPath.item]
-        movieDetailsViewController.movie = movie
-        navigationController?.pushViewController(movieDetailsViewController, animated: true)
-    }
-}
-
-// MARK: - UICollectionViewDelegateFlowLayout
-extension MovieListViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let size = (collectionView.bounds.size.width - 30) / 2
-        return CGSize(width: size, height: size)
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return moviesInGenresManager.getAvailableGenres()[section].capitalized
     }
 }
 
@@ -166,7 +143,7 @@ extension MovieListViewController: MovieSearchViewControllerDelegate {
 private extension MovieListViewController {
     func sortMovies(withKey sortKey: MovieSortKey) {
         if moviesInGenresManager.sortMovies(withKey: sortKey) {
-            collectionView.reloadData()
+            tableView.reloadData()
         }
     }
     
