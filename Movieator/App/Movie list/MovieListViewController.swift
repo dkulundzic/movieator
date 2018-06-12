@@ -119,7 +119,8 @@ extension MovieListViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return moviesInGenresManager.getAvailableGenres()[section].capitalized
+        let genre = NSLocalizedString(moviesInGenresManager.getAvailableGenres()[section], comment: "Displaying genre for headers.")
+        return genre
     }
 }
 
