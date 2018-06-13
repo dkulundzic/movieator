@@ -19,7 +19,7 @@ class UserProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationItem.title = NSLocalizedString("Saved movies", comment: "Title in navigation bar representing current screen.")
+        navigationItem.title = LocalizationString.getString(forKey: .savedMovies)
         navigationItem.largeTitleDisplayMode = .always
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .stop, target: self, action: #selector(dismissViewController))
     }
@@ -45,11 +45,10 @@ extension UserProfileViewController: UICollectionViewDataSource {
 // MARK: - UICollectionViewDelegate Extension
 extension UserProfileViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let alertTitle = String(format: NSLocalizedString("Delete movie: \n%@", comment: "Notifying the user he is going to delete movie with supplied title."),
+        let alertTitle = String(format: LocalizationString.getString(forKey: .deleteMovie_),
                                 movies[indexPath.item].title)
-        let alertMassage = NSLocalizedString("Are you sure you want to delete this movie?",
-                                             comment: "Asking for confirmation to delete the movie.")
-        let deleteActionTitle = NSLocalizedString("Delete", comment: "Confirming the action. Deleting movie.")
+        let alertMassage = LocalizationString.getString(forKey: .areYouSureYouWantToDeleteThisMovie)
+        let deleteActionTitle = LocalizationString.getString(forKey: .delete)
         
         let alert = UIAlertController.generic(title: alertTitle, message: alertMassage)
         alert.addAction(UIAlertAction(title: deleteActionTitle, style: .default, handler: { action in

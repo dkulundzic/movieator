@@ -22,7 +22,7 @@ class MovieListViewController: UIViewController {
         
         let searchController = UISearchController(searchResultsController: movieSearchResultsViewController)
         searchController.obscuresBackgroundDuringPresentation = true
-        searchController.searchBar.placeholder = NSLocalizedString("Search Movies", comment: "Message telling the user that label input is going to be used as search predicate.")
+        searchController.searchBar.placeholder = LocalizationString.getString(forKey: .searchMovies)
         searchController.searchResultsUpdater = self
         movieSearchResultsViewController.delegate = self
         moviesInGenresManager.dataChanged = { [weak self] in
@@ -32,7 +32,7 @@ class MovieListViewController: UIViewController {
         let userButton = UIBarButtonItem(image: #imageLiteral(resourceName: "userProfileIcon"), style: .plain, target: self, action: #selector(userButtonTapped))
         let addButton = UIBarButtonItem(image: #imageLiteral(resourceName: "addIcon"), style: .plain, target: self, action: #selector(addButtonTapped))
 
-        navigationItem.title = NSLocalizedString("Main list", comment: "Informing the user he is in main list screen where all movies are displayed.")
+        navigationItem.title = LocalizationString.getString(forKey: .mainList)
         navigationItem.largeTitleDisplayMode = .always
         navigationItem.searchController = searchController
         navigationItem.backBarButtonItem = nil
@@ -41,9 +41,9 @@ class MovieListViewController: UIViewController {
     }
     
     @objc func addButtonTapped() {
-        let alertTitle = NSLocalizedString("Add new movies", comment: "Notifying the user he can add a new movie.")
-        let alertMassage = NSLocalizedString("Copy id from URL and paste it below.", comment: "Instructions how to add new movie.")
-        let findActionTitle = NSLocalizedString("Find", comment: "Confirming the action. Finding new movie.")
+        let alertTitle = LocalizationString.getString(forKey: .addNewMovies)
+        let alertMassage = LocalizationString.getString(forKey: .copyIdFromURLAndPasteItBelow)
+        let findActionTitle = LocalizationString.getString(forKey: .find)
         
         let alert = UIAlertController.generic(title: alertTitle, message: alertMassage)
         let findButton = UIAlertAction(title: findActionTitle, style: .default, handler: { action in
@@ -53,7 +53,7 @@ class MovieListViewController: UIViewController {
         })
         alert.addAction(findButton)
         alert.addTextField { textField in
-            textField.placeholder = NSLocalizedString("Place IMDB ID here.", comment: "Giving the user direction on where to put a string.")
+            textField.placeholder = LocalizationString.getString(forKey: .placeIMDBIDHere)
             NotificationCenter.default.addObserver(forName: nil, object: textField, queue: OperationQueue.main, using: { _ in
                 findButton.isEnabled = textField.text?.count == 9
             })
@@ -62,11 +62,11 @@ class MovieListViewController: UIViewController {
     }
     
     @objc func sortButtonTapped() {
-        let alertTitle = NSLocalizedString("Sort movies by", comment: "Telling the user he is able to choose in what order to sort movies.")
-        let sortByTitleActionTitle = NSLocalizedString("Title", comment: "Confirming the action. Sorting movies by title.")
-        let sortByReleaseDateActionTitle = NSLocalizedString("Release date", comment: "Confirming the action. Sorting movies by release date.")
-        let sortByImdbRatingActionTitle = NSLocalizedString("IMDB rating", comment: "Confirming the action. Sorting movies by IMDB rating.")
-        let sortByMetascoreRatingActionTitle = NSLocalizedString("Metascore rating", comment: "Confirming the action. Sorting movies by Metascore rating.")
+        let alertTitle = LocalizationString.getString(forKey: .sortMoviesBy)
+        let sortByTitleActionTitle = LocalizationString.getString(forKey: .title)
+        let sortByReleaseDateActionTitle = LocalizationString.getString(forKey: .releaseDate)
+        let sortByImdbRatingActionTitle = LocalizationString.getString(forKey: .IMDBRating)
+        let sortByMetascoreRatingActionTitle = LocalizationString.getString(forKey: .metascoreRating)
         
         let actions = [
             UIAlertAction(title: sortByTitleActionTitle, style: .default, handler: { [weak self] action in
@@ -153,16 +153,16 @@ private extension MovieListViewController {
         movieFetcher.fetchMovie(byId: id,
             success: { movie in
                 let year = String(Calendar.current.component(.year, from: movie.releaseDate))
-                let alertTitle = NSLocalizedString("Movie found", comment: "Notifying the user that a new movie was found.")
-                let alertMassage = String(format: NSLocalizedString("Found movie titled %@, released in %@.", comment: "Notifying the user that movie with supplied title released in supplied year was found."), movie.title, year)
-                let importActionTitle = NSLocalizedString("Import", comment: "Confirming the action. Importing new movie.")
+                let alertTitle = LocalizationString.getString(forKey: .movieFound)
+                let alertMassage = String(format: LocalizationString.getString(forKey: .foundMovieTitled_ReleasedIn_), movie.title, year)
+                let importActionTitle = LocalizationString.getString(forKey: .importMovie)
                 
                 let actions = [UIAlertAction(title: importActionTitle, style: .default, handler: { action in self.importMovie(for: movie) } )]
                 let alert = UIAlertController.generic(title: alertTitle, message: alertMassage, preferredStyle: .actionSheet, actions: actions)
                 alert.present(on: self) },
             failure: { error in
-                let alertTitle = NSLocalizedString("Movie not found", comment: "Notifying the user that the movie wasn't found.")
-                let confirmingActionTitle = NSLocalizedString("Ok", comment: "Confirming the action. Acknowledging that movie isn't found.")
+                let alertTitle = LocalizationString.getString(forKey: .movieNotFound)
+                let confirmingActionTitle = LocalizationString.getString(forKey: .ok)
                 
                 let alert = UIAlertController.generic(title: alertTitle, message: error.localizedDescription, cancelTitle: confirmingActionTitle)
                 alert.present(on: self) })
@@ -170,8 +170,8 @@ private extension MovieListViewController {
     
     func importMovie(for movie: Movie) {
         moviesInGenresManager.saveNewMovie(movie: movie)
-        let alertTitle = NSLocalizedString("Movie saved", comment: "Notifying the user that a movie was saved.")
-        let confirmingActionTitle = NSLocalizedString("Ok", comment: "Confirming the action. Acknowledging that movie is saved.")
+        let alertTitle = LocalizationString.getString(forKey: .movieSaved)
+        let confirmingActionTitle = LocalizationString.getString(forKey: .ok)
         
         let alert = UIAlertController.generic(title: alertTitle, cancelTitle: confirmingActionTitle)
         alert.present(on: self)
