@@ -1,0 +1,79 @@
+/* 
+  Localizable.strings
+  Movieator
+
+  Created by Matej Korman on 11/06/2018.
+  Copyright © 2018 Codeopolius. All rights reserved.
+*/
+
+/* Movie list */
+"movie_list_search_bar_placeholder" = "Search Movies";
+"movie_list_navigation_bar_title" = "Main list";
+
+/* User profile */
+"user_profile_navigation_bar_title" = "Saved movies";
+
+/* Movie details */
+"movie_details_save_button_text" = "Save";
+"movie_details_share_button_text" = "Share";
+"movie_details_navigation_bar_title" = "Movie details";
+"movie_details_activity_message" = "Look I've found a cool movie!";
+
+/* Alert */
+"alert_cancel_action" = "Cancel";
+"alert_ok_action" = "Ok";
+/* Delete movie */
+"alert_delete_movie_title" = "Delete movie: \n%@";
+"alert_delete_movie_question_message" = "Are you sure you want to delete this movie?";
+"alert_delete_movie_delete_action" = "Delete";
+/* Add new movie */
+"alert_add_new_movie_title" = "Add new movies";
+"alert_add_new_movie_instructions_message" = "Copy id from URL and paste it below.";
+"alert_add_new_movie_textfield_placeholder" = "Place IMDB ID here.";
+"alert_add_new_movie_find_action" = "Find";
+/* Sort movies */
+"alert_sort_movies_title" = "Sort movies by";
+"alert_sort_movies_title_action" = "Title";
+"alert_sort_movies_release_date_action" = "Release date";
+"alert_sort_movies_imdb_rating_action" = "IMDB rating";
+"alert_sort_movies_metascore_rating_action" = "Metascore rating";
+/* Movie found */
+"alert_movie_found_title" = "Movie found";
+"alert_movie_found_title_and_released_message" = "Found movie titled %@, released in %@.";
+"alert_movie_found_import_action" = "Import";
+/* Movie not found */
+"alert_movie_not_found_title" = "Movie not found";
+/* Import movie */
+"alert_import_movie_title" = "Movie saved";
+/* Save movie */
+"alert_save_movie_title" = "Save movie";
+"alert_save_movie_message!" = "Movie saved!";
+
+/* Genres */
+"action" = "Action";
+"adventure" = "Adventure";
+"animation" = "Animation";
+"biography" = "Biography";
+"comedy" = "Comedy";
+"crime" = "Crime";
+"documentary" = "Documentary";
+"drama" = "Drama";
+"family" = "Family";
+"fantasy" = "Fantasy";
+"film-noir" = "Film-noir";
+"history" = "History";
+"horror" = "Horror";
+"music" = "Music";
+"musical" = "Musical";
+"mystery" = "Mystery";
+"romance" = "Romance";
+"sci-fi" = "Sci-fi";
+"short" = "Short";
+"sport" = "Sport";
+"superhero" = "Superhero";
+"thriller" = "Thriller";
+"war" = "War";
+"western" = "Western";
+"game-show" = "Game-show";
+"reality-tv" = "Reality-tv";
+"talk-show" = "Talk-show";

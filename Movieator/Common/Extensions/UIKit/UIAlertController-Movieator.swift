@@ -13,7 +13,7 @@ extension UIAlertController {
                         message: String? = "",
                         preferredStyle: UIAlertControllerStyle = .alert,
                         actions: [UIAlertAction] = [],
-                        cancelTitle: String = LocalizationString.getString(forKey: .cancel))
+                        cancelTitle: String = LocalizationKey.Alert.cancelAction.localized())
                         -> UIAlertController {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: preferredStyle)
         actions.forEach { action in

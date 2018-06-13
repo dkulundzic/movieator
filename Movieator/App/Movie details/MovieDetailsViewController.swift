@@ -25,12 +25,12 @@ class MovieDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let saveButtonTitle = LocalizationString.getString(forKey: .save)
-        let shareButtonTitle = LocalizationString.getString(forKey: .share)
+        let saveButtonTitle = LocalizationKey.MovieDetails.saveButtonText.localized()
+        let shareButtonTitle = LocalizationKey.MovieDetails.shareButtonText.localized()
         let saveButton = UIBarButtonItem(title: saveButtonTitle, style: .plain, target: self, action: #selector(saveButtonTapped))
         let shareButton = UIBarButtonItem(title: shareButtonTitle, style: .plain, target: self, action: #selector(shareButtonTapped))
         
-        navigationItem.title = LocalizationString.getString(forKey: .movieDetails)
+        navigationItem.title = LocalizationKey.MovieDetails.navigationBarTitle.localized()
         navigationItem.largeTitleDisplayMode = .automatic
         navigationItem.rightBarButtonItems = [saveButton, shareButton]
 
@@ -40,19 +40,16 @@ class MovieDetailsViewController: UIViewController {
     @objc func saveButtonTapped() {
         let savedMoviesManager = SavedMoviesManager()
         savedMoviesManager.saveUserMovie(withID: movie.imdbID)
-        
-        let alertTitle = LocalizationString.getString(forKey: .saveMovie)
-        let alertMassage = LocalizationString.getString(forKey: .movieSaved)
-        let confirmingActionTitle = LocalizationString.getString(forKey: .ok)
 
-        let alert = UIAlertController(title: alertTitle, message: alertMassage, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: confirmingActionTitle, style: .default, handler: nil))
-        self.present(alert, animated: true)
+        let alert = UIAlertController.generic(title: LocalizationKey.Alert.SaveMovie.title.localized(),
+                                              message: LocalizationKey.Alert.SaveMovie.message.localized(),
+                                              cancelTitle: LocalizationKey.Alert.okAction.localized())
+        alert.present(on: self)
     }
     
     @objc func shareButtonTapped(_ sender: UIBarButtonItem) {
         let url = getMovieURL()
-        let activityMessage = LocalizationString.getString(forKey: .lookIveFoundACoolMovie)
+        let activityMessage = LocalizationKey.MovieDetails.activityMessage.localized()
         let activityViewController = UIActivityViewController(activityItems: [activityMessage, url], applicationActivities: nil)
         
         if let popoverPresentationController = activityViewController.popoverPresentationController {

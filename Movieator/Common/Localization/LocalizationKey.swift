@@ -8,93 +8,56 @@
 
 import Foundation
 
-enum LocalizationKey: String {
-    case savedMovies = "Saved movies"
-    case deleteMovie_ = "Delete movie: \n%@"
-    case areYouSureYouWantToDeleteThisMovie = "Are you sure you want to delete this movie?"
-    case cancel = "Cancel"
-    case delete = "Delete"
-    case searchMovies = "Search Movies"
-    case addNewMovies = "Add new movies"
-    case copyIdFromURLAndPasteItBelow = "Copy id from URL and paste it below."
-    case placeIMDBIDHere = "Place IMDB ID here."
-    case title = "Title"
-    case releaseDate = "Release date"
-    case IMDBRating = "IMDB rating"
-    case metascoreRating = "Metascore rating"
-    case sortMoviesBy = "Sort movies by"
-    case importMovie = "Import"
-    case movieFound = "Movie found"
-    case foundMovieTitled_ReleasedIn_ = "Found movie titled %@, released in %@."
-    case movieNotFound = "Movie not found"
-    case movieSaved = "Movie saved"
-    case save = "Save"
-    case share = "Share"
-    case movieDetails = "Movie details"
-    case saveMovie = "Save movie"
-    case ok = "Ok"
-    case lookIveFoundACoolMovie = "Look I've found a cool movie!"
-    case find = "Find"
-    case mainList = "Main list"
-}
-
-struct LocalizationString {
-    static func getString(forKey key: LocalizationKey) -> String {
-        switch key {
-        case .savedMovies:
-            return NSLocalizedString(key.rawValue, comment: "Title in navigation bar representing current screen.")
-        case .deleteMovie_:
-            return NSLocalizedString(key.rawValue, comment: "Notifying the user he is going to delete movie with supplied title.")
-        case .areYouSureYouWantToDeleteThisMovie:
-            return NSLocalizedString(LocalizationKey.areYouSureYouWantToDeleteThisMovie.rawValue, comment: "Asking for confirmation to delete the movie.")
-        case .cancel:
-            return NSLocalizedString(key.rawValue, comment: "Canceling or dismissing alert.")
-        case .delete:
-            return NSLocalizedString(key.rawValue, comment: "Confirming the action. Deleting movie.")
-        case .searchMovies:
-            return NSLocalizedString(key.rawValue, comment: "Message telling the user that label input is going to be used as search predicate.")
-        case .addNewMovies:
-            return NSLocalizedString(key.rawValue, comment: "Notifying the user he can add a new movie.")
-        case .copyIdFromURLAndPasteItBelow:
-            return NSLocalizedString(key.rawValue, comment: "Instructions how to add new movie.")
-        case .placeIMDBIDHere:
-            return NSLocalizedString(key.rawValue, comment: "Giving the user direction on where to put a string.")
-        case .title:
-            return NSLocalizedString(key.rawValue, comment: "Confirming the action. Sorting movies by title.")
-        case .releaseDate:
-            return NSLocalizedString(key.rawValue, comment: "Confirming the action. Sorting movies by release date.")
-        case .IMDBRating:
-            return NSLocalizedString(key.rawValue, comment: "Confirming the action. Sorting movies by IMDB rating.")
-        case .metascoreRating:
-            return NSLocalizedString(key.rawValue, comment: "Confirming the action. Sorting movies by Metascore rating.")
-        case .sortMoviesBy:
-            return NSLocalizedString(key.rawValue, comment: "Telling the user he is able to choose in what order to sort movies.")
-        case .importMovie:
-            return NSLocalizedString(key.rawValue, comment: "Confirming the action. Importing new movie.")
-        case .movieFound:
-            return NSLocalizedString(key.rawValue, comment: "Notifying the user that a new movie was found.")
-        case .foundMovieTitled_ReleasedIn_:
-            return NSLocalizedString(key.rawValue, comment: "Notifying the user that movie with supplied title released in supplied year was found.")
-        case .movieNotFound:
-            return NSLocalizedString(key.rawValue, comment: "Notifying the user that the movie wasn't found.")
-        case .movieSaved:
-            return NSLocalizedString(key.rawValue, comment: "Notifying the user that a movie was saved.")
-        case .save:
-            return NSLocalizedString(key.rawValue, comment: "Confirming the action. Saving the movie.")
-        case .share:
-            return NSLocalizedString(key.rawValue, comment: "Confirming the action. Sharing the movie.")
-        case .movieDetails:
-            return NSLocalizedString(key.rawValue, comment: "Title in navigation bar representing current screen.")
-        case .saveMovie:
-            return NSLocalizedString(key.rawValue, comment: "Notifying the user that current action is saving movies.")
-        case .ok:
-            return NSLocalizedString(key.rawValue, comment: "Confirming the action. Acknowledging that movie isn't found.")
-        case .lookIveFoundACoolMovie:
-            return NSLocalizedString(key.rawValue, comment: "Telling your frieds that you found a movie that you like.")
-        case .find:
-            return NSLocalizedString(key.rawValue, comment: "Confirming the action. Finding new movie.")
-        case .mainList:
-            return NSLocalizedString(key.rawValue, comment: "Informing the user he is in main list screen where all movies are displayed.")
+struct LocalizationKey {
+    struct MovieList {
+        static let searchBarPlaceholder = "movie_list_search_bar_placeholder"
+        static let navigationBarTitle = "movie_list_navigation_bar_title"
+    }
+    struct UserProfile {
+        static let navigationBarTitle = "user_profile_navigation_bar_title"
+    }
+    struct MovieDetails {
+        static let navigationBarTitle = "movie_details_navigation_bar_title"
+        static let saveButtonText = "movie_details_save_button_text"
+        static let shareButtonText = "movie_details_share_button_text"
+        static let activityMessage = "movie_details_activity_message"
+    }
+    struct Alert {
+        static let cancelAction = "alert_cancel_action"
+        static let okAction = "alert_ok_action"
+        
+        struct DeleteMovie {
+            static let title = "alert_delete_movie_title"
+            static let questionMessage = "alert_delete_movie_question_message"
+            static let deleteAction = "alert_delete_movie_delete_action"
+        }
+        struct AddNewMovie {
+            static let title = "alert_add_new_movie_title"
+            static let instructionsMessage = "alert_add_new_movie_instructions_message"
+            static let findAction = "alert_add_new_movie_find_action"
+            static let textfieldPlaceholder = "alert_add_new_movie_textfield_placeholder"
+        }
+        struct SortMovies {
+            static let title = "alert_sort_movies_title"
+            static let titleAction = "alert_sort_movies_title_action"
+            static let releaseDateAction = "alert_sort_movies_release_date_action"
+            static let imdbRatingAction = "alert_sort_movies_imdb_rating_action"
+            static let metascoreRatingAction = "alert_sort_movies_metascore_rating_action"
+        }
+        struct MovieFound {
+            static let title = "alert_movie_found_title"
+            static let titleAndReleasedMassage = "alert_movie_found_title_and_released_message"
+            static let importAction = "alert_movie_found_import_action"
+        }
+        struct MovieNotFound {
+            static let title = "alert_movie_not_found_title"
+        }
+        struct ImportMovie {
+            static let title = "alert_import_movie_title"
+        }
+        struct SaveMovie {
+            static let title = "alert_save_movie_title"
+            static let message = "alert_save_movie_message"
         }
     }
 }

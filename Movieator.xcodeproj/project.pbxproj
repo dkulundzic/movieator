@@ -258,6 +258,7 @@
 		48DBE51920A42CBD00572B73 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				F509BCF620D12294004F52AB /* Localization */,
 				48DBE51B20A42CBD00572B73 /* Assets.xcassets */,
 				48DBE51A20A42CBD00572B73 /* Other */,
 			);
@@ -335,6 +336,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		F509BCF620D12294004F52AB /* Localization */ = {
+			isa = PBXGroup;
+			children = (
+				F514FFE320CF0E9E00982F6B /* Localizable.strings */,
+			);
+			path = Localization;
+			sourceTree = "<group>";
+		};
 		F514FFD020C6936300982F6B /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
@@ -354,7 +363,6 @@
 		F514FFDE20CEF57900982F6B /* Localization */ = {
 			isa = PBXGroup;
 			children = (
-				F514FFE320CF0E9E00982F6B /* Localizable.strings */,
 				F509BCF420D102F3004F52AB /* LocalizationKey.swift */,
 			);
 			path = Localization;

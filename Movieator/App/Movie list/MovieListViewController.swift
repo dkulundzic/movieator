@@ -22,7 +22,7 @@ class MovieListViewController: UIViewController {
         
         let searchController = UISearchController(searchResultsController: movieSearchResultsViewController)
         searchController.obscuresBackgroundDuringPresentation = true
-        searchController.searchBar.placeholder = LocalizationKey.searchMovies.rawValue.localized()
+        searchController.searchBar.placeholder = LocalizationKey.MovieList.searchBarPlaceholder.localized()
         searchController.searchResultsUpdater = self
         movieSearchResultsViewController.delegate = self
         moviesInGenresManager.dataChanged = { [weak self] in
@@ -32,7 +32,7 @@ class MovieListViewController: UIViewController {
         let userButton = UIBarButtonItem(image: #imageLiteral(resourceName: "userProfileIcon"), style: .plain, target: self, action: #selector(userButtonTapped))
         let addButton = UIBarButtonItem(image: #imageLiteral(resourceName: "addIcon"), style: .plain, target: self, action: #selector(addButtonTapped))
 
-        navigationItem.title = LocalizationString.getString(forKey: .mainList)
+        navigationItem.title = LocalizationKey.MovieList.navigationBarTitle.localized()
         navigationItem.largeTitleDisplayMode = .always
         navigationItem.searchController = searchController
         navigationItem.backBarButtonItem = nil
@@ -41,19 +41,18 @@ class MovieListViewController: UIViewController {
     }
     
     @objc func addButtonTapped() {
-        let alertTitle = LocalizationString.getString(forKey: .addNewMovies)
-        let alertMassage = LocalizationString.getString(forKey: .copyIdFromURLAndPasteItBelow)
-        let findActionTitle = LocalizationString.getString(forKey: .find)
-        
-        let alert = UIAlertController.generic(title: alertTitle, message: alertMassage)
-        let findButton = UIAlertAction(title: findActionTitle, style: .default, handler: { action in
+        let alert = UIAlertController.generic(title: LocalizationKey.Alert.AddNewMovie.title.localized(),
+                                              message: LocalizationKey.Alert.AddNewMovie.instructionsMessage.localized())
+        let findButton = UIAlertAction(title: LocalizationKey.Alert.AddNewMovie.findAction.localized(),
+                                       style: .default,
+                                       handler: { action in
             if let id = alert.textFields?.first?.text {
                 self.findMovie(with: id)
             }
         })
         alert.addAction(findButton)
         alert.addTextField { textField in
-            textField.placeholder = LocalizationString.getString(forKey: .placeIMDBIDHere)
+            textField.placeholder = LocalizationKey.Alert.AddNewMovie.textfieldPlaceholder.localized()
             NotificationCenter.default.addObserver(forName: nil, object: textField, queue: OperationQueue.main, using: { _ in
                 findButton.isEnabled = textField.text?.count == 9
             })
@@ -62,26 +61,21 @@ class MovieListViewController: UIViewController {
     }
     
     @objc func sortButtonTapped() {
-        let alertTitle = LocalizationString.getString(forKey: .sortMoviesBy)
-        let sortByTitleActionTitle = LocalizationString.getString(forKey: .title)
-        let sortByReleaseDateActionTitle = LocalizationString.getString(forKey: .releaseDate)
-        let sortByImdbRatingActionTitle = LocalizationString.getString(forKey: .IMDBRating)
-        let sortByMetascoreRatingActionTitle = LocalizationString.getString(forKey: .metascoreRating)
-        
         let actions = [
-            UIAlertAction(title: sortByTitleActionTitle, style: .default, handler: { [weak self] action in
-                self?.sortMovies(withKey: .title)
-            }),
-            UIAlertAction(title: sortByReleaseDateActionTitle, style: .default, handler: { [weak self] action in
-                self?.sortMovies(withKey: .releaseDate)
-            }),
-            UIAlertAction(title: sortByImdbRatingActionTitle, style: .default, handler: { [weak self] action in
-                self?.sortMovies(withKey: .imdbRating)
-            }),
-            UIAlertAction(title: sortByMetascoreRatingActionTitle, style: .default, handler: { [weak self] action in
-                self?.sortMovies(withKey: .metascore)
-            })]
-        let alert = UIAlertController.generic(title: alertTitle, actions: actions)
+            UIAlertAction(title: LocalizationKey.Alert.SortMovies.titleAction.localized(),
+                          style: .default,
+                          handler: { [weak self] action in self?.sortMovies(withKey: .title) }),
+            UIAlertAction(title: LocalizationKey.Alert.SortMovies.releaseDateAction.localized(),
+                          style: .default,
+                          handler: { [weak self] action in self?.sortMovies(withKey: .releaseDate) }),
+            UIAlertAction(title: LocalizationKey.Alert.SortMovies.imdbRatingAction.localized(),
+                          style: .default,
+                          handler: { [weak self] action in self?.sortMovies(withKey: .imdbRating) }),
+            UIAlertAction(title: LocalizationKey.Alert.SortMovies.metascoreRatingAction.localized(),
+                          style: .default,
+                          handler: { [weak self] action in self?.sortMovies(withKey: .metascore) })]
+        let alert = UIAlertController.generic(title: LocalizationKey.Alert.SortMovies.title.localized(),
+                                              actions: actions)
         alert.present(on: self)
     }
     
@@ -119,7 +113,7 @@ extension MovieListViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        let genre = NSLocalizedString(moviesInGenresManager.getAvailableGenres()[section], comment: "Displaying genre for headers.")
+        let genre = moviesInGenresManager.getAvailableGenres()[section].localized()
         return genre
     }
 }
@@ -153,27 +147,25 @@ private extension MovieListViewController {
         movieFetcher.fetchMovie(byId: id,
             success: { movie in
                 let year = String(Calendar.current.component(.year, from: movie.releaseDate))
-                let alertTitle = LocalizationString.getString(forKey: .movieFound)
-                let alertMassage = String(format: LocalizationString.getString(forKey: .foundMovieTitled_ReleasedIn_), movie.title, year)
-                let importActionTitle = LocalizationString.getString(forKey: .importMovie)
-                
-                let actions = [UIAlertAction(title: importActionTitle, style: .default, handler: { action in self.importMovie(for: movie) } )]
-                let alert = UIAlertController.generic(title: alertTitle, message: alertMassage, preferredStyle: .actionSheet, actions: actions)
+                let actions = [UIAlertAction(title: LocalizationKey.Alert.MovieFound.importAction.localized(),
+                                             style: .default,
+                                             handler: { action in self.importMovie(for: movie) } )]
+                let alert = UIAlertController.generic(title: LocalizationKey.Alert.MovieFound.title.localized(),
+                                                      message: LocalizationKey.Alert.MovieFound.titleAndReleasedMassage.localized(movie.title, year),
+                                                      preferredStyle: .actionSheet,
+                                                      actions: actions)
                 alert.present(on: self) },
             failure: { error in
-                let alertTitle = LocalizationString.getString(forKey: .movieNotFound)
-                let confirmingActionTitle = LocalizationString.getString(forKey: .ok)
-                
-                let alert = UIAlertController.generic(title: alertTitle, message: error.localizedDescription, cancelTitle: confirmingActionTitle)
+                let alert = UIAlertController.generic(title: LocalizationKey.Alert.MovieNotFound.title.localized(),
+                                                      message: error.localizedDescription,
+                                                      cancelTitle: LocalizationKey.Alert.okAction.localized())
                 alert.present(on: self) })
     }
     
     func importMovie(for movie: Movie) {
         moviesInGenresManager.saveNewMovie(movie: movie)
-        let alertTitle = LocalizationString.getString(forKey: .movieSaved)
-        let confirmingActionTitle = LocalizationString.getString(forKey: .ok)
-        
-        let alert = UIAlertController.generic(title: alertTitle, cancelTitle: confirmingActionTitle)
+        let alert = UIAlertController.generic(title: LocalizationKey.Alert.ImportMovie.title.localized(),
+                                              cancelTitle: LocalizationKey.Alert.okAction.localized())
         alert.present(on: self)
     }
 }
