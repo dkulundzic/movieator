@@ -162,7 +162,7 @@ private extension MovieListViewController {
         movieFetcher.fetchMovie(byId: id,
             success: { movie in
                 let year = String(Calendar.current.component(.year, from: movie.releaseDate))
-                let actions = [UIAlertAction(title: "Import", style: .default, handler: { action in self.importMovie(for: movie) } )]
+                let actions = [UIAlertAction(title: "Import", style: .default, handler: { action in self.importMovie(for: movie) })]
                 let alert = UIAlertController.generic(title: "Movie found", message: "Found movie titled \(movie.title), released in \(year).", preferredStyle: .actionSheet, actions: actions)
                 alert.present(on: self) },
             failure: { error in

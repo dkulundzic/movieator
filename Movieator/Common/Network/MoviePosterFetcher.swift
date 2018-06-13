@@ -23,7 +23,7 @@ enum MoviePosterFetcherError: LocalizedError {
 }
 
 class MoviePosterFetcher {
-    func fetchMoviePoster(with url: String, success: @escaping (Data) -> Void  , failure: @escaping (Error) -> Void) {
+    func fetchMoviePoster(with url: String, success: @escaping (Data) -> Void, failure: @escaping (Error) -> Void) {
         guard let url = URL(string: url) else {
             DispatchQueue.main.async { failure(MoviePosterFetcherError.invalidURLString) }
             return

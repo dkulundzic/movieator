@@ -86,4 +86,3 @@ class Movie: Object, Codable {
         self.production = try container.decode(String.self, forKey: .production)
     }
 }
-
