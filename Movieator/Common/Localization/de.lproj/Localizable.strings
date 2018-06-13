@@ -6,12 +6,16 @@
   Copyright © 2018 Codeopolius. All rights reserved.
 */
 
-"Saved movies" = "Gespeicherte Filme";
+/* Movie list */
+"movie_list_search_bar_placeholder" = "Filme suchen";
+
+/* User profile */
+"user_profile_navigation_bar_title" = "Gespeicherte Filme";
+
 "Delete movie: \n%@" = "Film löschen: \n%@";
 "Are you sure you want to delete this movie?" = "Möchtest du diesen Film wirklich löschen?";
 "Cancel" = "Stornieren";
 "Delete" = "Löschen";
-"Search Movies" = "Filme suchen";
 "Add new movies" = "Füge neue Filme hinzu";
 "Copy id from URL and paste it below." = "Kopieren Sie die ID aus der URL und fügen Sie sie unten ein.";
 "Place IMDB ID here." = "Platzieren Sie die ID der IMDB hier.";

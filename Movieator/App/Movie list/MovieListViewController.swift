@@ -22,7 +22,7 @@ class MovieListViewController: UIViewController {
         
         let searchController = UISearchController(searchResultsController: movieSearchResultsViewController)
         searchController.obscuresBackgroundDuringPresentation = true
-        searchController.searchBar.placeholder = NSLocalizedString("Search Movies", comment: "Message telling the user that label input is going to be used as search predicate.")
+        searchController.searchBar.placeholder = "movie_list_search_bar_placeholder".localized()
         searchController.searchResultsUpdater = self
         movieSearchResultsViewController.delegate = self
         moviesInGenresManager.dataChanged = { [weak self] in

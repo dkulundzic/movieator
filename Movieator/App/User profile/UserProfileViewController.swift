@@ -17,9 +17,9 @@ class UserProfileViewController: UIViewController {
     private lazy var movies = data.loadMovies(with: movieIDs)
 
     override func viewDidLoad() {
-        super.viewDidLoad()
+        super.viewDidLoad()        
 
-        navigationItem.title = NSLocalizedString("Saved movies", comment: "Title in navigation bar representing current screen.")
+        navigationItem.title = "user_profile_navigation_bar_title".localized()
         navigationItem.largeTitleDisplayMode = .always
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .stop, target: self, action: #selector(dismissViewController))
     }

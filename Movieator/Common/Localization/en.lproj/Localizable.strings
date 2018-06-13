@@ -6,12 +6,16 @@
   Copyright © 2018 Codeopolius. All rights reserved.
 */
 
-"Saved movies" = "Saved movies";
+/* Movie list */
+"movie_list_search_bar_placeholder" = "Search Movies";
+
+/* User profile */
+"user_profile_navigation_bar_title" = "Saved movies";
+
 "Delete movie: \n%@" = "Delete movie: \n%@";
 "Are you sure you want to delete this movie?" = "Are you sure you want to delete this movie?";
 "Cancel" = "Cancel";
 "Delete" = "Delete";
-"Search Movies" = "Search Movies";
 "Add new movies" = "Add new movies";
 "Copy id from URL and paste it below." = "Copy id from URL and paste it below.";
 "Place IMDB ID here." = "Place IMDB ID here.";

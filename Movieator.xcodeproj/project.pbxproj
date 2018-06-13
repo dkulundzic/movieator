@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		03036F8A9FDC7EE1150BF130 /* Pods_MovieatorTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B2DDD56E21CD4F6316ACC14 /* Pods_MovieatorTests.framework */; };
 		4895F2D820A59BF0003A83AA /* ResponseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4895F2D720A59BF0003A83AA /* ResponseError.swift */; };
+		48BC711620D1129D002F7222 /* UIAlertController-Movieator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48BC711220D1129D002F7222 /* UIAlertController-Movieator.swift */; };
+		48BC711820D1129D002F7222 /* EnumCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48BC711520D1129D002F7222 /* EnumCollection.swift */; };
+		48BC711A20D112B3002F7222 /* String-Movieator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48BC711920D112B3002F7222 /* String-Movieator.swift */; };
 		48DBE50720A42B0F00572B73 /* MovieatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48DBE50620A42B0F00572B73 /* MovieatorTests.swift */; };
 		48DBE52320A42CBD00572B73 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48DBE51420A42CBD00572B73 /* AppDelegate.swift */; };
 		48DBE52420A42CBD00572B73 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48DBE51B20A42CBD00572B73 /* Assets.xcassets */; };
@@ -22,13 +25,11 @@
 		F514FFE120CF0E9E00982F6B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F514FFE320CF0E9E00982F6B /* Localizable.strings */; };
 		F5337BEA20B309F3004C6E77 /* SavedMoviesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5337BE920B309F3004C6E77 /* SavedMoviesManager.swift */; };
 		F5337BEC20B30F48004C6E77 /* SavedMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5337BEB20B30F48004C6E77 /* SavedMovie.swift */; };
-		F551A9F920C5639F00B33756 /* EnumCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F551A9F820C5639F00B33756 /* EnumCollection.swift */; };
 		F551A9FF20C5893900B33756 /* MovieSearchViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F551A9FE20C5893900B33756 /* MovieSearchViewControllerDelegate.swift */; };
 		F555BDB720AAEE43004466D3 /* MovieListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F555BDB620AAEE43004466D3 /* MovieListViewController.swift */; };
 		F555F12220C2B345009CA3E6 /* GenreMovieGrouping.swift in Sources */ = {isa = PBXBuildFile; fileRef = F555F12120C2B345009CA3E6 /* GenreMovieGrouping.swift */; };
 		F555F12420C2B415009CA3E6 /* GenreMovieGroupingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F555F12320C2B415009CA3E6 /* GenreMovieGroupingManager.swift */; };
 		F555F12820C2CA77009CA3E6 /* MovieListHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F555F12720C2CA77009CA3E6 /* MovieListHeaderView.swift */; };
-		F566D9E620BE8EA200B1D197 /* UIAlertController-Movieator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F566D9E520BE8EA200B1D197 /* UIAlertController-Movieator.swift */; };
 		F585701120A47CA600A6E98F /* PreparationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F585701020A47CA600A6E98F /* PreparationViewController.swift */; };
 		F585701920A5E67C00A6E98F /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F585701820A5E67C00A6E98F /* DataController.swift */; };
 		F5AB6D0F20AC1A620084DE49 /* MovieCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AB6D0E20AC1A620084DE49 /* MovieCollectionViewCell.swift */; };
@@ -51,6 +52,9 @@
 /* Begin PBXFileReference section */
 		27376F7B448E291718A6AECC /* Pods-Movieator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Movieator.release.xcconfig"; path = "Pods/Target Support Files/Pods-Movieator/Pods-Movieator.release.xcconfig"; sourceTree = "<group>"; };
 		4895F2D720A59BF0003A83AA /* ResponseError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseError.swift; sourceTree = "<group>"; };
+		48BC711220D1129D002F7222 /* UIAlertController-Movieator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIAlertController-Movieator.swift"; sourceTree = "<group>"; };
+		48BC711520D1129D002F7222 /* EnumCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnumCollection.swift; sourceTree = "<group>"; };
+		48BC711920D112B3002F7222 /* String-Movieator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String-Movieator.swift"; sourceTree = "<group>"; };
 		48DBE4EE20A42B0E00572B73 /* Movieator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Movieator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		48DBE50220A42B0F00572B73 /* MovieatorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MovieatorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		48DBE50620A42B0F00572B73 /* MovieatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieatorTests.swift; sourceTree = "<group>"; };
@@ -74,13 +78,11 @@
 		F514FFE520CFBCC100982F6B /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F5337BE920B309F3004C6E77 /* SavedMoviesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedMoviesManager.swift; sourceTree = "<group>"; };
 		F5337BEB20B30F48004C6E77 /* SavedMovie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedMovie.swift; sourceTree = "<group>"; };
-		F551A9F820C5639F00B33756 /* EnumCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnumCollection.swift; sourceTree = "<group>"; };
 		F551A9FE20C5893900B33756 /* MovieSearchViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieSearchViewControllerDelegate.swift; sourceTree = "<group>"; };
 		F555BDB620AAEE43004466D3 /* MovieListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListViewController.swift; sourceTree = "<group>"; };
 		F555F12120C2B345009CA3E6 /* GenreMovieGrouping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreMovieGrouping.swift; sourceTree = "<group>"; };
 		F555F12320C2B415009CA3E6 /* GenreMovieGroupingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreMovieGroupingManager.swift; sourceTree = "<group>"; };
 		F555F12720C2CA77009CA3E6 /* MovieListHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListHeaderView.swift; sourceTree = "<group>"; };
-		F566D9E520BE8EA200B1D197 /* UIAlertController-Movieator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController-Movieator.swift"; sourceTree = "<group>"; };
 		F585701020A47CA600A6E98F /* PreparationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreparationViewController.swift; sourceTree = "<group>"; };
 		F585701820A5E67C00A6E98F /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		F5AB6D0E20AC1A620084DE49 /* MovieCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -120,6 +122,33 @@
 				985F4ED202B1C0C630D83045 /* Pods-MovieatorTests.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		48BC711020D1129D002F7222 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				48BC711420D1129D002F7222 /* Foundation */,
+				48BC711120D1129D002F7222 /* UIKit */,
+			);
+			name = Extensions;
+			path = Movieator/Common/Extensions;
+			sourceTree = SOURCE_ROOT;
+		};
+		48BC711120D1129D002F7222 /* UIKit */ = {
+			isa = PBXGroup;
+			children = (
+				48BC711220D1129D002F7222 /* UIAlertController-Movieator.swift */,
+			);
+			path = UIKit;
+			sourceTree = "<group>";
+		};
+		48BC711420D1129D002F7222 /* Foundation */ = {
+			isa = PBXGroup;
+			children = (
+				48BC711520D1129D002F7222 /* EnumCollection.swift */,
+				48BC711920D112B3002F7222 /* String-Movieator.swift */,
+			);
+			path = Foundation;
 			sourceTree = "<group>";
 		};
 		48DBE4E520A42B0E00572B73 = {
@@ -250,7 +279,7 @@
 				48DBE51E20A42CBD00572B73 /* UI */,
 				48DBE51F20A42CBD00572B73 /* Network */,
 				48DBE52020A42CBD00572B73 /* Models */,
-				48DBE52120A42CBD00572B73 /* Extensions */,
+				48BC711020D1129D002F7222 /* Extensions */,
 				48DBE52220A42CBD00572B73 /* Persistence */,
 			);
 			path = Common;
@@ -284,15 +313,6 @@
 				F555F12120C2B345009CA3E6 /* GenreMovieGrouping.swift */,
 			);
 			path = Models;
-			sourceTree = "<group>";
-		};
-		48DBE52120A42CBD00572B73 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				F551A9F820C5639F00B33756 /* EnumCollection.swift */,
-				F566D9E520BE8EA200B1D197 /* UIAlertController-Movieator.swift */,
-			);
-			path = Extensions;
 			sourceTree = "<group>";
 		};
 		48DBE52220A42CBD00572B73 /* Persistence */ = {
@@ -506,6 +526,7 @@
 				F5AB6D1320AC78EB0084DE49 /* MovieDetailsViewController.swift in Sources */,
 				48DBE52320A42CBD00572B73 /* AppDelegate.swift in Sources */,
 				F585701920A5E67C00A6E98F /* DataController.swift in Sources */,
+				48BC711A20D112B3002F7222 /* String-Movieator.swift in Sources */,
 				48DBE53120A450FF00572B73 /* MovieFetcher.swift in Sources */,
 				F555F12820C2CA77009CA3E6 /* MovieListHeaderView.swift in Sources */,
 				F5337BEC20B30F48004C6E77 /* SavedMovie.swift in Sources */,
@@ -516,14 +537,14 @@
 				F5AB6D1120AC347C0084DE49 /* MoviePosterFetcher.swift in Sources */,
 				48DBE53320A4516700572B73 /* Movie.swift in Sources */,
 				F514FFD320C6A8FA00982F6B /* GenreTableViewCell.swift in Sources */,
+				48BC711820D1129D002F7222 /* EnumCollection.swift in Sources */,
 				F5AB6D1520AC7EFA0084DE49 /* UserProfileViewController.swift in Sources */,
 				F5AB6D0F20AC1A620084DE49 /* MovieCollectionViewCell.swift in Sources */,
+				48BC711620D1129D002F7222 /* UIAlertController-Movieator.swift in Sources */,
 				F555F12420C2B415009CA3E6 /* GenreMovieGroupingManager.swift in Sources */,
-				F551A9F920C5639F00B33756 /* EnumCollection.swift in Sources */,
 				F555F12220C2B345009CA3E6 /* GenreMovieGrouping.swift in Sources */,
 				F5FD545C20AD6E5800506C50 /* MovieSearchViewController.swift in Sources */,
 				F5337BEA20B309F3004C6E77 /* SavedMoviesManager.swift in Sources */,
-				F566D9E620BE8EA200B1D197 /* UIAlertController-Movieator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
