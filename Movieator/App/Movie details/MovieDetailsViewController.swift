@@ -41,8 +41,8 @@ class MovieDetailsViewController: UIViewController {
         let savedMoviesManager = SavedMoviesManager()
         savedMoviesManager.saveUserMovie(withID: movie.imdbID)
 
-        let alert = UIAlertController.generic(title: LocalizationKey.Alert.SaveMovie.title.localized(),
-                                              message: LocalizationKey.Alert.SaveMovie.message.localized(),
+        let alert = UIAlertController.generic(title: LocalizationKey.MovieDetails.saveMovieAlertTitle.localized(),
+                                              message: LocalizationKey.MovieDetails.saveMovieAlertMessage.localized(),
                                               cancelTitle: LocalizationKey.Alert.okAction.localized())
         alert.present(on: self)
     }

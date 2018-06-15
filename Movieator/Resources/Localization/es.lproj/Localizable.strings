@@ -10,8 +10,31 @@
 "movie_list_search_bar_placeholder" = "Buscar películas";
 "movie_list_navigation_bar_title" = "Lista principal";
 
+"movie_list_add_new_movie_alert_title" = "Agregar nuevas películas";
+"movie_list_add_new_movie_alert_message" = "Copie la identificación de la URL y péguela a continuación.";
+"movie_list_add_new_movie_alert_textfield_placeholder" = "Coloque ID de IMDB aquí.";
+"movie_list_add_new_movie_alert_find_action" = "Encontrar";
+
+"movie_list_sort_movies_alert_title" = "Ordenar películas por";
+"movie_list_sort_movies_alert_title_action" = "Titulo";
+"movie_list_sort_movies_alert_release_date_action" = "Fecha de lanzamiento";
+"movie_list_sort_movies_alert_imdb_rating_action" = "Calificación IMDB";
+"movie_list_sort_movies_alert_metascore_rating_action" = "Calificación Metascore";
+
+"movie_list_movie_found_alert_title" = "Película encontrada";
+"movie_list_movie_found_alert_message" = "Película encontrada titulada %@, lanzado en %@.";
+"movie_list_movie_found_alert_import_action" = "Importar";
+
+"movie_list_movie_not_found_alert_title" = "Película no encontrada";
+
+"movie_list_import_movie_alert_title" = "Película guardada";
+
 /* User profile */
 "user_profile_navigation_bar_title" = "Películas guardadas";
+
+"user_profile_delete_movie_alert_title" = "Eliminar película: \n%@";
+"user_profile_delete_movie_alert_message" = "¿Seguro que quieres eliminar esta película?";
+"user_profile_delete_movie_alert_delete_action" = "Borrar";
 
 /* Movie details */
 "movie_details_save_button_text" = "Salvar";
@@ -19,35 +42,12 @@
 "movie_details_navigation_bar_title" = "Detalles de la película";
 "movie_details_activity_message" = "¡Mira, he encontrado una buena película!";
 
+"movie_details_save_movie_alert_title" = "Guardar la película";
+"movie_details_save_movie_alert_message!" = "Película guardada!";
+
 /* Alert */
 "alert_cancel_action" = "Cancelar";
 "alert_ok_action" = "De acuerdo";
-/* Delete movie */
-"alert_delete_movie_title" = "Eliminar película: \n%@";
-"alert_delete_movie_question_message" = "¿Seguro que quieres eliminar esta película?";
-"alert_delete_movie_delete_action" = "Borrar";
-/* Add new movie */
-"alert_add_new_movie_title" = "Agregar nuevas películas";
-"alert_add_new_movie_instructions_message" = "Copie la identificación de la URL y péguela a continuación.";
-"alert_add_new_movie_textfield_placeholder" = "Coloque ID de IMDB aquí.";
-"alert_add_new_movie_find_action" = "Encontrar";
-/* Sort movies */
-"alert_sort_movies_title" = "Ordenar películas por";
-"alert_sort_movies_title_action" = "Titulo";
-"alert_sort_movies_release_date_action" = "Fecha de lanzamiento";
-"alert_sort_movies_imdb_rating_action" = "Calificación IMDB";
-"alert_sort_movies_metascore_rating_action" = "Calificación Metascore";
-/* Movie found */
-"alert_movie_found_title" = "Película encontrada";
-"alert_movie_found_title_and_released_message" = "Película encontrada titulada %@, lanzado en %@.";
-"alert_movie_found_import_action" = "Importar";
-/* Movie not found */
-"alert_movie_not_found_title" = "Película no encontrada";
-/* Import movie */
-"alert_import_movie_title" = "Película guardada";
-/* Save movie */
-"alert_save_movie_title" = "Guardar la película";
-"alert_save_movie_message!" = "Película guardada!";
 
 /* Genres */
 "action" = "Acción";

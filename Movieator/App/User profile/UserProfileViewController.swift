@@ -44,9 +44,9 @@ extension UserProfileViewController: UICollectionViewDataSource {
 // MARK: - UICollectionViewDelegate Extension
 extension UserProfileViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let alert = UIAlertController.generic(title: LocalizationKey.Alert.DeleteMovie.title.localized(movies[indexPath.item].title),
-                                              message: LocalizationKey.Alert.DeleteMovie.questionMessage.localized())
-        alert.addAction(UIAlertAction(title: LocalizationKey.Alert.DeleteMovie.deleteAction.localized(),
+        let alert = UIAlertController.generic(title: LocalizationKey.UserProfile.deleteMovieAlertTitle.localized(movies[indexPath.item].title),
+                                              message: LocalizationKey.UserProfile.deleteMovieAlertMessage.localized())
+        alert.addAction(UIAlertAction(title: LocalizationKey.UserProfile.deleteMovieAlertDeleteAction.localized(),
                                       style: .default,
                                       handler: { action in
             self.userMovieIDs.deleteSavedMovie(withId: self.movieIDs[indexPath.item])
