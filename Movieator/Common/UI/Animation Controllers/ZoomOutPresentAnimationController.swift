@@ -40,7 +40,7 @@ class ZoomOutPresentAnimationController: NSObject, UIViewControllerAnimatedTrans
             let snapshot = fromVC.view.snapshotView(afterScreenUpdates: false) else { return }
         
         let containerView = transitionContext.containerView
-        let originFrame = transitionContext.finalFrame(for: toVC)
+        let originFrame = transitionContext.initialFrame(for: fromVC)
         
         let imageView = UIImageView()
         imageView.image = image
@@ -59,12 +59,12 @@ class ZoomOutPresentAnimationController: NSObject, UIViewControllerAnimatedTrans
         UIView.animateKeyframes(
             withDuration: duration,
             delay: 0,
-            options: .calculationModeCubic,
+            options: .calculationModeLinear,
             animations: {
-                UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 1/2) {
+                UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: 0.5) {
                     snapshot.alpha = 0
                 }
-                UIView.addKeyframe(withRelativeStartTime: 0.1, relativeDuration: 1) {
+                UIView.addKeyframe(withRelativeStartTime: 0.1, relativeDuration: 1.0) {
                     snapshot.frame = (self.finalFrame)
                     imageView.layer.cornerRadius = 30
                     imageView.frame = (self.finalFrame)

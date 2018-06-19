@@ -60,14 +60,14 @@ class ZoomInPresentAnimationController: NSObject, UIViewControllerAnimatedTransi
         UIView.animateKeyframes(
             withDuration: duration,
             delay: 0,
-            options: .calculationModeCubic,
+            options: .calculationModeLinear,
             animations: {
                 UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: 0.9) {
                     imageView.layer.cornerRadius = 0
                     imageView.frame = finalFrame
                     snapshot.frame = finalFrame
                 }
-                UIView.addKeyframe(withRelativeStartTime: 1/2, relativeDuration: 1) {
+                UIView.addKeyframe(withRelativeStartTime: 0.5, relativeDuration: 1.0) {
                     snapshot.alpha = 1
                 }
         },
