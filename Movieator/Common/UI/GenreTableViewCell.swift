@@ -12,7 +12,7 @@ class GenreTableViewCell: UITableViewCell {
     @IBOutlet weak var collectionView: UICollectionView!
     
     var moviesInGenresManager: GenreMovieGroupingManager?
-    var didSelectItemAt: ((Int, Int) -> Void)?
+    var didSelectItemAt: ((Int, Int, CGRect) -> Void)?
     
     var row = 0 {
         didSet {
@@ -55,6 +55,8 @@ extension GenreTableViewCell: UICollectionViewDelegateFlowLayout {
 // MARK: - UICollectionViewDelegate
 extension GenreTableViewCell: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        didSelectItemAt?(row,indexPath.item)
+        guard let cellFrame = collectionView.cellForItem(at: indexPath)?.frame else { return }
+        let cellFrameInRootSuperview = collectionView.convert(cellFrame, to: nil)
+        didSelectItemAt?(row,indexPath.item, cellFrameInRootSuperview)
     }
 }

@@ -10,12 +10,15 @@ import UIKit
 
 class MovieListViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
+    private var collectionViewCellFrame = CGRect()
+    private var selectedMoviePoster = String()
     private let moviesInGenresManager = GenreMovieGroupingManager()
     private let movieSearchResultsViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MovieSearchViewController") as! MovieSearchViewController
     
     override func viewDidLoad() {
         super.viewDidLoad()
         definesPresentationContext = true
+        navigationController?.delegate = self
         
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 200
@@ -82,7 +85,7 @@ class MovieListViewController: UIViewController {
     }
 }
 
-// MARK: - UICollectionViewDataSource
+// MARK: - UITableViewDataSource
 extension MovieListViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return moviesInGenresManager.getAvailableGenres().count
@@ -96,13 +99,13 @@ extension MovieListViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TableViewCell", for: indexPath) as! GenreTableViewCell
         cell.row = indexPath.section
         cell.moviesInGenresManager = moviesInGenresManager
-        cell.didSelectItemAt = { [weak self] row, item in
+        cell.didSelectItemAt = { [weak self] row, item, frame in
             guard let strongSelf = self else { return }
-            let movieDetailsViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MovieDetailsViewController") as! MovieDetailsViewController
             let genre = strongSelf.moviesInGenresManager.getAvailableGenres()[row]
             let movie = strongSelf.moviesInGenresManager.getGenreMovies(for: genre)[item]
-            movieDetailsViewController.movie = movie
-            strongSelf.navigationController?.pushViewController(movieDetailsViewController, animated: true)
+            strongSelf.selectedMoviePoster = movie.poster
+            strongSelf.collectionViewCellFrame = frame
+            strongSelf.pushMovieDetailsViewController(withMovie: movie)
         }
         return cell
     }
@@ -121,10 +124,24 @@ extension MovieListViewController: UISearchResultsUpdating {
 
 // MARK: - MovieSearchViewControllerDelegate
 extension MovieListViewController: MovieSearchViewControllerDelegate {
-    func movieSearch(_ movieSearch: MovieSearchViewController, didSelectMovie movie: Movie) {
-        let movieDetailsViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MovieDetailsViewController") as! MovieDetailsViewController
-        movieDetailsViewController.movie = movie
-        navigationController?.pushViewController(movieDetailsViewController, animated: true)
+    func movieSearch(_ movieSearch: MovieSearchViewController, didSelectMovie movie: Movie, frame: CGRect) {
+        collectionViewCellFrame = frame
+        selectedMoviePoster = movie.poster
+        
+        pushMovieDetailsViewController(withMovie: movie)
+    }
+}
+
+// MARK: - UINavigationControllerDelegate, UIViewControllerTransitioningDelegate
+extension MovieListViewController: UINavigationControllerDelegate, UIViewControllerTransitioningDelegate {
+    func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationControllerOperation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        if operation == .push {
+            return ZoomInPresentAnimationController(originFrame: collectionViewCellFrame, poster: selectedMoviePoster)
+        } else if operation == .pop {
+            return ZoomOutPresentAnimationController(finalFrame: collectionViewCellFrame, poster: selectedMoviePoster)
+        } else {
+            return nil
+        }
     }
 }
 
@@ -153,5 +170,11 @@ private extension MovieListViewController {
         moviesInGenresManager.saveNewMovie(movie: movie)
         let alert = UIAlertController.generic(title: "Movie saved", cancelTitle: "Ok")
         alert.present(on: self)
+    }
+    
+    func pushMovieDetailsViewController(withMovie movie: Movie) {
+        let movieDetailsViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MovieDetailsViewController") as! MovieDetailsViewController
+        movieDetailsViewController.movie = movie
+        navigationController?.pushViewController(movieDetailsViewController, animated: true)
     }
 }

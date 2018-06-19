@@ -48,6 +48,8 @@ extension MovieSearchViewController: UICollectionViewDelegateFlowLayout {
 // MARK: - Collection View Delegate Extension
 extension MovieSearchViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        delegate?.movieSearch(self, didSelectMovie: filteredMovies[indexPath.item])
+        guard let cellFrame = collectionView.cellForItem(at: indexPath)?.frame else { return }
+        let cellFrameInRootSuperview = collectionView.convert(cellFrame, to: nil)
+        delegate?.movieSearch(self, didSelectMovie: filteredMovies[indexPath.item], frame: cellFrameInRootSuperview)
     }
 }

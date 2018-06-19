@@ -16,7 +16,6 @@ class MovieDetailsViewController: UIViewController {
     @IBOutlet weak var actorsLabel: UILabel!
     @IBOutlet weak var genreLabel: UILabel!
     @IBOutlet weak var releasedLabel: UILabel!
-    @IBOutlet weak var posterImageView: UIImageView!
     @IBOutlet weak var writerLabel: UILabel!
     @IBOutlet weak var directorLabel: UILabel!
     
@@ -66,16 +65,6 @@ class MovieDetailsViewController: UIViewController {
         actorsLabel.text = movie.actors
         directorLabel.text = movie.director
         writerLabel.text = movie.writer
-        
-        let posterFetcher = MoviePosterFetcher()
-        posterFetcher.fetchMoviePoster(with: movie.poster,
-           success: { data in
-                let image = UIImage(data: data)
-                self.posterImageView.image = image
-            },
-           failure: { error in
-                print("Error getting poster, \(error)")
-        })
     }
 }
 

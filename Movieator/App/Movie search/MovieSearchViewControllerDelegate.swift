@@ -6,8 +6,8 @@
 //  Copyright © 2018 Codeopolius. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 protocol MovieSearchViewControllerDelegate: class {
-    func movieSearch(_ movieSearch: MovieSearchViewController, didSelectMovie movie: Movie)
+    func movieSearch(_ movieSearch: MovieSearchViewController, didSelectMovie movie: Movie, frame: CGRect)
 }

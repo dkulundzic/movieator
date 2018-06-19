@@ -295,9 +295,6 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rgp-rC-Tjq" userLabel="Content view">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="574"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jjF-0t-s85" userLabel="Poster Image View">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="574"/>
-                                            </imageView>
                                             <view alpha="0.59999999999999998" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7ss-WR-zMj" userLabel="Poster Cover View">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="574"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -331,7 +328,7 @@
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XVi-In-qn3" userLabel="Imdb View">
                                                                         <rect key="frame" x="10" y="0.0" width="172.5" height="50"/>
                                                                         <subviews>
-                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Imdb: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xao-L0-Id1">
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Imdb: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xao-L0-Id1" userLabel="Imdb:">
                                                                                 <rect key="frame" x="0.0" y="-0.5" width="51.5" height="50"/>
                                                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                                                 <nil key="textColor"/>
@@ -554,20 +551,15 @@
                                                 </constraints>
                                             </view>
                                         </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="eIK-TG-hBN" firstAttribute="leading" secondItem="Rgp-rC-Tjq" secondAttribute="leading" id="4F3-AN-6dX"/>
                                             <constraint firstItem="eIK-TG-hBN" firstAttribute="top" secondItem="Rgp-rC-Tjq" secondAttribute="top" id="FCA-Eb-SiQ"/>
-                                            <constraint firstAttribute="bottom" secondItem="jjF-0t-s85" secondAttribute="bottom" id="Ffb-YG-saW"/>
                                             <constraint firstAttribute="trailing" secondItem="7ss-WR-zMj" secondAttribute="trailing" id="Fy7-Tf-Rit"/>
-                                            <constraint firstItem="jjF-0t-s85" firstAttribute="top" secondItem="Rgp-rC-Tjq" secondAttribute="top" id="G11-pv-FaS"/>
                                             <constraint firstAttribute="bottom" secondItem="7ss-WR-zMj" secondAttribute="bottom" id="II7-Iy-Kgo"/>
                                             <constraint firstItem="7ss-WR-zMj" firstAttribute="top" secondItem="Rgp-rC-Tjq" secondAttribute="top" id="MPA-vt-eHf"/>
-                                            <constraint firstAttribute="trailing" secondItem="jjF-0t-s85" secondAttribute="trailing" id="Zke-GG-QMA"/>
                                             <constraint firstAttribute="bottom" secondItem="eIK-TG-hBN" secondAttribute="bottom" id="ddS-LN-EuY"/>
                                             <constraint firstAttribute="trailing" secondItem="eIK-TG-hBN" secondAttribute="trailing" id="gtC-Am-xvm"/>
                                             <constraint firstItem="7ss-WR-zMj" firstAttribute="leading" secondItem="Rgp-rC-Tjq" secondAttribute="leading" id="u2Z-LJ-iPw"/>
-                                            <constraint firstItem="jjF-0t-s85" firstAttribute="leading" secondItem="Rgp-rC-Tjq" secondAttribute="leading" id="xmC-F0-zeo"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -579,7 +571,6 @@
                                 </constraints>
                             </scrollView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="smg-Ul-NpC" firstAttribute="trailing" secondItem="4n6-eX-BjN" secondAttribute="trailing" id="5YK-LI-8ls"/>
                             <constraint firstItem="4n6-eX-BjN" firstAttribute="top" secondItem="smg-Ul-NpC" secondAttribute="top" id="WpK-uc-QHt"/>
@@ -596,7 +587,6 @@
                         <outlet property="imdbRatingLabel" destination="M3x-Zi-bLG" id="Uex-AZ-cjF"/>
                         <outlet property="metascoreRatingLabel" destination="ZMy-JZ-NY7" id="r1U-Gn-mhg"/>
                         <outlet property="plotLabel" destination="cAN-Io-4dh" id="ay7-pl-jKw"/>
-                        <outlet property="posterImageView" destination="jjF-0t-s85" id="nfF-Kz-al6"/>
                         <outlet property="releasedLabel" destination="9ZZ-KT-84g" id="ptA-sy-ZCG"/>
                         <outlet property="titleLabel" destination="14F-pK-y5a" id="JCo-L6-YEM"/>
                         <outlet property="writerLabel" destination="DL9-Mh-LXs" id="aDh-Qd-6Q1"/>
