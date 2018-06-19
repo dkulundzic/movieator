@@ -19,11 +19,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Preparation" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RhQ-z7-tEJ">
-                                <rect key="frame" x="101.5" y="312.5" width="172" height="42"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Preparación" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RhQ-z7-tEJ">
+                                <rect key="frame" x="0.0" y="312.5" width="375" height="42"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="42" id="023-gh-Xbj"/>
-                                    <constraint firstAttribute="width" constant="172" id="Aub-b4-dca"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="35"/>
                                 <nil key="textColor"/>
@@ -40,9 +39,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="RhQ-z7-tEJ" firstAttribute="centerX" secondItem="UA9-Ft-23h" secondAttribute="centerX" id="8Ih-Nd-nan"/>
                             <constraint firstItem="RhQ-z7-tEJ" firstAttribute="centerY" secondItem="UA9-Ft-23h" secondAttribute="centerY" id="9T5-5T-as6"/>
+                            <constraint firstItem="RhQ-z7-tEJ" firstAttribute="leading" secondItem="PNf-0C-UKv" secondAttribute="leading" id="Czu-DZ-qCI"/>
                             <constraint firstItem="RhQ-z7-tEJ" firstAttribute="top" secondItem="e50-4t-ciP" secondAttribute="bottom" id="GIu-7E-6lr"/>
+                            <constraint firstItem="PNf-0C-UKv" firstAttribute="trailing" secondItem="RhQ-z7-tEJ" secondAttribute="trailing" id="P3B-hR-Zvs"/>
                             <constraint firstItem="e50-4t-ciP" firstAttribute="centerX" secondItem="UA9-Ft-23h" secondAttribute="centerX" id="h3L-AF-nEa"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="PNf-0C-UKv"/>

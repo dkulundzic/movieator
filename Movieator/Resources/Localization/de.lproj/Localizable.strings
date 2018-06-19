@@ -1,0 +1,79 @@
+/* 
+  Localizable.strings
+  Movieator
+
+  Created by Matej Korman on 11/06/2018.
+  Copyright © 2018 Codeopolius. All rights reserved.
+*/
+
+/* Movie list */
+"movie_list_search_bar_placeholder" = "Filme suchen";
+"movie_list_navigation_bar_title" = "Hauptliste";
+
+"movie_list_add_new_movie_alert_title" = "Füge neue Filme hinzu";
+"movie_list_add_new_movie_alert_message" = "Kopieren Sie die ID aus der URL und fügen Sie sie unten ein.";
+"movie_list_add_new_movie_alert_textfield_placeholder" = "Platzieren Sie die ID der IMDB hier.";
+"movie_list_add_new_movie_alert_find_action" = "Finden";
+
+"movie_list_sort_movies_alert_title" = "Filme sortieren nach";
+"movie_list_sort_movies_alert_title_action" = "Titel";
+"movie_list_sort_movies_alert_release_date_action" = "Veröffentlichungsdatum";
+"movie_list_sort_movies_alert_imdb_rating_action" = "IMDB-Bewertung";
+"movie_list_sort_movies_alert_metascore_rating_action" = "Metascore-Bewertung";
+
+"movie_list_movie_found_alert_title" = "Film gefunden";
+"movie_list_movie_found_alert_message" = "Gefunden Film mit dem Titel %@, veröffentlicht in %@.";
+"movie_list_movie_found_alert_import_action" = "Einführen";
+
+"movie_list_movie_not_found_alert_title" = "Film nicht gefunden";
+
+"movie_list_import_movie_alert_title" = "Film gespeichert";
+
+/* User profile */
+"user_profile_navigation_bar_title" = "Gespeicherte Filme";
+
+"user_profile_delete_movie_alert_title" = "Film löschen: \n%@";
+"user_profile_delete_movie_alert_message" = "Möchtest du diesen Film wirklich löschen?";
+"user_profile_delete_movie_alert_delete_action" = "Löschen";
+
+/* Movie details */
+"movie_details_save_button_text" = "Speichern";
+"movie_details_share_button_text" = "Teilen";
+"movie_details_navigation_bar_title" = "Filmdetails";
+"movie_details_activity_message" = "Schau, ich habe einen coolen Film gefunden!";
+
+"movie_details_save_movie_alert_title" = "Sicherer Film";
+"movie_details_save_movie_alert_message!" = "Film gespeichert!";
+
+/* Alert */
+"alert_cancel_action" = "Stornieren";
+"alert_ok_action" = "Ok";
+
+/* Genres */
+"action" = "Aktion";
+"adventure" = "Abenteuer";
+"animation" = "Animation";
+"biography" = "Biografie";
+"comedy" = "Komödie";
+"crime" = "Kriminalität";
+"documentary" = "Dokumentarfilm";
+"drama" = "Drama";
+"family" = "Familie";
+"fantasy" = "Fantasie";
+"film-noir" = "Film-noir";
+"history" = "Geschichte";
+"horror" = "Horror";
+"music" = "Musik";
+"musical" = "Musical";
+"mystery" = "Geheimnis";
+"romance" = "Romantik";
+"sci-fi" = "Sci-fi";
+"short" = "Kurz";
+"sport" = "Sport";
+"superhero" = "Superheld";
+"thriller" = "Thriller";
+"war" = "Krieg";
+"western" = "Western";
+"game-show" = "Spielshow";
+"reality-tv" = "Reality-TV";
+"talk-show" = "Talkshow";

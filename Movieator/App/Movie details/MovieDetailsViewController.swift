@@ -25,10 +25,12 @@ class MovieDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let saveButton = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(saveButtonTapped))
-        let shareButton = UIBarButtonItem(title: "Share", style: .plain, target: self, action: #selector(shareButtonTapped))
+        let saveButtonTitle = LocalizationKey.MovieDetails.saveButtonText.localized()
+        let shareButtonTitle = LocalizationKey.MovieDetails.shareButtonText.localized()
+        let saveButton = UIBarButtonItem(title: saveButtonTitle, style: .plain, target: self, action: #selector(saveButtonTapped))
+        let shareButton = UIBarButtonItem(title: shareButtonTitle, style: .plain, target: self, action: #selector(shareButtonTapped))
         
-        navigationItem.title = "MOVIE DETAILS"
+        navigationItem.title = LocalizationKey.MovieDetails.navigationBarTitle.localized()
         navigationItem.largeTitleDisplayMode = .automatic
         navigationItem.rightBarButtonItems = [saveButton, shareButton]
 
@@ -38,15 +40,17 @@ class MovieDetailsViewController: UIViewController {
     @objc func saveButtonTapped() {
         let savedMoviesManager = SavedMoviesManager()
         savedMoviesManager.saveUserMovie(withID: movie.imdbID)
-        
-        let alert = UIAlertController(title: "SAVE MOVIE", message: "Movie saved!", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        self.present(alert, animated: true)
+
+        let alert = UIAlertController.generic(title: LocalizationKey.MovieDetails.saveMovieAlertTitle.localized(),
+                                              message: LocalizationKey.MovieDetails.saveMovieAlertMessage.localized(),
+                                              cancelTitle: LocalizationKey.Alert.okAction.localized())
+        alert.present(on: self)
     }
     
     @objc func shareButtonTapped(_ sender: UIBarButtonItem) {
         let url = getMovieURL()
-        let activityViewController = UIActivityViewController(activityItems: ["Look I've found a cool movie!", url], applicationActivities: nil)
+        let activityMessage = LocalizationKey.MovieDetails.activityMessage.localized()
+        let activityViewController = UIActivityViewController(activityItems: [activityMessage, url], applicationActivities: nil)
         
         if let popoverPresentationController = activityViewController.popoverPresentationController {
             popoverPresentationController.barButtonItem = sender

@@ -18,8 +18,7 @@ class UserProfileViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        navigationItem.title = "Saved movies"
+        navigationItem.title = LocalizationKey.MovieList.navigationBarTitle.localized()
         navigationItem.largeTitleDisplayMode = .always
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .stop, target: self, action: #selector(dismissViewController))
     }
@@ -45,14 +44,16 @@ extension UserProfileViewController: UICollectionViewDataSource {
 // MARK: - UICollectionViewDelegate Extension
 extension UserProfileViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let alert = UIAlertController(title: "Delete movie: \n\(movies[indexPath.item].title)", message: "Are you sure you want to delete this movie?", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
-        alert.addAction(UIAlertAction(title: "Delete", style: .default, handler: { action in
+        let alert = UIAlertController.generic(title: LocalizationKey.UserProfile.deleteMovieAlertTitle.localized(movies[indexPath.item].title),
+                                              message: LocalizationKey.UserProfile.deleteMovieAlertMessage.localized())
+        alert.addAction(UIAlertAction(title: LocalizationKey.UserProfile.deleteMovieAlertDeleteAction.localized(),
+                                      style: .default,
+                                      handler: { action in
             self.userMovieIDs.deleteSavedMovie(withId: self.movieIDs[indexPath.item])
             self.reloadData()
             collectionView.reloadData()
         }))
-        present(alert, animated: true)
+        alert.present(on: self)
     }
 }
 
