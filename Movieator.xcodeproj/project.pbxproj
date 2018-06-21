@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		03036F8A9FDC7EE1150BF130 /* Pods_MovieatorTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B2DDD56E21CD4F6316ACC14 /* Pods_MovieatorTests.framework */; };
+		48924E1B20DBA2A400181AC3 /* UIView-Movieator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48924E1A20DBA2A400181AC3 /* UIView-Movieator.swift */; };
 		4895F2D820A59BF0003A83AA /* ResponseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4895F2D720A59BF0003A83AA /* ResponseError.swift */; };
 		48BC711620D1129D002F7222 /* UIAlertController-Movieator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48BC711220D1129D002F7222 /* UIAlertController-Movieator.swift */; };
 		48BC711820D1129D002F7222 /* EnumCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48BC711520D1129D002F7222 /* EnumCollection.swift */; };
@@ -52,6 +53,7 @@
 
 /* Begin PBXFileReference section */
 		27376F7B448E291718A6AECC /* Pods-Movieator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Movieator.release.xcconfig"; path = "Pods/Target Support Files/Pods-Movieator/Pods-Movieator.release.xcconfig"; sourceTree = "<group>"; };
+		48924E1A20DBA2A400181AC3 /* UIView-Movieator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView-Movieator.swift"; sourceTree = "<group>"; };
 		4895F2D720A59BF0003A83AA /* ResponseError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseError.swift; sourceTree = "<group>"; };
 		48BC711220D1129D002F7222 /* UIAlertController-Movieator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIAlertController-Movieator.swift"; sourceTree = "<group>"; };
 		48BC711520D1129D002F7222 /* EnumCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnumCollection.swift; sourceTree = "<group>"; };
@@ -140,6 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				48BC711220D1129D002F7222 /* UIAlertController-Movieator.swift */,
+				48924E1A20DBA2A400181AC3 /* UIView-Movieator.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -375,8 +378,8 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 48DBE50B20A42B0F00572B73 /* Build configuration list for PBXNativeTarget "Movieator" */;
 			buildPhases = (
-				F59C912620CFE3850001FD6E /* ShellScript */,
 				F86B7872459CD0AC33EA2388 /* [CP] Check Pods Manifest.lock */,
+				F59C912620CFE3850001FD6E /* ShellScript */,
 				48DBE4EA20A42B0E00572B73 /* Sources */,
 				48DBE4EB20A42B0E00572B73 /* Frameworks */,
 				48DBE4EC20A42B0E00572B73 /* Resources */,
@@ -499,11 +502,13 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-Movieator/Pods-Movieator-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -569,6 +574,7 @@
 				48BC711620D1129D002F7222 /* UIAlertController-Movieator.swift in Sources */,
 				F555F12420C2B415009CA3E6 /* GenreMovieGroupingManager.swift in Sources */,
 				F555F12220C2B345009CA3E6 /* GenreMovieGrouping.swift in Sources */,
+				48924E1B20DBA2A400181AC3 /* UIView-Movieator.swift in Sources */,
 				F5FD545C20AD6E5800506C50 /* MovieSearchViewController.swift in Sources */,
 				F5337BEA20B309F3004C6E77 /* SavedMoviesManager.swift in Sources */,
 			);
