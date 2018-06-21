@@ -54,6 +54,7 @@ class MovieFetcher {
             let decoder = JSONDecoder()
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "dd MMM yyyy"
+            dateFormatter.locale = Locale(identifier: "en_US")
             decoder.dateDecodingStrategy = .formatted(dateFormatter)
             let movie = try decoder.decode(Movie.self, from: movieData)
             return movie
