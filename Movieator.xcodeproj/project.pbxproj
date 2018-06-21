@@ -375,6 +375,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 48DBE50B20A42B0F00572B73 /* Build configuration list for PBXNativeTarget "Movieator" */;
 			buildPhases = (
+				F59C912620CFE3850001FD6E /* ShellScript */,
 				F86B7872459CD0AC33EA2388 /* [CP] Check Pods Manifest.lock */,
 				48DBE4EA20A42B0E00572B73 /* Sources */,
 				48DBE4EB20A42B0E00572B73 /* Frameworks */,
@@ -508,6 +509,19 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Movieator/Pods-Movieator-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		F59C912620CFE3850001FD6E /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"";
 		};
 		F86B7872459CD0AC33EA2388 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;

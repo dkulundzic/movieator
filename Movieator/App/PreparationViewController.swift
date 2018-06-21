@@ -17,9 +17,9 @@ import Foundation
 
 import UIKit
 
-class PreparationViewController : UIViewController {
+class PreparationViewController: UIViewController {
     
-    var movieIDs : [String] = []
+    var movieIDs: [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()

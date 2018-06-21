@@ -36,7 +36,7 @@ enum MovieSortKey: String {
     }
 }
 
-class GenreMovieGrouping{
+class GenreMovieGrouping {
     var genre = ""
     var movies: [Movie] = []
     

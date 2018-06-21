@@ -6,6 +6,8 @@
 //  Copyright © 2018 Codeopolius. All rights reserved.
 //
 
+// swiftlint:disable force_try
+
 import Foundation
 import RealmSwift
 

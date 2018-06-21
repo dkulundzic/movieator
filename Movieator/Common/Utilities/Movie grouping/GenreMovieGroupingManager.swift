@@ -62,15 +62,15 @@ class GenreMovieGroupingManager {
     func getGenreMovies(for genre: String) -> [Movie] {
         return moviesInGenres.first(where: { $0.genre == genre })?.movies ?? []
     }
-    
+  
     func getAvailableGenres() -> [String] {
-        return moviesInGenres.filter { !$0.movies.isEmpty }.map{ $0.genre }
+        return moviesInGenres.filter { !$0.movies.isEmpty }.map { $0.genre }
     }
     
     func sortMovies(withKey sortKey: MovieSortKey) -> Bool {
         guard self.sortKey != sortKey else { return false }
         self.sortKey = sortKey
-        moviesInGenres.forEach{ $0.sortMovies(byKey: sortKey) }
+        moviesInGenres.forEach { $0.sortMovies(byKey: sortKey) }
         return true
     }
     

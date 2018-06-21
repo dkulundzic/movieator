@@ -7,6 +7,7 @@ target 'Movieator' do
 
   # Pods for Movieator
   pod 'RealmSwift'
+  pod 'SwiftLint'
 
   target 'MovieatorTests' do
     inherit! :search_paths
