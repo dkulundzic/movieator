@@ -15,9 +15,13 @@ class MovieSearchViewController: UIViewController {
     private let dataController = DataController()
     private lazy var movies: Results<Movie> = dataController.loadMovies()
     private var filteredMovies = [Movie]()
-    private let reuseIdentifier = "cell"
     weak var delegate: MovieSearchViewControllerDelegate?
-
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        collectionView.register(MovieCollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+    }
+    
     func filterMovies(with query: String) {
         filteredMovies = movies.filter { movies in movies.title.lowercased().contains(query.lowercased()) }
         collectionView.reloadData()
@@ -31,7 +35,7 @@ extension MovieSearchViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath as IndexPath) as! MovieCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath as IndexPath) as! MovieCollectionViewCell
         cell.setupCell(with: filteredMovies[indexPath.item])
         return cell
     }

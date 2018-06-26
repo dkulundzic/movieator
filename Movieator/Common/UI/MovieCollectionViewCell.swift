@@ -8,7 +8,7 @@
 
 import SnapKit
 
-class MovieCollectionViewCellSK: UICollectionViewCell {
+class MovieCollectionViewCell: UICollectionViewCell {
     typealias ViewModel = (title: String?, year: String?, posterURL: String)
     
     private let stackView = UIStackView.autolayoutView()
@@ -27,7 +27,7 @@ class MovieCollectionViewCellSK: UICollectionViewCell {
     }
 }
 
-extension MovieCollectionViewCellSK {    
+extension MovieCollectionViewCell {    
     func setupCell(with movie: Movie) {
         titleLabel.text = movie.title
         let year = String(Calendar.current.component(.year, from: movie.releaseDate))
@@ -35,17 +35,17 @@ extension MovieCollectionViewCellSK {
         
         let posterFetcher = MoviePosterFetcher()
         posterFetcher.fetchMoviePoster(with: movie.poster,
-                                       success: { [weak self] data in
-                                        let image = UIImage(data: data)
-                                        self?.imageView.image = image
+            success: { [weak self] data in
+                let image = UIImage(data: data)
+                self?.imageView.image = image
             },
-                                       failure: { error in
-                                        print("Error getting poster, \(error)")
+            failure: { error in
+                print("Error getting poster, \(error)")
         })
     }
 }
 
-private extension MovieCollectionViewCellSK {
+private extension MovieCollectionViewCell {
     func setupViews() {
         setupImageView()
         setupImageViewOverlay()
@@ -105,34 +105,5 @@ private extension MovieCollectionViewCellSK {
             $0.width.height.equalTo(imageView)
             $0.center.equalTo(imageView)
         }
-    }
-}
-
-class MovieCollectionViewCell: UICollectionViewCell {
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var yearLabel: UILabel!
-    @IBOutlet weak var imageView: UIImageView!
-    
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        imageView.image = nil
-    }
-    
-    func setupCell(with movie: Movie) {
-        titleLabel.text = movie.title
-        let year = String(Calendar.current.component(.year, from: movie.releaseDate))
-        yearLabel.text = year
-        imageView.layer.cornerRadius = 30.0
-        imageView.clipsToBounds = true
-        
-        let posterFetcher = MoviePosterFetcher()
-        posterFetcher.fetchMoviePoster(with: movie.poster,
-            success: { [weak self] data in
-                let image = UIImage(data: data)
-                self?.imageView.image = image
-        },
-            failure: { error in
-                print("Error getting poster, \(error)")
-        })
     }
 }

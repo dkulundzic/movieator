@@ -22,8 +22,12 @@ class MovieDetailsViewController: UIViewController {
     
     var movie: Movie!
     
+    private let details = MovieDetailsView.autolayoutView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.view.backgroundColor = .white
         
         let saveButtonTitle = LocalizationKey.MovieDetails.saveButtonText.localized()
         let shareButtonTitle = LocalizationKey.MovieDetails.shareButtonText.localized()
@@ -59,27 +63,11 @@ class MovieDetailsViewController: UIViewController {
     }
     
     func setupViews() {
-        titleLabel.text = movie.title
-        imdbRatingLabel.text = "\(movie.imdbRating)"
-        metascoreRatingLabel.text = "\(movie.metascore)"
-        plotLabel.text = movie.plot
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .medium
-        releasedLabel.text = dateFormatter.string(from: movie.releaseDate)
-        genreLabel.text = movie.genre
-        actorsLabel.text = movie.actors
-        directorLabel.text = movie.director
-        writerLabel.text = movie.writer
-        
-        let posterFetcher = MoviePosterFetcher()
-        posterFetcher.fetchMoviePoster(with: movie.poster,
-           success: { data in
-                let image = UIImage(data: data)
-                self.posterImageView.image = image
-            },
-           failure: { error in
-                print("Error getting poster, \(error)")
-        })
+        self.view.addSubview(details)
+        details.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+        details.setupDetails(withMovie: movie)
     }
 }
 
