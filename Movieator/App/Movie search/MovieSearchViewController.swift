@@ -11,7 +11,7 @@ import RealmSwift
 
 class MovieSearchViewController: UIViewController {
     private let flowLayout = UICollectionViewFlowLayout()
-    private lazy var collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: flowLayout)
+    private lazy var collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: flowLayout).autolayoutView()
     
     private let dataController = DataController()
     private lazy var movies: Results<Movie> = dataController.loadMovies()
