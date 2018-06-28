@@ -9,16 +9,18 @@
 import UIKit
 
 class MovieListViewController: UIViewController {
-    @IBOutlet weak var tableView: UITableView!
+    private let tableView = UITableView().autolayoutView()
     private let moviesInGenresManager = GenreMovieGroupingManager()
     private let movieSearchResultsViewController = MovieSearchViewController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.backgroundColor = .white
         definesPresentationContext = true
         
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = 200
+        setupTableView()
+        tableView.dataSource = self
+        tableView.register(GenreTableViewCell.self, forCellReuseIdentifier: "cell")
         
         let searchController = UISearchController(searchResultsController: movieSearchResultsViewController)
         searchController.obscuresBackgroundDuringPresentation = true
@@ -87,7 +89,7 @@ class MovieListViewController: UIViewController {
     }
 }
 
-// MARK: - UICollectionViewDataSource
+// MARK: - UITableViewDataSource
 extension MovieListViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return moviesInGenresManager.getAvailableGenres().count
@@ -98,7 +100,8 @@ extension MovieListViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TableViewCell", for: indexPath) as! GenreTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! GenreTableViewCell
+        cell.setupCell()
         cell.row = indexPath.section
         cell.moviesInGenresManager = moviesInGenresManager
         cell.didSelectItemAt = { [weak self] row, item in
@@ -167,5 +170,13 @@ private extension MovieListViewController {
         let alert = UIAlertController.generic(title: LocalizationKey.MovieList.importMovieAlertTitle.localized(),
                                               cancelTitle: LocalizationKey.Alert.okAction.localized())
         alert.present(on: self)
+    }
+    
+    func setupTableView() {
+        self.view.addSubview(tableView)
+        tableView.backgroundColor = .white
+        tableView.snp.makeConstraints {
+            $0.edges.equalTo(self.view.safeAreaLayoutGuide)
+        }
     }
 }
