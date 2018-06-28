@@ -6,11 +6,12 @@
 //  Copyright © 2018 Codeopolius. All rights reserved.
 //
 
-import UIKit
+import SnapKit
 import RealmSwift
 
 class MovieSearchViewController: UIViewController {
-    @IBOutlet weak var collectionView: UICollectionView!
+    private let flowLayout = UICollectionViewFlowLayout()
+    private lazy var collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: flowLayout)
     
     private let dataController = DataController()
     private lazy var movies: Results<Movie> = dataController.loadMovies()
@@ -19,6 +20,11 @@ class MovieSearchViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.backgroundColor = .white
+        
+        setupCollectionView()
+        collectionView.delegate = self
+        collectionView.dataSource = self
         collectionView.register(MovieCollectionViewCell.self, forCellWithReuseIdentifier: "cell")
     }
     
@@ -53,5 +59,20 @@ extension MovieSearchViewController: UICollectionViewDelegateFlowLayout {
 extension MovieSearchViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         delegate?.movieSearch(self, didSelectMovie: filteredMovies[indexPath.item])
+    }
+}
+
+// MARK: - Private Methods Extension
+private extension MovieSearchViewController {
+    func setupCollectionView() {
+        self.view.addSubview(collectionView)
+        flowLayout.scrollDirection = .vertical
+        flowLayout.minimumInteritemSpacing = 10
+        flowLayout.minimumLineSpacing = 10
+        flowLayout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        collectionView.backgroundColor = .white
+        collectionView.snp.makeConstraints {
+            $0.edges.equalTo(self.view.safeAreaLayoutGuide)
+        }
     }
 }

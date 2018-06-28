@@ -11,7 +11,7 @@ import UIKit
 class MovieListViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     private let moviesInGenresManager = GenreMovieGroupingManager()
-    private let movieSearchResultsViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MovieSearchViewController") as! MovieSearchViewController
+    private let movieSearchResultsViewController = MovieSearchViewController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
