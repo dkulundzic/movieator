@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let isDatabaseInitialised = FileManager.default.fileExists(atPath: (documentsURL))
         let rootViewController = isDatabaseInitialised ?
             MovieListViewController() :
-            UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PreparationViewController")
+            PreparationViewController()
         
         window = UIWindow(frame: UIScreen.main.bounds)
         let navController = UINavigationController(rootViewController: rootViewController)

@@ -22,7 +22,6 @@
 		48DBE53320A4516700572B73 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48DBE53220A4516700572B73 /* Movie.swift */; };
 		5E5EDBD4C88821AC9A311787 /* Pods_Movieator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92B7BD7731B349FFE410AA21 /* Pods_Movieator.framework */; };
 		F509BCF520D102F3004F52AB /* LocalizationKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = F509BCF420D102F3004F52AB /* LocalizationKey.swift */; };
-		F51260B520CFF4E500413BFB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F51260B720CFF4E500413BFB /* Main.storyboard */; };
 		F514FFD320C6A8FA00982F6B /* GenreTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F514FFD220C6A8FA00982F6B /* GenreTableViewCell.swift */; };
 		F514FFE120CF0E9E00982F6B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F514FFE320CF0E9E00982F6B /* Localizable.strings */; };
 		F5337BEA20B309F3004C6E77 /* SavedMoviesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5337BE920B309F3004C6E77 /* SavedMoviesManager.swift */; };
@@ -74,9 +73,6 @@
 		985F4ED202B1C0C630D83045 /* Pods-MovieatorTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieatorTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MovieatorTests/Pods-MovieatorTests.release.xcconfig"; sourceTree = "<group>"; };
 		C1EC2AED1CFB4F13C4D2D22E /* Pods-Movieator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Movieator.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Movieator/Pods-Movieator.debug.xcconfig"; sourceTree = "<group>"; };
 		F509BCF420D102F3004F52AB /* LocalizationKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationKey.swift; sourceTree = "<group>"; };
-		F51260B620CFF4E500413BFB /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/Main.storyboard; sourceTree = "<group>"; };
-		F51260B820CFF4EA00413BFB /* es */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = es; path = es.lproj/Main.storyboard; sourceTree = "<group>"; };
-		F51260B920CFF4ED00413BFB /* de */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = de; path = de.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F514FFD220C6A8FA00982F6B /* GenreTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreTableViewCell.swift; sourceTree = "<group>"; };
 		F514FFE220CF0E9E00982F6B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F514FFE420CFAF4D00982F6B /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -181,7 +177,6 @@
 		48DBE4F020A42B0E00572B73 /* Movieator */ = {
 			isa = PBXGroup;
 			children = (
-				48DBE51820A42CBD00572B73 /* Storyboards */,
 				48DBE51120A42CBD00572B73 /* App */,
 				48DBE51D20A42CBD00572B73 /* Common */,
 				48DBE51920A42CBD00572B73 /* Resources */,
@@ -250,14 +245,6 @@
 				F5AB6D1220AC78EB0084DE49 /* MovieDetailsViewController.swift */,
 			);
 			path = "Movie details";
-			sourceTree = "<group>";
-		};
-		48DBE51820A42CBD00572B73 /* Storyboards */ = {
-			isa = PBXGroup;
-			children = (
-				F51260B720CFF4E500413BFB /* Main.storyboard */,
-			);
-			path = Storyboards;
 			sourceTree = "<group>";
 		};
 		48DBE51920A42CBD00572B73 /* Resources */ = {
@@ -464,7 +451,6 @@
 				48DBE52520A42CBD00572B73 /* Info.plist in Resources */,
 				48DBE52420A42CBD00572B73 /* Assets.xcassets in Resources */,
 				48DBE52720A4349E00572B73 /* movie_ids.txt in Resources */,
-				F51260B520CFF4E500413BFB /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -603,16 +589,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		F51260B720CFF4E500413BFB /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				F51260B620CFF4E500413BFB /* en */,
-				F51260B820CFF4EA00413BFB /* es */,
-				F51260B920CFF4ED00413BFB /* de */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		F514FFE320CF0E9E00982F6B /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
