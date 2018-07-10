@@ -9,16 +9,18 @@
 import UIKit
 
 class MovieListViewController: UIViewController {
-    @IBOutlet weak var tableView: UITableView!
+    private let tableView = UITableView().autolayoutView()
     private let moviesInGenresManager = GenreMovieGroupingManager()
-    private let movieSearchResultsViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MovieSearchViewController") as! MovieSearchViewController
+    private let movieSearchResultsViewController = MovieSearchViewController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.backgroundColor = .white
         definesPresentationContext = true
         
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = 200
+        setupTableView()
+        tableView.dataSource = self
+        tableView.register(GenreTableViewCell.self, forCellReuseIdentifier: "cell")
         
         let searchController = UISearchController(searchResultsController: movieSearchResultsViewController)
         searchController.obscuresBackgroundDuringPresentation = true
@@ -80,14 +82,14 @@ class MovieListViewController: UIViewController {
     }
     
     @objc func userButtonTapped() {
-        let userProfileViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "UserProfileViewController")
+        let userProfileViewController = UserProfileViewController()
         let navController = UINavigationController(rootViewController: userProfileViewController)
         navController.navigationBar.prefersLargeTitles = true
         present(navController, animated: true, completion: nil)
     }
 }
 
-// MARK: - UICollectionViewDataSource
+// MARK: - UITableViewDataSource
 extension MovieListViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return moviesInGenresManager.getAvailableGenres().count
@@ -98,12 +100,13 @@ extension MovieListViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TableViewCell", for: indexPath) as! GenreTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! GenreTableViewCell
+        cell.setupCell()
         cell.row = indexPath.section
         cell.moviesInGenresManager = moviesInGenresManager
         cell.didSelectItemAt = { [weak self] row, item in
             guard let strongSelf = self else { return }
-            let movieDetailsViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MovieDetailsViewController") as! MovieDetailsViewController
+            let movieDetailsViewController = MovieDetailsViewController()
             let genre = strongSelf.moviesInGenresManager.getAvailableGenres()[row]
             let movie = strongSelf.moviesInGenresManager.getGenreMovies(for: genre)[item]
             movieDetailsViewController.movie = movie
@@ -128,7 +131,7 @@ extension MovieListViewController: UISearchResultsUpdating {
 // MARK: - MovieSearchViewControllerDelegate
 extension MovieListViewController: MovieSearchViewControllerDelegate {
     func movieSearch(_ movieSearch: MovieSearchViewController, didSelectMovie movie: Movie) {
-        let movieDetailsViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MovieDetailsViewController") as! MovieDetailsViewController
+        let movieDetailsViewController = MovieDetailsViewController()
         movieDetailsViewController.movie = movie
         navigationController?.pushViewController(movieDetailsViewController, animated: true)
     }
@@ -149,7 +152,7 @@ private extension MovieListViewController {
                 let year = String(Calendar.current.component(.year, from: movie.releaseDate))
                 let actions = [UIAlertAction(title: LocalizationKey.MovieList.movieFoundAlertImportAction.localized(),
                                              style: .default,
-                                             handler: { action in self.importMovie(for: movie) } )]
+                                             handler: { action in self.importMovie(for: movie) })]
                 let alert = UIAlertController.generic(title: LocalizationKey.MovieList.movieFoundAlertTitle.localized(),
                                                       message: LocalizationKey.MovieList.movieFoundAlertMessage.localized(movie.title, year),
                                                       preferredStyle: .actionSheet,
@@ -167,5 +170,13 @@ private extension MovieListViewController {
         let alert = UIAlertController.generic(title: LocalizationKey.MovieList.importMovieAlertTitle.localized(),
                                               cancelTitle: LocalizationKey.Alert.okAction.localized())
         alert.present(on: self)
+    }
+    
+    func setupTableView() {
+        self.view.addSubview(tableView)
+        tableView.backgroundColor = .white
+        tableView.snp.makeConstraints {
+            $0.edges.equalTo(self.view.safeAreaLayoutGuide)
+        }
     }
 }
