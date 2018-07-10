@@ -9,25 +9,14 @@
 import UIKit
 
 class MovieDetailsViewController: UIViewController {
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var imdbRatingLabel: UILabel!
-    @IBOutlet weak var metascoreRatingLabel: UILabel!
-    @IBOutlet weak var plotLabel: UILabel!
-    @IBOutlet weak var actorsLabel: UILabel!
-    @IBOutlet weak var genreLabel: UILabel!
-    @IBOutlet weak var releasedLabel: UILabel!
-    @IBOutlet weak var posterImageView: UIImageView!
-    @IBOutlet weak var writerLabel: UILabel!
-    @IBOutlet weak var directorLabel: UILabel!
-    
     var movie: Movie!
     
-    private let details = MovieDetailsView.autolayoutView()
+    private let detailsView = MovieDetailsView.autolayoutView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.view.backgroundColor = .white
+        view.backgroundColor = .white
         
         let saveButtonTitle = LocalizationKey.MovieDetails.saveButtonText.localized()
         let shareButtonTitle = LocalizationKey.MovieDetails.shareButtonText.localized()
@@ -63,11 +52,11 @@ class MovieDetailsViewController: UIViewController {
     }
     
     func setupViews() {
-        self.view.addSubview(details)
-        details.snp.makeConstraints {
+        view.addSubview(detailsView)
+        detailsView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
-        details.setupDetails(withMovie: movie)
+        detailsView.setupDetails(withMovie: movie)
     }
 }
 

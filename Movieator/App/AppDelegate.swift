@@ -9,6 +9,8 @@
 import UIKit
 import RealmSwift
 
+public let dateFormatter = DateFormatter()
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 

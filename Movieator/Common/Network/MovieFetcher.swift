@@ -52,7 +52,6 @@ class MovieFetcher {
     func parseJSON(movieData: Data) -> Movie? {
         do {
             let decoder = JSONDecoder()
-            let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "dd MMM yyyy"
             dateFormatter.locale = Locale(identifier: "en_US")
             decoder.dateDecodingStrategy = .formatted(dateFormatter)
