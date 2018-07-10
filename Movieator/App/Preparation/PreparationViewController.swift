@@ -32,8 +32,8 @@ class PreparationViewController: UIViewController {
     
     func didCompleteFetchingAndStoringMovies() {
         activityIndicator.removeFromSuperview()
-        let preparationViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MovieListViewController")
-        navigationController?.pushViewController(preparationViewController, animated: true)
+        let movieListViewController = MovieListViewController()
+        navigationController?.pushViewController(movieListViewController, animated: true)
     }
     
     func getMovies() {

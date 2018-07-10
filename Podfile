@@ -8,6 +8,7 @@ target 'Movieator' do
   # Pods for Movieator
   pod 'RealmSwift'
   pod 'SwiftLint'
+  pod 'SnapKit', '~> 4.0.0'
 
   target 'MovieatorTests' do
     inherit! :search_paths
