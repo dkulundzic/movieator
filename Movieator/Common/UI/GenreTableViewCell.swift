@@ -11,6 +11,11 @@ import UIKit
 class GenreTableViewCell: UITableViewCell {
     @IBOutlet weak var collectionView: UICollectionView!
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        collectionView.register(MovieCollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+    }
+    
     var moviesInGenresManager: GenreMovieGroupingManager?
     var didSelectItemAt: ((Int, Int) -> Void)?
     
