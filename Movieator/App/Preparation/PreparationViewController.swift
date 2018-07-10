@@ -9,17 +9,41 @@
 import UIKit
 
 class PreparationViewController: UIViewController {
-    let movieFetcher: MovieFetcher = MovieFetcher()
-    let data = DataController()
-    let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
-    @IBOutlet weak var loadingView: UIView!
+    private let movieFetcher: MovieFetcher = MovieFetcher()
+    private let data = DataController()
+    private let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+    private let titleLabel = UILabel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadingView.addSubview(activityIndicator)
-        activityIndicator.frame = loadingView.bounds
+        self.view.backgroundColor = .white
+        setupViews()
         activityIndicator.startAnimating()
         getMovies()
+    }
+    
+    func setupViews() {
+        setupActivityIndicator()
+        setupTitleLabel()
+    }
+    
+    func setupActivityIndicator() {
+        self.view.addSubview(activityIndicator)
+        activityIndicator.snp.makeConstraints {
+            $0.center.equalToSuperview()
+        }
+    }
+
+    func setupTitleLabel() {
+        self.view.addSubview(titleLabel)
+        titleLabel.text = LocalizationKey.Preparation.title.localized()
+        titleLabel.textColor = .black
+        titleLabel.font = .systemFont(ofSize: 35)
+        titleLabel.textAlignment = .center
+        titleLabel.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.top.equalTo(activityIndicator.snp.bottom)
+        }
     }
     
     func movieReceived(movie: Movie) {
@@ -32,8 +56,8 @@ class PreparationViewController: UIViewController {
     
     func didCompleteFetchingAndStoringMovies() {
         activityIndicator.removeFromSuperview()
-        let preparationViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MovieListViewController")
-        navigationController?.pushViewController(preparationViewController, animated: true)
+        let movieListViewController = MovieListViewController()
+        navigationController?.pushViewController(movieListViewController, animated: true)
     }
     
     func getMovies() {
