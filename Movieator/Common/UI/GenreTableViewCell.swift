@@ -9,7 +9,8 @@
 import UIKit
 
 class GenreTableViewCell: UITableViewCell {
-    @IBOutlet weak var collectionView: UICollectionView!
+    private let flowLayout = UICollectionViewFlowLayout()
+    private lazy var collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: flowLayout).autolayoutView()
     
     var moviesInGenresManager: GenreMovieGroupingManager?
     var didSelectItemAt: ((Int, Int) -> Void)?
@@ -18,6 +19,17 @@ class GenreTableViewCell: UITableViewCell {
         didSet {
             collectionView.reloadData()
         }
+    }
+}
+
+// MARK: - GenreTableViewCell
+extension GenreTableViewCell {
+    func setupCell() {
+        setupCollectionView()
+        
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.register(MovieCollectionViewCell.self, forCellWithReuseIdentifier: "cell")
     }
 }
 
@@ -55,6 +67,22 @@ extension GenreTableViewCell: UICollectionViewDelegateFlowLayout {
 // MARK: - UICollectionViewDelegate
 extension GenreTableViewCell: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        didSelectItemAt?(row,indexPath.item)
+        didSelectItemAt?(row, indexPath.item)
+    }
+}
+
+// MARK: - Private Methods Extension
+private extension GenreTableViewCell {
+    func setupCollectionView() {
+        contentView.addSubview(collectionView)
+        flowLayout.scrollDirection = .horizontal
+        flowLayout.minimumInteritemSpacing = 10
+        flowLayout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        collectionView.backgroundColor = .white
+        
+        collectionView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+            $0.height.equalTo(192.5)
+        }
     }
 }
