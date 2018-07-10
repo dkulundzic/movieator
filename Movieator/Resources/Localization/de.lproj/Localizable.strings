@@ -6,6 +6,9 @@
   Copyright © 2018 Codeopolius. All rights reserved.
 */
 
+/* Preparation */
+"preparation_title_label" = "Vorbereitung";
+
 /* Movie list */
 "movie_list_search_bar_placeholder" = "Filme suchen";
 "movie_list_navigation_bar_title" = "Hauptliste";
