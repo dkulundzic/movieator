@@ -10,26 +10,15 @@ import SnapKit
 import RealmSwift
 
 class UserProfileViewController: UIViewController {
-    private let reuseIdentifier = "cell"
     private let data = DataController()
     private let userMovieIDs = SavedMoviesManager()
     private lazy var movieIDs = userMovieIDs.loadUserMovieIDs()
     private lazy var movies = data.loadMovies(with: movieIDs)
-    private let flowLayout = UICollectionViewFlowLayout()
-    private lazy var collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: flowLayout).autolayoutView()
+    private let userProfileView = UserProfileView().autolayoutView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .white
-
-        setupCollectionView()
-        collectionView.delegate = self
-        collectionView.dataSource = self
-        collectionView.register(MovieCollectionViewCell.self, forCellWithReuseIdentifier: "cell")
-        
-        navigationItem.title = LocalizationKey.MovieList.navigationBarTitle.localized()
-        navigationItem.largeTitleDisplayMode = .always
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .stop, target: self, action: #selector(dismissViewController))
+        setupView()
     }
     
     @objc func dismissViewController() {
@@ -58,7 +47,9 @@ extension UserProfileViewController: UICollectionViewDelegate {
         alert.addAction(UIAlertAction(title: LocalizationKey.UserProfile.deleteMovieAlertDeleteAction.localized(),
                                       style: .default,
                                       handler: { action in
-            self.userMovieIDs.deleteSavedMovie(withId: self.movieIDs[indexPath.item])
+            let predicate = NSPredicate(format: "id LIKE %@", self.movies[indexPath.item].imdbID)
+            guard let movieID = self.movieIDs.filter(predicate).first else { return }
+            self.userMovieIDs.deleteSavedMovie(withId: movieID)
             self.reloadData()
             collectionView.reloadData()
         }))
@@ -66,6 +57,7 @@ extension UserProfileViewController: UICollectionViewDelegate {
     }
 }
 
+// MARK: - UICollectionViewDelegateFlowLayout
 extension UserProfileViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let size = (collectionView.bounds.size.width - 30) / 2
@@ -75,16 +67,17 @@ extension UserProfileViewController: UICollectionViewDelegateFlowLayout {
 
 // MARK: - Private Methods Extension
 private extension UserProfileViewController {
-    func setupCollectionView() {
-        self.view.addSubview(collectionView)
-        flowLayout.scrollDirection = .horizontal
-        flowLayout.minimumInteritemSpacing = 10
-        flowLayout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-        collectionView.backgroundColor = .white
-        let sizeOfCell = (self.view.bounds.size.width - 30) / 2
-        collectionView.snp.makeConstraints {
-            $0.top.leading.trailing.equalTo(self.view.safeAreaLayoutGuide)
-            $0.height.equalTo(sizeOfCell + 20)
+    func setupView() {
+        navigationItem.title = LocalizationKey.UserProfile.navigationBarTitle.localized()
+        navigationItem.largeTitleDisplayMode = .always
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .stop, target: self, action: #selector(dismissViewController))
+        view.backgroundColor = .white
+        view.addSubview(userProfileView)
+        userProfileView.collectionView.delegate = self
+        userProfileView.collectionView.dataSource = self
+        userProfileView.collectionView.register(MovieCollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+        userProfileView.snp.makeConstraints {
+            $0.edges.equalTo(view.safeAreaLayoutGuide)
         }
     }
     
