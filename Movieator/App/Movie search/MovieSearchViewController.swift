@@ -36,7 +36,7 @@ extension MovieSearchViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath as IndexPath) as! MovieCollectionViewCell
-        cell.setupCell(with: filteredMovies[indexPath.item])
+        cell.setProperties(with: filteredMovies[indexPath.item])
         return cell
     }
 }

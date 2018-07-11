@@ -35,8 +35,7 @@ class MovieDetailsView: UIView {
 }
 
 extension MovieDetailsView {
-    func setupDetails(withMovie movie: Movie) {
-        setupViews()
+    func setProperties(withMovie movie: Movie) {
         titleLabel.text = movie.title
         imdbRatingView.setProperties(title: "IMDB: ", body: "\(movie.imdbRating)")
         metascoreRatingView.setProperties(title: "Metascore: ", body: "\(movie.metascore)")
@@ -79,17 +78,17 @@ private extension MovieDetailsView {
     }
     
     func setupImageView() {
-        self.addSubview(imageView)
+        addSubview(imageView)
         imageView.contentMode = .scaleAspectFill
         imageView.snp.makeConstraints {
-            $0.edges.equalTo(self.safeAreaLayoutGuide)
+            $0.edges.equalTo(safeAreaLayoutGuide)
         }
     }
     
     func setupScrollView() {
-        self.addSubview(scrollView)
+        addSubview(scrollView)
         scrollView.snp.makeConstraints {
-            $0.edges.equalTo(self.safeAreaLayoutGuide)
+            $0.edges.equalTo(safeAreaLayoutGuide)
         }
     }
     
@@ -99,7 +98,7 @@ private extension MovieDetailsView {
         scrollContentView.alpha = 0.6
         scrollContentView.snp.makeConstraints {
             $0.edges.equalToSuperview()
-            $0.width.equalTo(self.snp.width)
+            $0.width.equalTo(snp.width)
         }
     }
     

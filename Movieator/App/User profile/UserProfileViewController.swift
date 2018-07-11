@@ -36,7 +36,7 @@ extension UserProfileViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath as IndexPath) as! MovieCollectionViewCell
-        cell.setupCell(with: movies[indexPath.item])
+        cell.setProperties(with: movies[indexPath.item])
         return cell
     }
 }
