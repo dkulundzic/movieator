@@ -9,8 +9,7 @@
 import SnapKit
 
 class UserProfileView: UIView {
-    private let flowLayout = UICollectionViewFlowLayout()
-    lazy var collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: flowLayout).autolayoutView()
+    let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: UICollectionViewFlowLayout()).autolayoutView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -34,13 +33,15 @@ class UserProfileView: UIView {
 private extension UserProfileView {
     func setupViews() {
         addSubview(collectionView)
-        flowLayout.scrollDirection = .horizontal
-        flowLayout.minimumInteritemSpacing = 10
-        flowLayout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         collectionView.backgroundColor = .white
         collectionView.snp.makeConstraints {
             $0.top.leading.trailing.equalToSuperview()
             $0.height.equalTo(375)
+        }
+        if let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+            flowLayout.scrollDirection = .horizontal
+            flowLayout.minimumInteritemSpacing = 10
+            flowLayout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         }
     }
 }
