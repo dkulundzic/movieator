@@ -23,7 +23,11 @@ class MovieDetailsView: UIView {
     private let actorsView = MovieDetailsPropertyView.autolayoutView()
     private let directorView = MovieDetailsPropertyView.autolayoutView()
     private let writerView = MovieDetailsPropertyView.autolayoutView()
-    private let dateFormatter = DateFormatter()
+    private let dateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
+        return dateFormatter
+    }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -35,13 +39,13 @@ class MovieDetailsView: UIView {
     }
 }
 
+// MARK: - Public Methods
 extension MovieDetailsView {
     func updateProperties(withMovie movie: Movie) {
         titleLabel.text = movie.title
         imdbRatingView.updateProperties(title: "IMDB: ", body: "\(movie.imdbRating)")
         metascoreRatingView.updateProperties(title: "Metascore: ", body: "\(movie.metascore)")
         plotView.updateProperties(title: "Plot: ", body: movie.plot)
-        dateFormatter.dateStyle = .medium
         releasedView.updateProperties(title: "Released: ", body: dateFormatter.string(from: movie.releaseDate))
         genreView.updateProperties(title: "Genre: ", body: movie.genre)
         actorsView.updateProperties(title: "Actors: ", body: movie.actors)
@@ -60,6 +64,7 @@ extension MovieDetailsView {
     }
 }
 
+// MARK: - Private Methods
 private extension MovieDetailsView {
     func setupViews() {
         setupImageView()

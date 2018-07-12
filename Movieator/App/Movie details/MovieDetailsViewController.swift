@@ -15,32 +15,21 @@ class MovieDetailsViewController: UIViewController {
     init(movie: Movie) {
         self.movie = movie
         super.init(nibName: nil, bundle: nil)
+        setupNavigationBar()
+        setupView()
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.backgroundColor = .white
-        
-        let saveButtonTitle = LocalizationKey.MovieDetails.saveButtonText.localized()
-        let shareButtonTitle = LocalizationKey.MovieDetails.shareButtonText.localized()
-        let saveButton = UIBarButtonItem(title: saveButtonTitle, style: .plain, target: self, action: #selector(saveButtonTapped))
-        let shareButton = UIBarButtonItem(title: shareButtonTitle, style: .plain, target: self, action: #selector(shareButtonTapped))
-        
-        navigationItem.title = LocalizationKey.MovieDetails.navigationBarTitle.localized()
-        navigationItem.largeTitleDisplayMode = .automatic
-        navigationItem.rightBarButtonItems = [saveButton, shareButton]
+}
 
-        setupViews()
-    }
-    
+// MARK: - Actions
+private extension MovieDetailsViewController {
     @objc func saveButtonTapped() {
         let savedMoviesManager = SavedMoviesManager()
         savedMoviesManager.saveUserMovie(withID: movie.imdbID)
-
+        
         let alert = UIAlertController.generic(title: LocalizationKey.MovieDetails.saveMovieAlertTitle.localized(),
                                               message: LocalizationKey.MovieDetails.saveMovieAlertMessage.localized(),
                                               cancelTitle: LocalizationKey.Alert.okAction.localized())
@@ -57,21 +46,34 @@ class MovieDetailsViewController: UIViewController {
         }
         present(activityViewController, animated: true, completion: nil)
     }
-    
-    func setupViews() {
-        view.addSubview(detailsView)
-        detailsView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
-        }
-        detailsView.updateProperties(withMovie: movie)
-    }
 }
 
+// MARK: - Private Methods
 private extension MovieDetailsViewController {
     func getMovieURL() -> URL {
         guard let url = URL(string: "https://www.imdb.com/title/\(movie.imdbID)") else {
             fatalError("Error creating url for this movie.")
         }
         return url
+    }
+    
+    func setupView() {
+        view.backgroundColor = .white
+        view.addSubview(detailsView)
+        detailsView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+        detailsView.updateProperties(withMovie: movie)
+    }
+    
+    func setupNavigationBar() {
+        let saveButtonTitle = LocalizationKey.MovieDetails.saveButtonText.localized()
+        let shareButtonTitle = LocalizationKey.MovieDetails.shareButtonText.localized()
+        let saveButton = UIBarButtonItem(title: saveButtonTitle, style: .plain, target: self, action: #selector(saveButtonTapped))
+        let shareButton = UIBarButtonItem(title: shareButtonTitle, style: .plain, target: self, action: #selector(shareButtonTapped))
+        
+        navigationItem.title = LocalizationKey.MovieDetails.navigationBarTitle.localized()
+        navigationItem.largeTitleDisplayMode = .automatic
+        navigationItem.rightBarButtonItems = [saveButton, shareButton]
     }
 }
