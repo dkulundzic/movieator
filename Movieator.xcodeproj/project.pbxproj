@@ -39,6 +39,7 @@
 		F5AB6D1120AC347C0084DE49 /* MoviePosterFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AB6D1020AC347C0084DE49 /* MoviePosterFetcher.swift */; };
 		F5AB6D1320AC78EB0084DE49 /* MovieDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AB6D1220AC78EB0084DE49 /* MovieDetailsViewController.swift */; };
 		F5AB6D1520AC7EFA0084DE49 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AB6D1420AC7EFA0084DE49 /* UserProfileViewController.swift */; };
+		F5E47A8620F753E3007184ED /* MovieListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E47A8520F753E3007184ED /* MovieListView.swift */; };
 		F5FD545C20AD6E5800506C50 /* MovieSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5FD545B20AD6E5800506C50 /* MovieSearchViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -95,6 +96,7 @@
 		F5AB6D1020AC347C0084DE49 /* MoviePosterFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviePosterFetcher.swift; sourceTree = "<group>"; };
 		F5AB6D1220AC78EB0084DE49 /* MovieDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsViewController.swift; sourceTree = "<group>"; };
 		F5AB6D1420AC7EFA0084DE49 /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
+		F5E47A8520F753E3007184ED /* MovieListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListView.swift; sourceTree = "<group>"; };
 		F5F9105AF06E74B8539CA626 /* Pods-MovieatorTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieatorTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MovieatorTests/Pods-MovieatorTests.debug.xcconfig"; sourceTree = "<group>"; };
 		F5FD545B20AD6E5800506C50 /* MovieSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieSearchViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -223,6 +225,7 @@
 			isa = PBXGroup;
 			children = (
 				F555BDB620AAEE43004466D3 /* MovieListViewController.swift */,
+				F5E47A8520F753E3007184ED /* MovieListView.swift */,
 			);
 			path = "Movie list";
 			sourceTree = "<group>";
@@ -579,6 +582,7 @@
 				F555F12420C2B415009CA3E6 /* GenreMovieGroupingManager.swift in Sources */,
 				F555F12220C2B345009CA3E6 /* GenreMovieGrouping.swift in Sources */,
 				48924E1B20DBA2A400181AC3 /* UIView-Movieator.swift in Sources */,
+				F5E47A8620F753E3007184ED /* MovieListView.swift in Sources */,
 				F5FD545C20AD6E5800506C50 /* MovieSearchViewController.swift in Sources */,
 				F5337BEA20B309F3004C6E77 /* SavedMoviesManager.swift in Sources */,
 			);

@@ -9,18 +9,14 @@
 import UIKit
 
 class MovieListViewController: UIViewController {
-    private let tableView = UITableView().autolayoutView()
     private let moviesInGenresManager = GenreMovieGroupingManager()
     private let movieSearchResultsViewController = MovieSearchViewController()
+    private let movieListView = MovieListView().autolayoutView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .white
         definesPresentationContext = true
-        
-        setupTableView()
-        tableView.dataSource = self
-        tableView.register(GenreTableViewCell.self, forCellReuseIdentifier: "cell")
+        setupView()
         
         let searchController = UISearchController(searchResultsController: movieSearchResultsViewController)
         searchController.obscuresBackgroundDuringPresentation = true
@@ -28,7 +24,7 @@ class MovieListViewController: UIViewController {
         searchController.searchResultsUpdater = self
         movieSearchResultsViewController.delegate = self
         moviesInGenresManager.dataChanged = { [weak self] in
-            self?.tableView.reloadData()
+            self?.movieListView.tableView.reloadData()
         }
         
         let userButton = UIBarButtonItem(image: #imageLiteral(resourceName: "userProfileIcon"), style: .plain, target: self, action: #selector(userButtonTapped))
@@ -141,7 +137,7 @@ extension MovieListViewController: MovieSearchViewControllerDelegate {
 private extension MovieListViewController {
     func sortMovies(withKey sortKey: MovieSortKey) {
         if moviesInGenresManager.sortMovies(withKey: sortKey) {
-            tableView.reloadData()
+            movieListView.tableView.reloadData()
         }
     }
     
@@ -172,11 +168,13 @@ private extension MovieListViewController {
         alert.present(on: self)
     }
     
-    func setupTableView() {
-        self.view.addSubview(tableView)
-        tableView.backgroundColor = .white
-        tableView.snp.makeConstraints {
-            $0.edges.equalTo(self.view.safeAreaLayoutGuide)
+    func setupView() {
+        view.backgroundColor = .white
+        view.addSubview(movieListView)
+        movieListView.tableView.dataSource = self
+        movieListView.tableView.register(GenreTableViewCell.self, forCellReuseIdentifier: "cell")
+        movieListView.snp.makeConstraints {
+            $0.edges.equalTo(view.safeAreaLayoutGuide)
         }
     }
 }
