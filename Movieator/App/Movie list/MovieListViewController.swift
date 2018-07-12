@@ -103,10 +103,9 @@ extension MovieListViewController: UITableViewDataSource {
         cell.moviesInGenresManager = moviesInGenresManager
         cell.didSelectItemAt = { [weak self] row, item in
             guard let strongSelf = self else { return }
-            let movieDetailsViewController = MovieDetailsViewController()
             let genre = strongSelf.moviesInGenresManager.getAvailableGenres()[row]
             let movie = strongSelf.moviesInGenresManager.getGenreMovies(for: genre)[item]
-            movieDetailsViewController.movie = movie
+            let movieDetailsViewController = MovieDetailsViewController(movie: movie)
             strongSelf.navigationController?.pushViewController(movieDetailsViewController, animated: true)
         }
         return cell
@@ -128,8 +127,7 @@ extension MovieListViewController: UISearchResultsUpdating {
 // MARK: - MovieSearchViewControllerDelegate
 extension MovieListViewController: MovieSearchViewControllerDelegate {
     func movieSearch(_ movieSearch: MovieSearchViewController, didSelectMovie movie: Movie) {
-        let movieDetailsViewController = MovieDetailsViewController()
-        movieDetailsViewController.movie = movie
+        let movieDetailsViewController = MovieDetailsViewController(movie: movie)
         navigationController?.pushViewController(movieDetailsViewController, animated: true)
     }
 }

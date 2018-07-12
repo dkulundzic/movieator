@@ -23,6 +23,11 @@ class MovieDetailsView: UIView {
     private let actorsView = MovieDetailsPropertyView.autolayoutView()
     private let directorView = MovieDetailsPropertyView.autolayoutView()
     private let writerView = MovieDetailsPropertyView.autolayoutView()
+    private let dateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
+        return dateFormatter
+    }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -34,20 +39,18 @@ class MovieDetailsView: UIView {
     }
 }
 
+// MARK: - Public Methods
 extension MovieDetailsView {
     func updateProperties(withMovie movie: Movie) {
-        setupViews()
         titleLabel.text = movie.title
-        imdbRatingView.setupView(title: "IMDB: ", body: "\(movie.imdbRating)")
-        metascoreRatingView.setupView(title: "Metascore: ", body: "\(movie.metascore)")
-        plotView.setupView(title: "Plot: ", body: movie.plot)
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .medium
-        releasedView.setupView(title: "Released: ", body: dateFormatter.string(from: movie.releaseDate))
-        genreView.setupView(title: "Genre: ", body: movie.genre)
-        actorsView.setupView(title: "Actors: ", body: movie.actors)
-        directorView.setupView(title: "Director: ", body: movie.director)
-        writerView.setupView(title: "Writer: ", body: movie.writer)
+        imdbRatingView.updateProperties(title: "IMDB: ", body: "\(movie.imdbRating)")
+        metascoreRatingView.updateProperties(title: "Metascore: ", body: "\(movie.metascore)")
+        plotView.updateProperties(title: "Plot: ", body: movie.plot)
+        releasedView.updateProperties(title: "Released: ", body: dateFormatter.string(from: movie.releaseDate))
+        genreView.updateProperties(title: "Genre: ", body: movie.genre)
+        actorsView.updateProperties(title: "Actors: ", body: movie.actors)
+        directorView.updateProperties(title: "Director: ", body: movie.director)
+        writerView.updateProperties(title: "Writer: ", body: movie.writer)
         
         let posterFetcher = MoviePosterFetcher()
         posterFetcher.fetchMoviePoster(with: movie.poster,
@@ -61,6 +64,7 @@ extension MovieDetailsView {
     }
 }
 
+// MARK: - Private Methods
 private extension MovieDetailsView {
     func setupViews() {
         setupImageView()
@@ -80,17 +84,17 @@ private extension MovieDetailsView {
     }
     
     func setupImageView() {
-        self.addSubview(imageView)
+        addSubview(imageView)
         imageView.contentMode = .scaleAspectFill
         imageView.snp.makeConstraints {
-            $0.edges.equalTo(self.safeAreaLayoutGuide)
+            $0.edges.equalTo(safeAreaLayoutGuide)
         }
     }
     
     func setupScrollView() {
-        self.addSubview(scrollView)
+        addSubview(scrollView)
         scrollView.snp.makeConstraints {
-            $0.edges.equalTo(self.safeAreaLayoutGuide)
+            $0.edges.equalTo(safeAreaLayoutGuide)
         }
     }
     
@@ -100,7 +104,7 @@ private extension MovieDetailsView {
         scrollContentView.alpha = 0.6
         scrollContentView.snp.makeConstraints {
             $0.edges.equalToSuperview()
-            $0.width.equalTo(self.snp.width)
+            $0.width.equalTo(snp.width)
         }
     }
     
@@ -166,59 +170,5 @@ private extension MovieDetailsView {
     
     func setupWriterView() {
         detailsStackView.addArrangedSubview(writerView)
-    }
-}
-
-class MovieDetailsPropertyView: UIView {
-    private let titleLabel = UILabel.autolayoutView()
-    private let bodyLabel = UILabel.autolayoutView()
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        setupViews()
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-}
-
-extension MovieDetailsPropertyView {
-    func setupView(title: String, body: String) {
-        titleLabel.text = title
-        bodyLabel.text = body
-    }
-}
-
-private extension MovieDetailsPropertyView {
-    func setupViews() {
-        setupTitleLabel()
-        setupBodyLabel()
-    }
-    
-    func setupTitleLabel() {
-        self.addSubview(titleLabel)
-        titleLabel.font = UIFont.boldSystemFont(ofSize: 17)
-        titleLabel.textColor = .black
-        titleLabel.textAlignment = .left
-        titleLabel.setContentHuggingPriority(.required, for: .horizontal)
-        titleLabel.snp.makeConstraints {
-            $0.leading.equalToSuperview().inset(10)
-            $0.top.equalToSuperview()
-            $0.bottom.lessThanOrEqualToSuperview()
-        }
-    }
-    
-    func setupBodyLabel() {
-        self.addSubview(bodyLabel)
-        bodyLabel.font = .systemFont(ofSize: 17)
-        bodyLabel.textColor = .black
-        bodyLabel.textAlignment = .left
-        bodyLabel.numberOfLines = 0
-        bodyLabel.snp.makeConstraints {
-            $0.top.bottom.equalToSuperview()
-            $0.leading.equalTo(titleLabel.snp.trailing)
-            $0.trailing.equalToSuperview().inset(10)
-        }
     }
 }

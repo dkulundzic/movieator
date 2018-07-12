@@ -39,6 +39,7 @@
 		F5AB6D1120AC347C0084DE49 /* MoviePosterFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AB6D1020AC347C0084DE49 /* MoviePosterFetcher.swift */; };
 		F5AB6D1320AC78EB0084DE49 /* MovieDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AB6D1220AC78EB0084DE49 /* MovieDetailsViewController.swift */; };
 		F5AB6D1520AC7EFA0084DE49 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AB6D1420AC7EFA0084DE49 /* UserProfileViewController.swift */; };
+		F5E47A8220F62314007184ED /* UserProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E47A8120F62314007184ED /* UserProfileView.swift */; };
 		F5E47A8420F74C06007184ED /* MovieSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E47A8320F74C06007184ED /* MovieSearchView.swift */; };
 		F5FD545C20AD6E5800506C50 /* MovieSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5FD545B20AD6E5800506C50 /* MovieSearchViewController.swift */; };
 /* End PBXBuildFile section */
@@ -84,7 +85,7 @@
 		F514FFE520CFBCC100982F6B /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F5337BE920B309F3004C6E77 /* SavedMoviesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedMoviesManager.swift; sourceTree = "<group>"; };
 		F5337BEB20B30F48004C6E77 /* SavedMovie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedMovie.swift; sourceTree = "<group>"; };
-		F54C887920DBD4F60048C7F4 /* MovieDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsView.swift; sourceTree = "<group>"; };
+		F54C887920DBD4F60048C7F4 /* MovieDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MovieDetailsView.swift; path = ../../Common/UI/MovieDetailsView.swift; sourceTree = "<group>"; };
 		F551A9FE20C5893900B33756 /* MovieSearchViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieSearchViewControllerDelegate.swift; sourceTree = "<group>"; };
 		F555BDB620AAEE43004466D3 /* MovieListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListViewController.swift; sourceTree = "<group>"; };
 		F555F12120C2B345009CA3E6 /* GenreMovieGrouping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreMovieGrouping.swift; sourceTree = "<group>"; };
@@ -96,6 +97,7 @@
 		F5AB6D1020AC347C0084DE49 /* MoviePosterFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviePosterFetcher.swift; sourceTree = "<group>"; };
 		F5AB6D1220AC78EB0084DE49 /* MovieDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsViewController.swift; sourceTree = "<group>"; };
 		F5AB6D1420AC7EFA0084DE49 /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
+		F5E47A8120F62314007184ED /* UserProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileView.swift; sourceTree = "<group>"; };
 		F5E47A8320F74C06007184ED /* MovieSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieSearchView.swift; sourceTree = "<group>"; };
 		F5F9105AF06E74B8539CA626 /* Pods-MovieatorTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieatorTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MovieatorTests/Pods-MovieatorTests.debug.xcconfig"; sourceTree = "<group>"; };
 		F5FD545B20AD6E5800506C50 /* MovieSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieSearchViewController.swift; sourceTree = "<group>"; };
@@ -217,6 +219,7 @@
 			isa = PBXGroup;
 			children = (
 				F5AB6D1420AC7EFA0084DE49 /* UserProfileViewController.swift */,
+				F5E47A8120F62314007184ED /* UserProfileView.swift */,
 			);
 			path = "User profile";
 			sourceTree = "<group>";
@@ -251,6 +254,7 @@
 			isa = PBXGroup;
 			children = (
 				F5AB6D1220AC78EB0084DE49 /* MovieDetailsViewController.swift */,
+				F54C887920DBD4F60048C7F4 /* MovieDetailsView.swift */,
 			);
 			path = "Movie details";
 			sourceTree = "<group>";
@@ -302,7 +306,6 @@
 				F5AB6D0E20AC1A620084DE49 /* MovieCollectionViewCell.swift */,
 				F555F12720C2CA77009CA3E6 /* MovieListHeaderView.swift */,
 				F514FFD220C6A8FA00982F6B /* GenreTableViewCell.swift */,
-				F54C887920DBD4F60048C7F4 /* MovieDetailsView.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -564,6 +567,7 @@
 				F585701920A5E67C00A6E98F /* DataController.swift in Sources */,
 				48BC711A20D112B3002F7222 /* String-Movieator.swift in Sources */,
 				F54C887A20DBD4F60048C7F4 /* MovieDetailsView.swift in Sources */,
+				F5E47A8220F62314007184ED /* UserProfileView.swift in Sources */,
 				48DBE53120A450FF00572B73 /* MovieFetcher.swift in Sources */,
 				F555F12820C2CA77009CA3E6 /* MovieListHeaderView.swift in Sources */,
 				F5337BEC20B30F48004C6E77 /* SavedMovie.swift in Sources */,
