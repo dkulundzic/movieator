@@ -23,7 +23,7 @@ class MovieDetailsPropertyView: UIView {
 }
 
 extension MovieDetailsPropertyView {
-    func setProperties(title: String, body: String) {
+    func updateProperties(title: String, body: String) {
         titleLabel.text = title
         bodyLabel.text = body
     }
@@ -36,7 +36,7 @@ private extension MovieDetailsPropertyView {
     }
     
     func setupTitleLabel() {
-        self.addSubview(titleLabel)
+        addSubview(titleLabel)
         titleLabel.font = UIFont.boldSystemFont(ofSize: 17)
         titleLabel.textColor = .black
         titleLabel.textAlignment = .left
@@ -49,7 +49,7 @@ private extension MovieDetailsPropertyView {
     }
     
     func setupBodyLabel() {
-        self.addSubview(bodyLabel)
+        addSubview(bodyLabel)
         bodyLabel.font = .systemFont(ofSize: 17)
         bodyLabel.textColor = .black
         bodyLabel.textAlignment = .left

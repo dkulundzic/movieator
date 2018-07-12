@@ -24,6 +24,7 @@ enum MovieFetcherError: LocalizedError {
 
 class MovieFetcher {
     private let apiKey = "dc86f926"
+    let dateFormatter = DateFormatter()
     
     func fetchMovie(byId id: String, success: @escaping (Movie) -> Void, failure: @escaping (LocalizedError) -> Void) {
         let url = produceURL(forId: id)

@@ -26,7 +26,7 @@ class MovieCollectionViewCell: UICollectionViewCell {
 }
 
 extension MovieCollectionViewCell {    
-    func setProperties(with movie: Movie) {
+    func updateProperties(with movie: Movie) {
         titleLabel.text = movie.title
         let year = String(Calendar.current.component(.year, from: movie.releaseDate))
         yearLabel.text = year

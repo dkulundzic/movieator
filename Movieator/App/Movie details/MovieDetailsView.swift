@@ -23,6 +23,7 @@ class MovieDetailsView: UIView {
     private let actorsView = MovieDetailsPropertyView.autolayoutView()
     private let directorView = MovieDetailsPropertyView.autolayoutView()
     private let writerView = MovieDetailsPropertyView.autolayoutView()
+    private let dateFormatter = DateFormatter()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -35,17 +36,17 @@ class MovieDetailsView: UIView {
 }
 
 extension MovieDetailsView {
-    func setProperties(withMovie movie: Movie) {
+    func updateProperties(withMovie movie: Movie) {
         titleLabel.text = movie.title
-        imdbRatingView.setProperties(title: "IMDB: ", body: "\(movie.imdbRating)")
-        metascoreRatingView.setProperties(title: "Metascore: ", body: "\(movie.metascore)")
-        plotView.setProperties(title: "Plot: ", body: movie.plot)
+        imdbRatingView.updateProperties(title: "IMDB: ", body: "\(movie.imdbRating)")
+        metascoreRatingView.updateProperties(title: "Metascore: ", body: "\(movie.metascore)")
+        plotView.updateProperties(title: "Plot: ", body: movie.plot)
         dateFormatter.dateStyle = .medium
-        releasedView.setProperties(title: "Released: ", body: dateFormatter.string(from: movie.releaseDate))
-        genreView.setProperties(title: "Genre: ", body: movie.genre)
-        actorsView.setProperties(title: "Actors: ", body: movie.actors)
-        directorView.setProperties(title: "Director: ", body: movie.director)
-        writerView.setProperties(title: "Writer: ", body: movie.writer)
+        releasedView.updateProperties(title: "Released: ", body: dateFormatter.string(from: movie.releaseDate))
+        genreView.updateProperties(title: "Genre: ", body: movie.genre)
+        actorsView.updateProperties(title: "Actors: ", body: movie.actors)
+        directorView.updateProperties(title: "Director: ", body: movie.director)
+        writerView.updateProperties(title: "Writer: ", body: movie.writer)
         
         let posterFetcher = MoviePosterFetcher()
         posterFetcher.fetchMoviePoster(with: movie.poster,

@@ -9,12 +9,12 @@
 import UIKit
 
 class MovieDetailsViewController: UIViewController {
-    private var movie: Movie!
+    private let movie: Movie
     private let detailsView = MovieDetailsView.autolayoutView()
     
     init(movie: Movie) {
-        super.init(nibName: nil, bundle: nil)
         self.movie = movie
+        super.init(nibName: nil, bundle: nil)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -63,7 +63,7 @@ class MovieDetailsViewController: UIViewController {
         detailsView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
-        detailsView.setProperties(withMovie: movie)
+        detailsView.updateProperties(withMovie: movie)
     }
 }
 
