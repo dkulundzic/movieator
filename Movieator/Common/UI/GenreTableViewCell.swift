@@ -11,6 +11,11 @@ import UIKit
 class GenreTableViewCell: UITableViewCell {
     @IBOutlet weak var collectionView: UICollectionView!
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        collectionView.register(MovieCollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+    }
+    
     var moviesInGenresManager: GenreMovieGroupingManager?
     var didSelectItemAt: ((Int, Int) -> Void)?
     
@@ -39,7 +44,7 @@ extension GenreTableViewCell: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath as IndexPath) as! MovieCollectionViewCell
         let genre = moviesInGenresManager.getAvailableGenres()[row]
         let movie = moviesInGenresManager.getGenreMovies(for: genre)[indexPath.item]
-        cell.setupCell(with: movie)
+        cell.updateProperties(with: movie)
         return cell
     }
 }
@@ -55,6 +60,6 @@ extension GenreTableViewCell: UICollectionViewDelegateFlowLayout {
 // MARK: - UICollectionViewDelegate
 extension GenreTableViewCell: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        didSelectItemAt?(row,indexPath.item)
+        didSelectItemAt?(row, indexPath.item)
     }
 }

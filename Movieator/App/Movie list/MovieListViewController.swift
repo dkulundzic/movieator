@@ -103,10 +103,9 @@ extension MovieListViewController: UITableViewDataSource {
         cell.moviesInGenresManager = moviesInGenresManager
         cell.didSelectItemAt = { [weak self] row, item in
             guard let strongSelf = self else { return }
-            let movieDetailsViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MovieDetailsViewController") as! MovieDetailsViewController
             let genre = strongSelf.moviesInGenresManager.getAvailableGenres()[row]
             let movie = strongSelf.moviesInGenresManager.getGenreMovies(for: genre)[item]
-            movieDetailsViewController.movie = movie
+            let movieDetailsViewController = MovieDetailsViewController(movie: movie)
             strongSelf.navigationController?.pushViewController(movieDetailsViewController, animated: true)
         }
         return cell
@@ -128,8 +127,7 @@ extension MovieListViewController: UISearchResultsUpdating {
 // MARK: - MovieSearchViewControllerDelegate
 extension MovieListViewController: MovieSearchViewControllerDelegate {
     func movieSearch(_ movieSearch: MovieSearchViewController, didSelectMovie movie: Movie) {
-        let movieDetailsViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MovieDetailsViewController") as! MovieDetailsViewController
-        movieDetailsViewController.movie = movie
+        let movieDetailsViewController = MovieDetailsViewController(movie: movie)
         navigationController?.pushViewController(movieDetailsViewController, animated: true)
     }
 }
@@ -149,7 +147,7 @@ private extension MovieListViewController {
                 let year = String(Calendar.current.component(.year, from: movie.releaseDate))
                 let actions = [UIAlertAction(title: LocalizationKey.MovieList.movieFoundAlertImportAction.localized(),
                                              style: .default,
-                                             handler: { action in self.importMovie(for: movie) } )]
+                                             handler: { action in self.importMovie(for: movie) })]
                 let alert = UIAlertController.generic(title: LocalizationKey.MovieList.movieFoundAlertTitle.localized(),
                                                       message: LocalizationKey.MovieList.movieFoundAlertMessage.localized(movie.title, year),
                                                       preferredStyle: .actionSheet,
