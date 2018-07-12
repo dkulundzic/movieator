@@ -80,7 +80,7 @@ class MovieListViewController: UIViewController {
     }
     
     @objc func userButtonTapped() {
-        let userProfileViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "UserProfileViewController")
+        let userProfileViewController = UserProfileViewController()
         let navController = UINavigationController(rootViewController: userProfileViewController)
         navController.navigationBar.prefersLargeTitles = true
         present(navController, animated: true, completion: nil)
