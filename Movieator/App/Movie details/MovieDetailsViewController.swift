@@ -60,10 +60,10 @@ private extension MovieDetailsViewController {
     func setupView() {
         view.backgroundColor = .white
         view.addSubview(detailsView)
+        detailsView.updateProperties(withMovie: movie)
         detailsView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
-        detailsView.updateProperties(withMovie: movie)
     }
     
     func setupNavigationBar() {
