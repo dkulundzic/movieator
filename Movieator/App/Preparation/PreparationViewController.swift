@@ -9,14 +9,18 @@
 import UIKit
 
 class PreparationViewController: UIViewController {
-    private let movieFetcher: MovieFetcher = MovieFetcher()
+    private let movieFetcher = MovieFetcher()
     private let data = DataController()
-    private let preparationView = PreparationView().autolayoutView()
+    private let preparationView = PreparationView.autolayoutView()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    init() {
+        super.init(nibName: nil, bundle: nil)
         setupView()
         getMovies()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 }
 
