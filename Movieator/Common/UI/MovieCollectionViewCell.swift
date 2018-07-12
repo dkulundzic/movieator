@@ -9,8 +9,6 @@
 import SnapKit
 
 class MovieCollectionViewCell: UICollectionViewCell {
-    typealias ViewModel = (title: String?, year: String?, posterURL: String)
-    
     private let stackView = UIStackView.autolayoutView()
     private let titleLabel = UILabel.autolayoutView()
     private let yearLabel = UILabel.autolayoutView()
@@ -28,7 +26,7 @@ class MovieCollectionViewCell: UICollectionViewCell {
 }
 
 extension MovieCollectionViewCell {    
-    func setupCell(with movie: Movie) {
+    func updateProperties(with movie: Movie) {
         titleLabel.text = movie.title
         let year = String(Calendar.current.component(.year, from: movie.releaseDate))
         yearLabel.text = year

@@ -24,6 +24,12 @@ enum MovieFetcherError: LocalizedError {
 
 class MovieFetcher {
     private let apiKey = "dc86f926"
+    private let dateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd MMM yyyy"
+        dateFormatter.locale = Locale(identifier: "en_US")
+        return dateFormatter
+    }()
     
     func fetchMovie(byId id: String, success: @escaping (Movie) -> Void, failure: @escaping (LocalizedError) -> Void) {
         let url = produceURL(forId: id)
@@ -52,9 +58,6 @@ class MovieFetcher {
     func parseJSON(movieData: Data) -> Movie? {
         do {
             let decoder = JSONDecoder()
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "dd MMM yyyy"
-            dateFormatter.locale = Locale(identifier: "en_US")
             decoder.dateDecodingStrategy = .formatted(dateFormatter)
             let movie = try decoder.decode(Movie.self, from: movieData)
             return movie
