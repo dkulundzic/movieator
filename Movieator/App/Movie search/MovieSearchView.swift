@@ -22,7 +22,7 @@ class MovieSearchView: UIView {
     }
 }
 
-// MARK: - Private Methods Extension
+// MARK: - Private Methods
 private extension MovieSearchView {
     func setupViews() {
         addSubview(collectionView)
@@ -31,6 +31,7 @@ private extension MovieSearchView {
         flowLayout.minimumLineSpacing = 10
         flowLayout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         collectionView.backgroundColor = .white
+        collectionView.register(MovieCollectionViewCell.self, forCellWithReuseIdentifier: "cell")
         collectionView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }

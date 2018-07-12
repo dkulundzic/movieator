@@ -13,21 +13,28 @@ class MovieSearchViewController: UIViewController {
     private let dataController = DataController()
     private lazy var movies: Results<Movie> = dataController.loadMovies()
     private var filteredMovies = [Movie]()
-    private let movieSearchView = MovieSearchView().autolayoutView()
+    private let movieSearchView = MovieSearchView.autolayoutView()
     weak var delegate: MovieSearchViewControllerDelegate?
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    init() {
+        super.init(nibName: nil, bundle: nil)
         setupView()
     }
     
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+
+// MARK: - Public Methods
+extension MovieSearchViewController {
     func filterMovies(with query: String) {
         filteredMovies = movies.filter { movies in movies.title.lowercased().contains(query.lowercased()) }
         movieSearchView.collectionView.reloadData()
     }
 }
 
-// MARK: - Data Source Extension
+// MARK: - UICollectionViewDataSource
 extension MovieSearchViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return filteredMovies.count
@@ -40,7 +47,7 @@ extension MovieSearchViewController: UICollectionViewDataSource {
     }
 }
 
-// MARK: - Delegate Flow Layout Extension
+// MARK: - UICollectionViewDelegateFlowLayout
 extension MovieSearchViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let size = (view.frame.size.width - 30) / 2
@@ -48,21 +55,20 @@ extension MovieSearchViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
-// MARK: - Collection View Delegate Extension
+// MARK: - UICollectionViewDelegate
 extension MovieSearchViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         delegate?.movieSearch(self, didSelectMovie: filteredMovies[indexPath.item])
     }
 }
 
-// MARK: - Private Methods Extension
+// MARK: - Private Methods
 private extension MovieSearchViewController {
     func setupView() {
         view.backgroundColor = .white
         view.addSubview(movieSearchView)
         movieSearchView.collectionView.delegate = self
         movieSearchView.collectionView.dataSource = self
-        movieSearchView.collectionView.register(MovieCollectionViewCell.self, forCellWithReuseIdentifier: "cell")
         movieSearchView.snp.makeConstraints {
             $0.edges.equalTo(view.safeAreaLayoutGuide)
         }
