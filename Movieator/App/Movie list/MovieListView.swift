@@ -9,7 +9,7 @@
 import SnapKit
 
 class MovieListView: UIView {
-    let tableView = UITableView().autolayoutView()
+    let tableView = UITableView.autolayoutView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -26,6 +26,7 @@ private extension MovieListView {
     func setupViews() {
         addSubview(tableView)
         tableView.backgroundColor = .white
+        tableView.register(GenreTableViewCell.self, forCellReuseIdentifier: "cell")
         tableView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
