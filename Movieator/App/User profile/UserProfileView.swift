@@ -34,6 +34,7 @@ private extension UserProfileView {
     func setupViews() {
         addSubview(collectionView)
         collectionView.backgroundColor = .white
+        collectionView.register(MovieCollectionViewCell.self, forCellWithReuseIdentifier: "cell")
         collectionView.snp.makeConstraints {
             $0.top.leading.trailing.equalToSuperview()
             $0.height.equalTo(375)

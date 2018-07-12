@@ -14,13 +14,20 @@ class UserProfileViewController: UIViewController {
     private let userMovieIDs = SavedMoviesManager()
     private lazy var movieIDs = userMovieIDs.loadUserMovieIDs()
     private lazy var movies = data.loadMovies(with: movieIDs)
-    private let userProfileView = UserProfileView().autolayoutView()
+    private let userProfileView = UserProfileView.autolayoutView()
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    init() {
+        super.init(nibName: nil, bundle: nil)
         setupView()
     }
     
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+
+// MARK: - Actions
+private extension UserProfileViewController {
     @objc func dismissViewController() {
         dismiss(animated: true, completion: nil)
     }
@@ -65,7 +72,7 @@ extension UserProfileViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
-// MARK: - Private Methods Extension
+// MARK: - Private Methods
 private extension UserProfileViewController {
     func setupView() {
         navigationItem.title = LocalizationKey.UserProfile.navigationBarTitle.localized()
@@ -75,7 +82,6 @@ private extension UserProfileViewController {
         view.addSubview(userProfileView)
         userProfileView.collectionView.delegate = self
         userProfileView.collectionView.dataSource = self
-        userProfileView.collectionView.register(MovieCollectionViewCell.self, forCellWithReuseIdentifier: "cell")
         userProfileView.snp.makeConstraints {
             $0.edges.equalTo(view.safeAreaLayoutGuide)
         }
