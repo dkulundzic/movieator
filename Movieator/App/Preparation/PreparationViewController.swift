@@ -9,31 +9,30 @@
 import UIKit
 
 class PreparationViewController: UIViewController {
-    let movieFetcher: MovieFetcher = MovieFetcher()
-    let data = DataController()
-    let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
-    @IBOutlet weak var loadingView: UIView!
+    private let movieFetcher = MovieFetcher()
+    private let data = DataController()
+    private let preparationView = PreparationView.autolayoutView()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        loadingView.addSubview(activityIndicator)
-        activityIndicator.frame = loadingView.bounds
-        activityIndicator.startAnimating()
+    init() {
+        super.init(nibName: nil, bundle: nil)
+        setupView()
         getMovies()
     }
     
-    func movieReceived(movie: Movie) {
-        data.saveMovies(movie: movie)
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
-    
-    func movieNotReceived(error: Error) {
-        print(error)
-    }
-    
-    func didCompleteFetchingAndStoringMovies() {
-        activityIndicator.removeFromSuperview()
-        let preparationViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MovieListViewController")
-        navigationController?.pushViewController(preparationViewController, animated: true)
+}
+
+// MARK: - Private Methods
+private extension PreparationViewController {
+    func setupView() {
+        view.backgroundColor = .white
+        view.addSubview(preparationView)
+        preparationView.activityIndicator.startAnimating()
+        preparationView.snp.makeConstraints {
+            $0.edges.equalTo(view.safeAreaLayoutGuide)
+        }
     }
     
     func getMovies() {
@@ -43,18 +42,18 @@ class PreparationViewController: UIViewController {
         for id in movieIDs {
             group.enter()
             movieFetcher.fetchMovie(byId: id,
-                success: { [weak self] movie in
-                    self?.movieReceived(movie: movie)
-                    group.leave() },
-                failure: { [weak self] error in
-                    self?.movieNotReceived(error: error)
-                    group.leave() })
+                                    success: { [weak self] movie in
+                                        self?.movieReceived(movie: movie)
+                                        group.leave() },
+                                    failure: { [weak self] error in
+                                        self?.movieNotReceived(error: error)
+                                        group.leave() })
         }
         group.notify(queue: DispatchQueue.main) { [weak self] in
             self?.didCompleteFetchingAndStoringMovies()
         }
     }
-        
+
     func getIds() -> [String] {
         if let filePath = Bundle.main.path(forResource: "movie_ids", ofType: "txt") {
             do {
@@ -67,5 +66,19 @@ class PreparationViewController: UIViewController {
         } else {
             return []
         }
+    }
+    
+    func didCompleteFetchingAndStoringMovies() {
+        preparationView.activityIndicator.removeFromSuperview()
+        let movieListViewController = MovieListViewController()
+        navigationController?.pushViewController(movieListViewController, animated: true)
+    }
+    
+    func movieReceived(movie: Movie) {
+        data.saveMovies(movie: movie)
+    }
+    
+    func movieNotReceived(error: Error) {
+        print(error)
     }
 }

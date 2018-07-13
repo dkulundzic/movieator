@@ -9,6 +9,9 @@
 import Foundation
 
 struct LocalizationKey {
+    struct Preparation {
+        static let title = "preparation_title_label"
+    }
     struct MovieList {
         static let searchBarPlaceholder = "movie_list_search_bar_placeholder"
         static let navigationBarTitle = "movie_list_navigation_bar_title"
