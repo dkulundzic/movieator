@@ -6,51 +6,37 @@
 //  Copyright © 2018 Codeopolius. All rights reserved.
 //
 
-import UIKit
+import SnapKit
 
 class MovieListViewController: UIViewController {
-    private let tableView = UITableView().autolayoutView()
     private let moviesInGenresManager = GenreMovieGroupingManager()
     private let movieSearchResultsViewController = MovieSearchViewController()
+    private let movieListView = MovieListView.autolayoutView()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.view.backgroundColor = .white
+    init() {
+        super.init(nibName: nil, bundle: nil)
         definesPresentationContext = true
-        
-        setupTableView()
-        tableView.dataSource = self
-        tableView.register(GenreTableViewCell.self, forCellReuseIdentifier: "cell")
-        
-        let searchController = UISearchController(searchResultsController: movieSearchResultsViewController)
-        searchController.obscuresBackgroundDuringPresentation = true
-        searchController.searchBar.placeholder = LocalizationKey.MovieList.searchBarPlaceholder.localized()
-        searchController.searchResultsUpdater = self
-        movieSearchResultsViewController.delegate = self
-        moviesInGenresManager.dataChanged = { [weak self] in
-            self?.tableView.reloadData()
-        }
-        
-        let userButton = UIBarButtonItem(image: #imageLiteral(resourceName: "userProfileIcon"), style: .plain, target: self, action: #selector(userButtonTapped))
-        let addButton = UIBarButtonItem(image: #imageLiteral(resourceName: "addIcon"), style: .plain, target: self, action: #selector(addButtonTapped))
-
-        navigationItem.title = LocalizationKey.MovieList.navigationBarTitle.localized()
-        navigationItem.largeTitleDisplayMode = .always
-        navigationItem.searchController = searchController
-        navigationItem.backBarButtonItem = nil
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "sortIcon"), style: .plain, target: self, action: #selector(sortButtonTapped))
-        navigationItem.rightBarButtonItems = [userButton, addButton]
+        setupNavigationBar()
+        setupSearchController()
+        setupView()
     }
     
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+
+// MARK: - Actions
+private extension MovieListViewController {
     @objc func addButtonTapped() {
         let alert = UIAlertController.generic(title: LocalizationKey.MovieList.addNewMovieAlertTitle.localized(),
                                               message: LocalizationKey.MovieList.addNewMovieAlertMessage.localized())
         let findButton = UIAlertAction(title: LocalizationKey.MovieList.addNewMovieAlertFindAction.localized(),
                                        style: .default,
                                        handler: { action in
-            if let id = alert.textFields?.first?.text {
-                self.findMovie(with: id)
-            }
+                                        if let id = alert.textFields?.first?.text {
+                                            self.findMovie(with: id)
+                                        }
         })
         alert.addAction(findButton)
         alert.addTextField { textField in
@@ -106,10 +92,9 @@ extension MovieListViewController: UITableViewDataSource {
         cell.moviesInGenresManager = moviesInGenresManager
         cell.didSelectItemAt = { [weak self] row, item in
             guard let strongSelf = self else { return }
-            let movieDetailsViewController = MovieDetailsViewController()
             let genre = strongSelf.moviesInGenresManager.getAvailableGenres()[row]
             let movie = strongSelf.moviesInGenresManager.getGenreMovies(for: genre)[item]
-            movieDetailsViewController.movie = movie
+            let movieDetailsViewController = MovieDetailsViewController(movie: movie)
             strongSelf.navigationController?.pushViewController(movieDetailsViewController, animated: true)
         }
         return cell
@@ -131,8 +116,7 @@ extension MovieListViewController: UISearchResultsUpdating {
 // MARK: - MovieSearchViewControllerDelegate
 extension MovieListViewController: MovieSearchViewControllerDelegate {
     func movieSearch(_ movieSearch: MovieSearchViewController, didSelectMovie movie: Movie) {
-        let movieDetailsViewController = MovieDetailsViewController()
-        movieDetailsViewController.movie = movie
+        let movieDetailsViewController = MovieDetailsViewController(movie: movie)
         navigationController?.pushViewController(movieDetailsViewController, animated: true)
     }
 }
@@ -141,7 +125,7 @@ extension MovieListViewController: MovieSearchViewControllerDelegate {
 private extension MovieListViewController {
     func sortMovies(withKey sortKey: MovieSortKey) {
         if moviesInGenresManager.sortMovies(withKey: sortKey) {
-            tableView.reloadData()
+            movieListView.tableView.reloadData()
         }
     }
     
@@ -172,11 +156,35 @@ private extension MovieListViewController {
         alert.present(on: self)
     }
     
-    func setupTableView() {
-        self.view.addSubview(tableView)
-        tableView.backgroundColor = .white
-        tableView.snp.makeConstraints {
-            $0.edges.equalTo(self.view.safeAreaLayoutGuide)
+    func setupView() {
+        view.backgroundColor = .white
+        view.addSubview(movieListView)
+        movieListView.tableView.dataSource = self
+        movieListView.snp.makeConstraints {
+            $0.edges.equalTo(view.safeAreaLayoutGuide)
         }
+    }
+    
+    func setupSearchController() {
+        let searchController = UISearchController(searchResultsController: movieSearchResultsViewController)
+        searchController.obscuresBackgroundDuringPresentation = true
+        searchController.searchBar.placeholder = LocalizationKey.MovieList.searchBarPlaceholder.localized()
+        searchController.searchResultsUpdater = self
+        navigationItem.searchController = searchController
+        movieSearchResultsViewController.delegate = self
+        moviesInGenresManager.dataChanged = { [weak self] in
+            self?.movieListView.tableView.reloadData()
+        }
+    }
+    
+    func setupNavigationBar() {
+        let userButton = UIBarButtonItem(image: #imageLiteral(resourceName: "userProfileIcon"), style: .plain, target: self, action: #selector(userButtonTapped))
+        let addButton = UIBarButtonItem(image: #imageLiteral(resourceName: "addIcon"), style: .plain, target: self, action: #selector(addButtonTapped))
+        
+        navigationItem.title = LocalizationKey.MovieList.navigationBarTitle.localized()
+        navigationItem.largeTitleDisplayMode = .always
+        navigationItem.backBarButtonItem = nil
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "sortIcon"), style: .plain, target: self, action: #selector(sortButtonTapped))
+        navigationItem.rightBarButtonItems = [userButton, addButton]
     }
 }
