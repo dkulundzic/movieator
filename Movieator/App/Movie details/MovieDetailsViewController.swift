@@ -9,42 +9,27 @@
 import UIKit
 
 class MovieDetailsViewController: UIViewController {
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var imdbRatingLabel: UILabel!
-    @IBOutlet weak var metascoreRatingLabel: UILabel!
-    @IBOutlet weak var plotLabel: UILabel!
-    @IBOutlet weak var actorsLabel: UILabel!
-    @IBOutlet weak var genreLabel: UILabel!
-    @IBOutlet weak var releasedLabel: UILabel!
-    @IBOutlet weak var posterImageView: UIImageView!
-    @IBOutlet weak var writerLabel: UILabel!
-    @IBOutlet weak var directorLabel: UILabel!
+    private let movie: Movie
+    private let detailsView = MovieDetailsView.autolayoutView()
     
-    var movie: Movie!
-    
-    private let details = MovieDetailsView.autolayoutView()
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        self.view.backgroundColor = .white
-        
-        let saveButtonTitle = LocalizationKey.MovieDetails.saveButtonText.localized()
-        let shareButtonTitle = LocalizationKey.MovieDetails.shareButtonText.localized()
-        let saveButton = UIBarButtonItem(title: saveButtonTitle, style: .plain, target: self, action: #selector(saveButtonTapped))
-        let shareButton = UIBarButtonItem(title: shareButtonTitle, style: .plain, target: self, action: #selector(shareButtonTapped))
-        
-        navigationItem.title = LocalizationKey.MovieDetails.navigationBarTitle.localized()
-        navigationItem.largeTitleDisplayMode = .automatic
-        navigationItem.rightBarButtonItems = [saveButton, shareButton]
-
-        setupViews()
+    init(movie: Movie) {
+        self.movie = movie
+        super.init(nibName: nil, bundle: nil)
+        setupNavigationBar()
+        setupView()
     }
     
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+
+// MARK: - Actions
+private extension MovieDetailsViewController {
     @objc func saveButtonTapped() {
         let savedMoviesManager = SavedMoviesManager()
         savedMoviesManager.saveUserMovie(withID: movie.imdbID)
-
+        
         let alert = UIAlertController.generic(title: LocalizationKey.MovieDetails.saveMovieAlertTitle.localized(),
                                               message: LocalizationKey.MovieDetails.saveMovieAlertMessage.localized(),
                                               cancelTitle: LocalizationKey.Alert.okAction.localized())
@@ -61,21 +46,34 @@ class MovieDetailsViewController: UIViewController {
         }
         present(activityViewController, animated: true, completion: nil)
     }
-    
-    func setupViews() {
-        self.view.addSubview(details)
-        details.snp.makeConstraints {
-            $0.edges.equalToSuperview()
-        }
-        details.setupDetails(withMovie: movie)
-    }
 }
 
+// MARK: - Private Methods
 private extension MovieDetailsViewController {
     func getMovieURL() -> URL {
         guard let url = URL(string: "https://www.imdb.com/title/\(movie.imdbID)") else {
             fatalError("Error creating url for this movie.")
         }
         return url
+    }
+    
+    func setupView() {
+        view.backgroundColor = .white
+        view.addSubview(detailsView)
+        detailsView.updateProperties(withMovie: movie)
+        detailsView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+    }
+    
+    func setupNavigationBar() {
+        let saveButtonTitle = LocalizationKey.MovieDetails.saveButtonText.localized()
+        let shareButtonTitle = LocalizationKey.MovieDetails.shareButtonText.localized()
+        let saveButton = UIBarButtonItem(title: saveButtonTitle, style: .plain, target: self, action: #selector(saveButtonTapped))
+        let shareButton = UIBarButtonItem(title: shareButtonTitle, style: .plain, target: self, action: #selector(shareButtonTapped))
+        
+        navigationItem.title = LocalizationKey.MovieDetails.navigationBarTitle.localized()
+        navigationItem.largeTitleDisplayMode = .automatic
+        navigationItem.rightBarButtonItems = [saveButton, shareButton]
     }
 }
