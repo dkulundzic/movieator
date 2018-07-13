@@ -6,15 +6,10 @@
 //  Copyright © 2018 Codeopolius. All rights reserved.
 //
 
-import UIKit
+import SnapKit
 
 class GenreTableViewCell: UITableViewCell {
-    @IBOutlet weak var collectionView: UICollectionView!
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        collectionView.register(MovieCollectionViewCell.self, forCellWithReuseIdentifier: "cell")
-    }
+    private let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: UICollectionViewFlowLayout()).autolayoutView()
     
     var moviesInGenresManager: GenreMovieGroupingManager?
     var didSelectItemAt: ((Int, Int) -> Void)?
@@ -23,6 +18,13 @@ class GenreTableViewCell: UITableViewCell {
         didSet {
             collectionView.reloadData()
         }
+    }
+}
+
+// MARK: - Public Methods
+extension GenreTableViewCell {
+    func setupCell() {
+        setupCollectionView()
     }
 }
 
@@ -61,5 +63,25 @@ extension GenreTableViewCell: UICollectionViewDelegateFlowLayout {
 extension GenreTableViewCell: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         didSelectItemAt?(row, indexPath.item)
+    }
+}
+
+// MARK: - Private Methods
+private extension GenreTableViewCell {
+    func setupCollectionView() {
+        contentView.addSubview(collectionView)
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.register(MovieCollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+        collectionView.backgroundColor = .white
+        collectionView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+            $0.height.equalTo(192.5)
+        }
+        if let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+            flowLayout.scrollDirection = .horizontal
+            flowLayout.minimumInteritemSpacing = 10
+            flowLayout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        }
     }
 }
