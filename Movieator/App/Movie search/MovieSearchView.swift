@@ -9,8 +9,7 @@
 import SnapKit
 
 class MovieSearchView: UIView {
-    private let flowLayout = UICollectionViewFlowLayout()
-    lazy var collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: flowLayout).autolayoutView()
+    let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: UICollectionViewFlowLayout()).autolayoutView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -26,14 +25,16 @@ class MovieSearchView: UIView {
 private extension MovieSearchView {
     func setupViews() {
         addSubview(collectionView)
-        flowLayout.scrollDirection = .vertical
-        flowLayout.minimumInteritemSpacing = 10
-        flowLayout.minimumLineSpacing = 10
-        flowLayout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         collectionView.backgroundColor = .white
         collectionView.register(MovieCollectionViewCell.self, forCellWithReuseIdentifier: "cell")
         collectionView.snp.makeConstraints {
             $0.edges.equalToSuperview()
+        }
+        if let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+            flowLayout.scrollDirection = .vertical
+            flowLayout.minimumInteritemSpacing = 10
+            flowLayout.minimumLineSpacing = 10
+            flowLayout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         }
     }
 }

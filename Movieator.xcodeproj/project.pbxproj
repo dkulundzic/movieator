@@ -309,7 +309,6 @@
 				F5AB6D0E20AC1A620084DE49 /* MovieCollectionViewCell.swift */,
 				F555F12720C2CA77009CA3E6 /* MovieListHeaderView.swift */,
 				F514FFD220C6A8FA00982F6B /* GenreTableViewCell.swift */,
-				F54C887920DBD4F60048C7F4 /* MovieDetailsView.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
